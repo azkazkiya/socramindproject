@@ -10,13 +10,13 @@
      <header class="page-header">
         <a href="{{ url_for('main.materi') }}" class="header-link">Kembali ke Menu Materi</a>
         <div>
-        {% if current_user_name %}
-            <span class="user-display">
-                👤 {{ current_user_name | capitalize }}
-            </span>
-        {% endif %}
-        <a href="{{ url_for('auth.logout') }}" class="header-link logout-link">Logout</a>
-    </div>
+            {% if current_user_name %}
+                <span class="user-display">
+                    👤 {{ current_user_name | capitalize }}
+                </span>
+            {% endif %}
+            <a href="{{ url_for('auth.logout') }}" class="header-link logout-link">Logout</a>
+        </div>
     </header>
 
     <div class="learning-container">
