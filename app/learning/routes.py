@@ -579,6 +579,34 @@ def learning_module(module_name):
                              module_name=module_name,
                              max_step_achieved=max_step_for_this_module)
     
+@learning.route('/goto/<module_name>/<int:step_num>')
+def goto_step(module_name, step_num):
+    # Pastikan user sudah login
+    if 'username' not in session:
+        return redirect(url_for('auth.login'))
+
+    user = User.query.filter_by(username=session['username']).first()
+    if not user:
+        return redirect(url_for('auth.logout'))
+
+    # PENTING: Cek apakah step yang dituju sudah terbuka untuk user ini
+    progress = UserProgress.query.filter_by(user_id=user.id, module_name=module_name).first()
+    max_step_for_this_module = progress.max_step_achieved if progress else 0
+
+    if step_num > max_step_for_this_module:
+        # Jika user mencoba lompat ke step yang terkunci, kembalikan ke materi
+        flash("Anda belum bisa mengakses step tersebut.", "error")
+        return redirect(url_for('learning.learning_module', module_name=module_name))
+
+    # Jika aman, ubah step di session dan reset history
+    session['step'] = step_num
+    session['stage_index'] = 0
+    target_step_data = curriculum[module_name][step_num]
+    initial_message = target_step_data.get('opening_message', f'Memulai di step {step_num}.')
+    session['history'] = [{'role': 'assistant', 'content': initial_message}]
+
+    return redirect(url_for('learning.learning_module', module_name=module_name))
+    
 @learning.route('/chat', methods=['POST'])
 def chat():
     if 'username' not in session:

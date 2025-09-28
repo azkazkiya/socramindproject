@@ -34,8 +34,7 @@
                         {% set is_unlocked = step_item.step <= max_step_achieved %}
                         
                         <li>
-                            <a href="{{ url_for('learning.dev_jump', module_name=module_name, step_num=step_item.step) if is_unlocked else '#' }}"
-                            class="{{ 'active' if step_item.step == step_data.step else '' }} {{ 'locked' if not is_unlocked else '' }}">
+                                <a href="{{ url_for('learning.goto_step', module_name=module_name, step_num=step_item.step) if is_unlocked else '#' }}"                                 class="{{ 'active' if step_item.step == step_data.step else '' }} {{ 'locked' if not is_unlocked else '' }}">
                                 Step {{ loop.index }}
                             </a>
                         </li>
