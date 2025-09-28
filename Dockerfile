@@ -13,6 +13,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Salin sisa kode proyek Anda ke dalam kontainer
 COPY . .
 
+# BERITAHU BACK4APP BAHWA KONTAINER MENDENGARKAN DI PORT 8080
+EXPOSE 8080
 # Perintah untuk menjalankan aplikasi Anda saat kontainer dimulai
 # Gunicorn akan berjalan di port 8080
 # PERBAIKAN: Gunakan path absolut untuk memanggil gunicorn
