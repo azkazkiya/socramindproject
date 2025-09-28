@@ -15,4 +15,5 @@ COPY . .
 
 # Perintah untuk menjalankan aplikasi Anda saat kontainer dimulai
 # Gunicorn akan berjalan di port 8080
-CMD ["gunicorn", "run:app", "--bind", "0.0.0.0:8080"]
+# PERBAIKAN: Gunakan path absolut untuk memanggil gunicorn
+CMD ["/usr/local/bin/gunicorn", "run:app", "--bind", "0.0.0.0:8080"]
