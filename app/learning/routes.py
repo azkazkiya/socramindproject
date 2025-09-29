@@ -61,27 +61,32 @@ curriculum = {
             """,
             
         },
+        # Halaman 4 atau Step 3: Tipe Data & Operator
         {
-            'step': 3, 
-            'type': 'multi_stage_socratic', 
+            'step': 3,
+            'type': 'multi_stage_socratic',
             'is_concludable': True,
-            'ct': 'Interpretasi, Analisis', 
+            'ct': 'Interpretasi, Analisis',
             'opening_message': "Bagus sekali! Sekarang kita sudah lebih paham tentang algoritma, mari kita bahas 'bahan baku'-nya, yaitu Tipe Data. Pernah dengar istilah itu?",
             'illustration_image': 'Tipe-Data.jpg',
-           
             'instruction': """
-            Tugas Anda adalah memandu siswa memahami konsep Tipe Data melalui 3 tujuan Socratic. Anda yang mengontrol alur percakapan.
+            Tugas Anda adalah memandu siswa memahami konsep Tipe Data dan Operator Aritmatika dasar melalui 4 tujuan Socratic. Anda yang mengontrol alur percakapan.
 
-            1. Setelah siswa menjawab pertanyaan pembuka, pandu mereka secara berurutan melalui 3 tujuan ini:
-               - Tujuan 1: Dasar & Contoh (Klarifikasi definisi dan minta contoh).
+            1. Setelah siswa menjawab pertanyaan pembuka, pandu mereka secara berurutan melalui 4 tujuan ini:
+               - Tujuan 1: Dasar & Contoh (Klarifikasi definisi Tipe Data dan minta contoh).
                - Tujuan 2: Penggunaan & Konsekuensi (Bahas penggunaan praktis dan akibat jika salah pakai).
-               - Tujuan 3: Sudut Pandang lain dan Refleksi (Tutup dengan pertanyaan meta).
+               - Tujuan 3: Pengenalan Operator (Hubungkan Tipe Data dengan operator yang bisa digunakan).
+               - Tujuan 4: Sudut Pandang lain dan Refleksi (Tutup dengan pertanyaan meta).
 
             2. ATURAN ADAPTIF: Jika siswa bingung di satu tujuan, tetaplah di tujuan itu dan berikan petunjuk. Jangan pindah ke tujuan berikutnya sampai siswa cukup paham.
 
-            3. Setelah semua 3 tujuan tercapai, akhiri respons terakhir dengan kalimat penutup dan WAJIB diakhiri dengan sinyal `[SELESAI]`.
+            3. ALUR KHUSUS TUJUAN 3 (OPERATOR):
+               a. Mulai dengan pertanyaan pancingan. Contoh: "Oke, kita sudah punya 'wadah' (variabel) dan 'isi' (tipe data). Sekarang, bagaimana cara kita 'mengolah' isi tersebut? Misalnya, jika kita punya dua variabel angka, `a = 10` dan `b = 5`, simbol apa yang kita gunakan untuk menjumlahkannya?"
+               b. Setelah siswa menjawab (jawaban: `+`), berikan pertanyaan Socratic yang menantang. Contoh: "Tepat. Sekarang, apa yang terjadi jika kita menggunakan simbol `+` yang sama pada dua data bertipe teks, misalnya `'Halo' + 'Dunia'`? Apakah hasilnya akan sama dengan penjumlahan angka?"
+               c. Pandu diskusi singkat ini untuk menyimpulkan bahwa fungsi operator bisa berbeda tergantung tipe datanya.
+
+            4. Setelah semua 4 tujuan tercapai, akhiri respons terakhir dengan kalimat penutup dan WAJIB diakhiri dengan sinyal [SELESAI].
             """,
-            
         },
         
         # Halaman 5 atau step 4: Penjelasan Struktur Kode
