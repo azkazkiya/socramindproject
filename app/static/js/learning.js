@@ -46,14 +46,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const oldButton = document.getElementById('next-step-btn');
         if (oldButton) oldButton.remove();
         
+        // Temukan kontainer utama, bukan lagi 'contentArea'
+        const mainContent = document.querySelector('.learning-main-content');
+        if (!mainContent) return; // Keluar jika kontainer tidak ditemukan
+
         const nextButton = document.createElement('button');
         nextButton.id = 'next-step-btn';
-        nextButton.textContent = next_url ? 'Mulai Quiz' : 'Lanjut';
+        nextButton.className = 'button-lanjut'; // Tambahkan class untuk styling
+        nextButton.textContent = next_url ? 'Mulai Quiz' : 'Lanjut ke Tahap Berikutnya';
         
         // Panggil fungsi global saat diklik
         nextButton.onclick = () => window.handleNextStep(next_url);
         
-        contentArea.appendChild(nextButton);
+        // Tambahkan tombol ke kontainer utama
+        mainContent.appendChild(nextButton);
     }
 
     if (runCodeBtn) {

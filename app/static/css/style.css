@@ -682,3 +682,21 @@ h1, h2, h3, h4 {
     width: 100%;
     height: 100%;
 }
+/* Styling untuk Tombol Lanjut di Bawah Chat */
+.button-lanjut {
+    display: block;
+    margin: 20px auto; /* Membuat posisi tombol di tengah */
+    padding: 12px 25px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+    background-color: #ff8c00; /* Warna oranye */
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.button-lanjut:hover {
+    background-color: #e07b00; /* Warna oranye lebih gelap saat disentuh */
+}
