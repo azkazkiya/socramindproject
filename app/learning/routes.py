@@ -783,25 +783,47 @@ def chat():
         print(f"Error calling API: {e}")
         return jsonify({'error': 'Failed to get response from AI'}), 500
 
+
+# app/learning/routes.py
+
 @learning.route('/quiz/<module_name>')
 def quiz(module_name):
     if 'username' not in session:
         return redirect(url_for('auth.login'))
     
+    user = User.query.filter_by(username=session['username']).first()
+    if not user:
+        return redirect(url_for('auth.logout'))
+
+    existing_attempt = QuizAttempt.query.filter_by(
+        user_id=user.id,
+        module_name=module_name
+    ).first()
+
+    if existing_attempt:
+        # Jika kuis sudah dikerjakan, buat judul halaman riwayat
+        page_title = f"Skor Kuis: {module_name.capitalize()}"
+        return render_template('quiz.html', 
+                                 module_name=module_name, 
+                                 attempt_history=existing_attempt,
+                                 quiz_taken=True,
+                                 page_title=page_title)
+
     quiz_data = QUIZZES.get(module_name)
-    
     if not quiz_data:
         flash(f'Quiz untuk materi "{module_name}" belum tersedia.', 'error')
         return redirect(url_for('main.materi'))
 
-    # Ambil daftar jawaban yang benar dari 'quiz_data'
+    # Jika kuis belum dikerjakan, gunakan judul dari data kuis
+    page_title = quiz_data['title']
     correct_answers = [q['correct'] for q in quiz_data['questions']]
-        
-    # Kirim 'correct_answers' ke template
+    
     return render_template('quiz.html', 
                              quiz_data=quiz_data, 
                              module_name=module_name, 
-                             correct_answers=correct_answers)
+                             correct_answers=correct_answers,
+                             quiz_taken=False,
+                             page_title=page_title)
 
 @learning.route('/save_quiz_attempt', methods=['POST'])
 def save_quiz_attempt():
