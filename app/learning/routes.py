@@ -107,7 +107,7 @@ curriculum = {
             """
         },
         
-        # Halaman 6 atau step 5: Penjelasan Struktur Kode
+        # Halaman 6 atau step 5: Run
         {
             'step': 5, 
             'type': 'predict_run_investigate',
@@ -144,6 +144,7 @@ curriculum = {
                 d. Setelah itu, WAJIB akhiri dengan sinyal `[SELESAI]`.
             """
         },
+        # Halaman 7 Modify
         {
             'step': 6,
             'type': 'modify_code',
@@ -162,6 +163,7 @@ curriculum = {
             3.  **Tahap 3 (Validasi & Penutup)**: Setelah siswa memberikan hasil yang benar (`Isi Gelas A: 20, Isi Gelas B: 10`), berikan validasi dan pujian atas kemampuannya memecahkan masalah logika ini. Akhiri dengan sinyal `[SELESAI]`.
             """
         },
+        # Halaman 8 Make
         {
             'step': 7,
             'type': 'make_code',
@@ -388,7 +390,7 @@ curriculum = {
             'is_concludable': True,
             'ct': 'Analisis',
             'primm': 'Predict',
-            'opening_message': "Sekarang, coba perhatikan kode ini. Kode ini menggunakan `range()` untuk melakukan perulangan. Apakah kamu sudah melihatnya?",
+            'opening_message': "Sekarang, coba perhatikan kode ini. Kode ini menggunakan `range()` untuk melakukan perulangan. Kira-kira apa outputnya?",
             'code': "for i in range(5):\n    print(i)", # Disesuaikan dengan gambar Anda
             'instruction': """
             Tugas Anda adalah merespons prediksi siswa tentang output kode `for i in range(5): print(i)` secara ADAPTIF. Jawaban yang benar adalah `0, 1, 2, 3, 4`.
