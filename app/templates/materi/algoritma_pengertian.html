@@ -31,6 +31,185 @@
         <li>Bisa digunakan berulang kali dan tidak perlu repot menuliskan kembali program yang sama, sehingga lebih memudahkan dalam membuat program.</li>
     </ol>
 
+<div class="materi-content">
+    <h4>Tipe Data dalam Variabel dan Operator</h4>
+
+    <h5>a. Tipe Data</h5>
+    <p>
+        Dalam membuat kode program, sangat perlu untuk memperhatikan tipe data yang sesuai dengan nilai yang akan digunakan dalam sebuah variabel. Variabel akan digunakan dalam setiap operasi, dan jika tipe datanya tidak sesuai, program bisa mengalami eror.
+    </p>
+    <p>
+        Kita bisa membayangkan tipe data sebagai "wadah". Ada wadah khusus untuk air, pasir, dan surat. Kita tidak bisa menyimpan air dalam wadah surat, kan? Begitu pula dalam pemrograman, setiap data memiliki jenisnya sendiri.
+    </p>
+    <p>
+        Berikut adalah empat tipe data paling dasar yang akan sering kita gunakan:
+    </p>
+
+    <h6>Integer (int)</h6>
+    <p>Tipe data ini digunakan untuk menyimpan bilangan bulat (positif, negatif, atau nol). Contoh: <code>17</code>, <code>-45</code>, <code>0</code>.</p>
+    <pre><code class="language-python">
+# Menyimpan umur dalam tipe data integer
+umur = 17
+print(f"Umur saya adalah {umur} tahun")
+    </code></pre>
+
+    <h6>Float</h6>
+    <p>Tipe data ini digunakan untuk menyimpan bilangan desimal atau pecahan. Contoh: <code>3.14</code>, <code>99.5</code>, <code>-0.25</code>.</p>
+    <pre><code class="language-python">
+# Menyimpan tinggi badan dalam tipe data float
+tinggi_badan = 172.5
+print(f"Tinggi badan saya {tinggi_badan} cm")
+    </code></pre>
+
+    <h6>String (str)</h6>
+    <p>Tipe data ini digunakan untuk menyimpan teks atau kumpulan karakter. Nilainya selalu diapit oleh tanda kutip (" atau '). Contoh: <code>"Halo Dunia"</code>, <code>'SMK Bisa!'</code>.</p>
+    <pre><code class="language-python">
+# Menyimpan nama dalam tipe data string
+nama = "Budi Sanjaya"
+print(f"Nama lengkap saya adalah {nama}")
+    </code></pre>
+    
+    <h6>Boolean (bool)</h6>
+    <p>Tipe data ini sangat spesial karena hanya bisa memiliki dua nilai: <code>True</code> (Benar) atau <code>False</code> (Salah). Tipe data ini adalah jantung dari logika percabangan.</p>
+    <pre><code class="language-python">
+# Menyimpan status kelulusan dalam tipe data boolean
+apakah_lulus = True
+print(f"Status kelulusan: {apakah_lulus}")
+    </code></pre>
+
+    <h5>b. Operator</h5>
+    <p>
+        Operator adalah simbol-simbol khusus yang digunakan untuk melakukan operasi, seperti perhitungan matematika atau perbandingan logika.
+    </p>
+
+    <h6>Operator Aritmatika</h6>
+    <p>Operator ini digunakan untuk melakukan operasi matematika dasar.</p>
+    <table class="materi-table">
+        <thead>
+            <tr>
+                <th>Operator</th>
+                <th>Nama</th>
+                <th>Contoh</th>
+                <th>Hasil</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>+</code></td>
+                <td>Penjumlahan</td>
+                <td><code>10 + 5</code></td>
+                <td><code>15</code></td>
+            </tr>
+            <tr>
+                <td><code>-</code></td>
+                <td>Pengurangan</td>
+                <td><code>10 - 5</code></td>
+                <td><code>5</code></td>
+            </tr>
+            <tr>
+                <td><code>*</code></td>
+                <td>Perkalian</td>
+                <td><code>10 * 5</code></td>
+                <td><code>50</code></td>
+            </tr>
+            <tr>
+                <td><code>/</code></td>
+                <td>Pembagian</td>
+                <td><code>10 / 5</code></td>
+                <td><code>2.0</code></td>
+            </tr>
+            <tr>
+                <td><code>%</code></td>
+                <td>Modulus (Sisa Bagi)</td>
+                <td><code>10 % 3</code></td>
+                <td><code>1</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h6>Operator Perbandingan</h6>
+    <p>Operator ini digunakan untuk membandingkan dua nilai. Hasil dari operasi ini selalu bernilai Boolean (<code>True</code> atau <code>False</code>).</p>
+    <table class="materi-table">
+        <thead>
+            <tr>
+                <th>Operator</th>
+                <th>Arti</th>
+                <th>Contoh</th>
+                <th>Hasil</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td><code>==</code></td><td>Sama dengan</td><td><code>5 == 5</code></td><td><code>True</code></td></tr>
+            <tr><td><code>!=</code></td><td>Tidak sama dengan</td><td><code>5 != 3</code></td><td><code>True</code></td></tr>
+            <tr><td><code>></code></td><td>Lebih besar dari</td><td><code>5 > 3</code></td><td><code>True</code></td></tr>
+            <tr><td><code><</code></td><td>Lebih kecil dari</td><td><code>5 < 3</code></td><td><code>False</code></td></tr>
+            <tr><td><code>>=</code></td><td>Lebih besar atau sama dengan</td><td><code>5 >= 5</code></td><td><code>True</code></td></tr>
+            <tr><td><code><=</code></td><td>Lebih kecil atau sama dengan</td><td><code>5 <= 3</code></td><td><code>False</code></td></tr>
+        </tbody>
+    </table>
+    <p><em><strong>Penting:</strong> Jangan tertukar antara <code>=</code> (untuk memberi nilai ke variabel) dan <code>==</code> (untuk membandingkan)!</em></p>
+
+    <h6>Operator Logika</h6>
+    <p>Operator ini digunakan untuk menggabungkan beberapa kondisi Boolean.</p>
+    <table class="materi-table">
+        <thead>
+            <tr>
+                <th>Operator</th>
+                <th>Cara Kerja</th>
+                <th>Contoh</th>
+                <th>Hasil</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>and</code></td>
+                <td>Akan menghasilkan <code>True</code> hanya jika kedua kondisi bernilai <code>True</code>.</td>
+                <td><code>(5 > 3) and (10 == 10)</code></td>
+                <td><code>True</code></td>
+            </tr>
+            <tr>
+                <td><code>or</code></td>
+                <td>Akan menghasilkan <code>True</code> jika salah satu kondisi bernilai <code>True</code>.</td>
+                <td><code>(5 < 3) or (10 == 10)</code></td>
+                <td><code>True</code></td>
+            </tr>
+            <tr>
+                <td><code>not</code></td>
+                <td>Akan membalikkan nilai Boolean.</td>
+                <td><code>not (5 < 3)</code></td>
+                <td><code>True</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<style>
+    .materi-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 0.9em;
+    }
+    .materi-table th, .materi-table td {
+        border: 1px solid #ddd;
+        padding: 8px 12px;
+        text-align: left;
+    }
+    .materi-table thead th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+    .materi-table tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    .materi-table code {
+        background-color: #e7e9eb;
+        padding: 2px 4px;
+        border-radius: 3px;
+    }
+</style>
+
     <h4>Contoh Kasus: Menghitung Luas Persegi Panjang</h4>
     <p>
         Misalkan kita ingin membuat program untuk menghitung luas persegi panjang. Langkah pertama adalah mengetahui proses logisnya terlebih dahulu, mulai dari rumus hingga cara menampilkannya. Jika sudah, kita bisa mengubahnya ke dalam bentuk algoritma dan kode.
@@ -39,7 +218,7 @@
     <h5>Algoritma Mencari Luas Persegi Panjang</h5>
     <ol type="a">
         <li>Mulai</li>
-        <li>Siapkan 'wadah' (variabel) bernama <code>panjang</code>, <code>lebar</code>, dan <code>luas</code>.</li>
+        <li>Siapkan 'wadah' (Tipe data dan variabel) bernama <code>panjang</code>, <code>lebar</code>, dan <code>luas</code>.</li>
         <li>Minta pengguna memasukkan nilai untuk <code>panjang</code>.</li>
         <li>Minta pengguna memasukkan nilai untuk <code>lebar</code>.</li>
         <li>Hitung <code>luas</code> dengan mengalikan <code>panjang</code> dan <code>lebar</code>.</li>
