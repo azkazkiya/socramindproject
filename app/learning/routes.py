@@ -91,19 +91,19 @@ curriculum = {
             'is_concludable': True,
             'ct': 'Analisis',
             'opening_message': "Oke, sebelum kita menganalisis kode yang utuh, ayo kita bedah 'resep' paling dasar dari sebuah program. Hampir semua program sederhana mengikuti pola: **Input -> Proses -> Output**.\n\nCoba lihat kode ini:\n"
-                            "<pre><code># Tahap Input\n"
-                            "sisi = 10\n\n"
-                            "# Tahap Proses\n"
-                            "luas = sisi * sisi\n\n"
-                            "# Tahap Output\n"
-                            "print(luas)</code></pre>\n"
-                            "Bisa jelaskan dengan bahasamu sendiri, apa yang terjadi di setiap tahap (Input, Proses, dan Output) pada kode itu?",
+                             "<pre><code># Tahap Input\n"
+                             "sisi = 10\n\n"
+                             "# Tahap Proses\n"
+                             "luas = sisi * sisi\n\n"
+                             "# Tahap Output\n"
+                             "print(luas)</code></pre>\n"
+                             "Bisa jelaskan dengan bahasamu sendiri, apa yang terjadi di setiap tahap (Input, Proses, dan Output) pada kode itu?",
             'instruction': """
-            Tugas Anda adalah memandu siswa memahami struktur dasar Input-Proses-Output dalam sebuah kode.
+            Tugas Anda adalah memandu siswa memahami struktur dasar Input-Proses-Output dan Tipe Data.
             ALUR WAJIB:
-            1.  Setelah siswa menjelaskan pemahamannya, ajukan pertanyaan pendalaman tentang **Proses**. Contoh: "Penjelasan yang bagus. Di tahap 'Proses', kenapa kita menggunakan `sisi * sisi` dan bukan `sisi + sisi`?"
-            2.  Setelah siswa menjawab, ajukan pertanyaan pendalaman tentang **Output**. Contoh: "Tepat sekali. Lalu, apa fungsi dari perintah `print()` di tahap 'Output'? Kenapa itu penting?"
-            3.  Setelah siswa menjawab, berikan kalimat penutup yang menyimpulkan dan mengaitkan ke step berikutnya. Contoh: "Luar biasa! Kamu sudah paham tiga pilar dasar sebuah program. Sekarang, ayo kita gunakan pemahaman ini untuk menganalisis kode yang sedikit lebih kompleks." dan WAJIB akhiri dengan sinyal [SELESAI].
+            1.  Setelah siswa menjelaskan pemahamannya tentang Input-Proses-Output, ajukan pertanyaan pendalaman tentang **Tipe Data**. Tanyakan: "Penjelasan yang bagus! Kalau kita ingat materi Tipe Data, menurutmu, variabel `sisi` dan `luas` pada kode itu menyimpan tipe data apa ya?"
+            2.  Setelah siswa menjawab (jawaban benar: integer/bilangan bulat), berikan pertanyaan lanjutan. Tanyakan: "Tepat sekali. Lalu, menurutmu apa yang akan terjadi pada hasil akhirnya jika nilai `sisi` kita ubah menjadi `10.5`?"
+            3.  Setelah siswa menjawab pertanyaan kedua, berikan kalimat penutup yang menyimpulkan dan mengaitkan ke step berikutnya. Contoh: "Luar biasa! Kamu sudah paham bagaimana struktur dasar dan tipe data bekerja sama. Sekarang, ayo kita gunakan pemahaman ini untuk menganalisis kode yang sedikit lebih kompleks." dan WAJIB akhiri dengan sinyal [SELESAI].
             """
         },
         
