@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, session, redirect, url_for
-from ..models.models import User, QuizAttempt
+from ..models.models import User, QuizAttempt, UserProgress
 
 # Membuat Blueprint 'main'
 main = Blueprint('main', __name__)
@@ -12,7 +12,13 @@ def index():
 def materi():
     if 'username' not in session:
         return redirect(url_for('auth.login'))
-    return render_template('materi.html')
+    user = User.query.filter_by(username=session['username']).first()
+    
+    # Ambil semua modul yang sudah diselesaikan oleh user
+    completed_progress = UserProgress.query.filter_by(user_id=user.id, is_completed=True).all()
+    # Buat sebuah set agar mudah dicek di template
+    completed_modules = {progress.module_name for progress in completed_progress}
+    return render_template('materi.html', completed_modules=completed_modules)
 
 @main.route('/pencapaian')
 def pencapaian():

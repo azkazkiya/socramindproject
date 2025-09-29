@@ -853,7 +853,19 @@ def save_quiz_attempt():
                 is_correct=answer_data['is_correct']
             )
             db.session.add(new_answer)
-        
+            score = int(data['score'])
+            module_name = data['module_name']
+            
+            if score > 60:
+                # Cari progress untuk modul ini
+                progress = UserProgress.query.filter_by(
+                    user_id=user.id,
+                    module_name=module_name
+                ).first()
+                
+                # Jika ada, tandai sebagai selesai
+                if progress:
+                    progress.is_completed = True       
         db.session.commit() # Commit semuanya ke database
         return jsonify({'status': 'success'})
     

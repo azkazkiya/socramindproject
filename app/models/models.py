@@ -22,6 +22,8 @@ class UserProgress(db.Model):
     module_name = db.Column(db.String(100), nullable=False)
     max_step_achieved = db.Column(db.Integer, default=0)
 
+    is_completed = db.Column(db.Boolean, default=False, nullable=False)
+
     def __repr__(self):
         return f'<Progress User {self.user_id} in {self.module_name}>'
 
