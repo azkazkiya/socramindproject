@@ -71,7 +71,10 @@
                      <div id="chat-box">
 
                         {% for message in chat_history %}
-                            <p><strong>{{ 'Anda' if message.role == 'user' else 'SocraMind' }}:</strong> {{ message.content | safe }}</p>
+                            <div class="message {{ 'user-message' if message.role == 'user' else 'assistant-message' }}">
+                                <p><strong>{{ 'Anda' if message.role == 'user' else 'SocraMind' }}:</strong></p>
+                                <p>{{ message.content | safe }}</p>
+                            </div>
                         {% endfor %}
                     </div>
                     <div id="typing-indicator" class="typing-indicator" style="display: none;">

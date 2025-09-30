@@ -22,9 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function addMessage(sender, message) {
-        const p = document.createElement('p');
-        p.innerHTML = `<strong>${sender}:</strong> ${message.replace(/\n/g, '<br>')}`;
-        chatBox.appendChild(p);
+        const messageDiv = document.createElement('div');
+        const roleClass = (sender === 'Anda') ? 'user-message' : 'assistant-message';
+        messageDiv.className = `message ${roleClass}`;
+
+        messageDiv.innerHTML = `<p><strong>${sender}:</strong></p><p>${message.replace(/\n/g, '<br>')}</p>`;
+        
+        chatBox.appendChild(messageDiv);
         chatBox.scrollTop = chatBox.scrollHeight;
     }
 
