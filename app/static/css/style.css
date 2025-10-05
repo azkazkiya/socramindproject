@@ -3,12 +3,15 @@
 
 /* Gaya Dasar */
 body {
+    display: flex;
     font-family: 'Poppins', sans-serif;
     background-color: #f4f7f6;
     /* background-color: #f9f9f9; */
     margin: 0;
     padding: 20px;
     color: #333;
+        flex-direction: column;
+
 }
 
 h1, h2, h3, h4 {
@@ -793,7 +796,8 @@ h1, h2, h3, h4 {
 
     /* --- Perbaikan Halaman Pembelajaran (learning.html) --- */
     .learning-layout {
-        flex-direction: column;
+         flex-grow: 1;
+        display: flex; 
     }
 
     /* 1. Navigasi Menjadi Dropdown */
@@ -825,8 +829,9 @@ h1, h2, h3, h4 {
 
     /* 2. Input Chatbox Tidak Tertutup Keyboard */
     .learning-container {
+        flex-grow: 1; /* Ambil semua sisa tinggi yang tersedia */
         height: 90vh; /* Batasi tinggi container agar keyboard tidak menutupi */
-        padding: 0 15px 15px 15px;
+        padding: 0 12px 12px 12px;
         display: flex;
         flex-direction: column;
     }
