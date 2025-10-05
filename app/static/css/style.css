@@ -734,9 +734,6 @@ h1, h2, h3, h4 {
     background-color: #e07b00; /* Warna oranye lebih gelap saat disentuh */
 }
 
-/* ============================================== */
-/* ===== PERBAIKAN RESPONSIVE TAMBAHAN ===== */
-/* ============================================== */
 
 /* Perbaikan #1: Navigasi Dropdown di Halaman Belajar */
 .nav-toggle-btn {
@@ -756,24 +753,79 @@ h1, h2, h3, h4 {
 .landing-content .text-content h1 {
     line-height: 1.2; /* Beri jarak antar baris judul */
 }
-
-/* --- Aturan untuk Layar Mobile (max-width: 768px) --- */
+/* Aturan ini berlaku untuk layar dengan lebar maksimal 768px (ukuran tablet & HP) */
 @media (max-width: 768px) {
-    /* Perbaikan #1: Tampilkan tombol & sembunyikan navigasi */
+
+    /* --- Perbaikan Layout Umum & Font --- */
+    .main-container, .auth-container, .about-section {
+        padding: 20px;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.8em; }
+
+    /* --- Perbaikan Halaman Utama (index.html) --- */
+    .landing-content {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+    .landing-content .text-content h1 {
+        line-height: 1.2; /* Mencegah teks judul bertumpuk */
+    }
+    .mascot-container {
+        margin-bottom: 30px;
+    }
+    
+    /* --- Perbaikan Header & Navbar (Semua Halaman) --- */
+    .main-header, .page-header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+        align-items: center; /* Pusatkan item di mobile */
+    }
+    .main-header h1 {
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    .main-header nav {
+        flex-wrap: wrap; /* Izinkan item turun ke bawah jika tidak cukup */
+        justify-content: center;
+    }
+
+    /* --- Perbaikan Halaman Pembelajaran (learning.html) --- */
+    .learning-layout {
+        flex-direction: column;
+    }
+
+    /* 1. Navigasi Menjadi Dropdown */
     .nav-toggle-btn {
         display: block; /* Tampilkan tombol di mobile */
+        margin-bottom: 20px;
+        padding: 10px 15px;
+        background-color: #f1f1f1;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        width: 100%;
+        text-align: left;
+        font-size: 1em;
+        font-weight: bold;
+        cursor: pointer;
     }
     .learning-sidebar {
-        display: none; /* Sembunyikan navigasi secara default di mobile */
+        display: none; /* Sembunyikan navigasi secara default */
         width: 100%;
+        border-right: none;
+        padding-right: 0;
     }
     .learning-sidebar.open {
-        display: block; /* Tampilkan navigasi jika tombol diklik */
+        display: block; /* Tampilkan saat tombol diklik */
+    }
+    .learning-main-content {
+        width: 100%;
     }
 
-    /* Perbaikan #2: Tombol Kirim Tertutup Keyboard */
+    /* 2. Input Chatbox Tidak Tertutup Keyboard */
     .learning-container {
-        height: 90vh; /* Batasi tinggi container */
+        height: 90vh; /* Batasi tinggi container agar keyboard tidak menutupi */
         display: flex;
         flex-direction: column;
     }
@@ -791,22 +843,9 @@ h1, h2, h3, h4 {
     }
     #chat-box {
         flex-grow: 1;
-        overflow-y: auto; /* Buat chatbox bisa di-scroll */
+        overflow-y: auto; /* Buat area chat bisa di-scroll */
     }
     #chat-form {
         flex-shrink: 0; /* Pastikan form input tidak ikut 'gepeng' */
-    }
-
-    /* Perbaikan #4: Navbar Jelek di Halaman Materi */
-    .main-header {
-        align-items: center;
-    }
-    .main-header h1 {
-        margin-bottom: 15px;
-        text-align: center;
-    }
-    .main-header nav {
-        flex-wrap: wrap; /* Izinkan item turun ke bawah jika tidak cukup */
-        justify-content: center;
     }
 }
