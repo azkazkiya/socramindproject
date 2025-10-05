@@ -12,7 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const codeEditor = document.getElementById('code-editor');
     const codeOutput = document.getElementById('code-output');
     const runCodeBtn = document.getElementById('run-code-btn');
-    
+    const toggleNavBtn = document.getElementById('toggle-nav-btn');
+    const learningSidebar = document.querySelector('.learning-sidebar');
     const typingIndicator = document.getElementById('typing-indicator');
     let editor;
     if (codeEditor) {
@@ -24,7 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
             lineWrapping: true         // Agar baris yang panjang otomatis ke bawah
         });
     }
-
+    if (toggleNavBtn && learningSidebar) {
+        toggleNavBtn.addEventListener('click', () => {
+            learningSidebar.classList.toggle('open');
+        });
+    }
     // Auto-scroll chatbox ke bawah jika ada
     if (chatBox) {
         chatBox.scrollTop = chatBox.scrollHeight;
