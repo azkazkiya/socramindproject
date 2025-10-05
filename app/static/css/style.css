@@ -733,3 +733,58 @@ h1, h2, h3, h4 {
     background-color: #e07b00; /* Warna oranye lebih gelap saat disentuh */
 }
 
+/* =================================== */
+/* ===== ATURAN UNTUK RESPONSIVE ===== */
+/* =================================== */
+
+/* Terapkan aturan ini untuk layar dengan lebar maksimal 768px (tablet & HP) */
+@media (max-width: 768px) {
+
+    /* --- Layout Halaman Pembelajaran --- */
+    .learning-layout {
+        flex-direction: column; /* Ubah layout dari sampingan menjadi atas-bawah */
+    }
+
+    .learning-sidebar {
+        width: 100%; /* Lebarkan sidebar jadi penuh */
+        margin-bottom: 20px;
+        border-right: none; /* Hapus garis pemisah */
+        padding-right: 0;
+    }
+
+    .learning-main-content {
+        width: 100%;
+    }
+
+
+    /* --- Layout Halaman Utama & Materi --- */
+    .landing-content {
+        flex-direction: column-reverse; /* Pindahkan maskot ke atas teks */
+        text-align: center;
+    }
+
+    .mascot-container {
+        margin-bottom: 30px;
+    }
+
+    .main-header, .page-header {
+        flex-direction: column; /* Susun header ke bawah */
+        gap: 15px;
+        padding: 15px;
+    }
+
+
+    /* --- Kontainer Umum --- */
+    .main-container, .auth-container, .about-section {
+        padding: 20px; /* Kurangi padding di sisi kanan-kiri */
+    }
+
+    /* --- Ukuran Font --- */
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+}
