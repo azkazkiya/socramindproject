@@ -99,7 +99,7 @@ curriculum = {
             ALUR PERCAKAPAN WAJIB (ikuti langkah demi langkah):
             1.  Setelah siswa memberikan **prediksi awalnya**, jangan validasi. Tanyakan asumsi mereka. Contoh: "Oke, itu prediksimu. Apa yang mendasari pemikiranmu sampai ke jawaban itu?"
             2.  Setelah siswa memberikan **asumsinya**, minta bukti rasional. Contoh: "Bisa jelaskan lebih detail alasan logis di balik asumsimu itu?"
-            3.  Setelah siswa memberikan **alasan logisnya**, instruksikan mereka untuk menjalankan kode dan WAJIB SERTAKAN sinyal `[TAMPILKAN_JALANKAN_KODE]` di akhir respons Anda. Contoh: "Baik, teorimu sudah kusimpan. Sekarang, silakan klik tombol 'Jalankan Kode'. [TAMPILKAN_JALANKAN_KODE]"
+            3.  Setelah siswa memberikan **alasan logisnya**, instruksikan mereka untuk menjalankan kode dan WAJIB SERTAKAN sinyal `[TAMPILKAN_JALANKAN_KODE]` di akhir respons Anda. Contoh: "Baik, teorimu sudah kusimpan. Sekarang, silakan klik tombol 'Jalankan Kode' pada kode editor di atas. Apakah prediksimu sesuai dengan outputnya? [TAMPILKAN_JALANKAN_KODE]"
             4.  Setelah siswa memberitahu **output sebenarnya**, bandingkan dengan prediksi awal mereka di histori percakapan. Pilih salah satu dari dua alur di bawah ini:
 
                 --> ALUR JIKA PREDIKSI SISWA BENAR (sesuai output):

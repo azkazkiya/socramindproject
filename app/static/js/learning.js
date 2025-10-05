@@ -96,9 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
             addMessage('Anda', message);
             userInput.value = '';
 
-            // ===== 2. TAMPILKAN INDIKATOR SEBELUM FETCH =====
             typingIndicator.style.display = 'flex';
-            chatBox.scrollTop = chatBox.scrollHeight; // Scroll lagi agar indikator terlihat
+            chatBox.scrollTop = chatBox.scrollHeight; 
 
             try {
                 const response = await fetch('/chat', {
@@ -107,18 +106,29 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify({ message: message, action: 'chat' })
                 });
 
-                // ===== 3. SEMBUNYIKAN INDIKATOR SETELAH DAPAT RESPON =====
                 typingIndicator.style.display = 'none';
                 
                 const data = await response.json();
-                addMessage('SocraMind', data.reply);
+                let aiReply = data.reply; // Simpan balasan AI ke variabel
+
+                if (aiReply.includes('[TAMPILKAN_JALANKAN_KODE]')) {
+                // Hapus sinyal dari teks yang akan ditampilkan
+                aiReply = aiReply.replace('[TAMPILKAN_JALANKAN_KODE]', '').trim();
+                
+                // Tampilkan tombol "Jalankan Kode"
+                const runBtn = document.getElementById('run-code-btn');
+                if (runBtn) {
+                    runBtn.style.display = 'block'; // atau 'inline-block' sesuai style Anda
+                }
+            }
+
+                addMessage('SocraMind', aiReply);
                 
                 if (data.show_next_button) {
                     userInput.disabled = true;
                     showNextStepButton(data.next_action_url);
                 }
             } catch (error) {
-                // ===== 4. SEMBUNYIKAN JUGA JIKA TERJADI ERROR =====
                 typingIndicator.style.display = 'none';
                 console.error("Error saat fetch:", error);
                 addMessage('Error', 'Gagal terhubung ke server.');
