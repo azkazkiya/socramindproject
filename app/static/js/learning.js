@@ -14,7 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const runCodeBtn = document.getElementById('run-code-btn');
     
     const typingIndicator = document.getElementById('typing-indicator');
-
+    let editor;
+    if (codeEditor) {
+        editor = CodeMirror.fromTextArea(codeEditor, {
+            lineNumbers: true,         // <-- INI UNTUK MENAMPILKAN NOMOR BARIS
+            mode: "python",            // Mengaktifkan syntax highlighting untuk Python
+            theme: "material-darker",  // Tema warna (bisa diganti)
+            indentUnit: 4,             // Atur indentasi 4 spasi
+            lineWrapping: true         // Agar baris yang panjang otomatis ke bawah
+        });
+    }
 
     // Auto-scroll chatbox ke bawah jika ada
     if (chatBox) {
@@ -67,19 +76,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (runCodeBtn) {
-        runCodeBtn.addEventListener('click', async () => {
-            const modifiedCode = document.getElementById('code-editor').value;
-            codeOutput.textContent = 'Menjalankan...';
-            const response = await fetch('/chat', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: modifiedCode, action: 'run_code' })
-            });
-            const data = await response.json();
-            codeOutput.textContent = data.reply;
+    runCodeBtn.addEventListener('click', async () => {
+        // Ambil kode dari instance CodeMirror, bukan dari textarea
+        const modifiedCode = editor.getValue(); 
+        
+        codeOutput.textContent = 'Menjalankan...';
+        const response = await fetch('/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: modifiedCode, action: 'run_code' })
         });
-    }
-
+        const data = await response.json();
+        codeOutput.textContent = data.reply;
+    });
+}
     if (chatForm) {
         userInput.addEventListener('keypress', function(event) {
             if (event.key === 'Enter') {
