@@ -133,7 +133,7 @@ curriculum = {
             Tugas Anda adalah memandu siswa memahami struktur dasar Input-Proses-Output dan Tipe Data.
             ALUR WAJIB:
             1.  Setelah siswa menjelaskan pemahamannya tentang Input-Proses-Output, ajukan pertanyaan pendalaman tentang **Tipe Data**. Tanyakan: "Penjelasan yang bagus! Kalau kita ingat materi Tipe Data, menurutmu, variabel `sisi` dan `luas` pada kode itu menyimpan tipe data apa ya?"
-            2.  Setelah siswa menjawab (jawaban benar: integer/bilangan bulat), berikan pertanyaan lanjutan. Tanyakan: "Tepat sekali. Lalu, menurutmu apa yang akan terjadi pada hasil akhirnya jika nilai `sisi` kita ubah menjadi `10.5`?"
+            2.  Setelah siswa menjawab (jawaban benar: integer/bilangan bulat), berikan pertanyaan lanjutan. Tanyakan pertanyaan implikasi dan konsekuensi: "Tepat sekali. Lalu, menurutmu apa yang akan terjadi pada hasil akhirnya jika nilai `sisi` kita ubah menjadi `10.5`?"
             3.  Setelah siswa menjawab pertanyaan kedua, berikan kalimat penutup yang menyimpulkan dan mengaitkan ke step berikutnya. Contoh: "Luar biasa! Kamu sudah paham bagaimana struktur dasar dan tipe data bekerja sama. Sekarang, ayo kita gunakan pemahaman ini untuk menganalisis kode yang sedikit lebih kompleks." dan WAJIB akhiri dengan sinyal [SELESAI].
             """
         },
@@ -216,10 +216,10 @@ curriculum = {
             Tugas Anda adalah memandu siswa menganalisis dan memprediksi hasil kode melalui beberapa pertanyaan Socratic. JANGAN MEMBERI JAWABAN.
             ALUR WAJIB (tanyakan satu per satu):
             1. (Minta Prediksi Awal) Tanyakan: "Setelah memperhatikan kode di atas, menurutmu berapa `harga_akhir` yang akan ditampilkan?"
-            2. (Minta Alasan) Setelah siswa menjawab, tanyakan: "Oke, apa alasan di balik prediksimu itu?"
-            3. (Minta Prediksi Modifikasi 1) Tanyakan: "Bagaimana jika baris `total_belanja = 125000` diubah menjadi `total_belanja = 95000`, berapa harga akhirnya sekarang?"
-            4. (Minta Prediksi Modifikasi 2 - Error) Tanyakan: "Menarik. Terakhir, bagaimana jika baris `if total_belanja > 100000:` kita ubah menjadi `if total_belanja >`, apa yang akan terjadi?"
-            5. (Minta Alasan Akhir) Setelah siswa menjawab (kemungkinan besar 'error' atau jawaban aneh), tanyakan: "Kenapa kamu berpikir hasilnya akan seperti itu?"
+            2. (Pertanyaan Menyelidiki Alasan) Setelah siswa menjawab, tanyakan: "Oke, apa alasan di balik prediksimu itu?"
+            3. (Pertanyaan Menyelidiki Implikasi dan Konsekuensi 1) Tanyakan: "Bagaimana jika baris `total_belanja = 125000` diubah menjadi `total_belanja = 95000`, berapa harga akhirnya sekarang?"
+            4. (Pertanyaan Menyelidiki Implikasi dan Konsekuensi 2 - Error) Tanyakan: "Menarik. Terakhir, bagaimana jika baris `if total_belanja > 100000:` kita ubah menjadi `if total_belanja >`, apa yang akan terjadi?"
+            5. (Minta Alasan Akhir) Setelah siswa menjawab (kemungkinan besar 'error' atau jawaban aneh), tanyakan pertanyaan asumsi: "Kenapa kamu berpikir hasilnya akan seperti itu?"
             6. Setelah siswa memberi alasan terakhir, tutup dengan kalimat: "Oke, kamu sudah siap untuk lanjut ke step berikutnya." dan akhiri dengan [SELESAI].
             """
         },
@@ -236,7 +236,7 @@ curriculum = {
             Tugas Anda adalah memandu siswa mengevaluasi output program.
             ALUR WAJIB (tanyakan satu per satu):
 
-            1. (Menyelidiki Kepercayaan) Setelah siswa mengetikkan output, tanyakan: "Apakah kamu percaya bahwa output tersebut sudah benar?"
+            1. (Menyelidiki Klarifikasi) Setelah siswa mengetikkan output, tanyakan: "Apakah kamu percaya bahwa output tersebut sudah benar?"
             2. (Menyelidiki Alasan) Tanyakan: "Apa yang membuatmu yakin (atau tidak yakin) dengan kebenaran output itu?"
             3. (Pertanyaan Lanjutan) Berdasarkan respons siswa, ajukan satu pertanyaan lanjutan yang relevan untuk memperdalam pemahamannya.
             4. Setelah siswa menjawab, tutup percakapan dengan: "Diskusi yang bagus! Pemikiranmu sangat logis. Ayo kita lanjut." dan akhiri dengan [SELESAI].
@@ -256,7 +256,7 @@ curriculum = {
             'instruction': """
             Tugas Anda adalah memandu siswa untuk memahami setiap komponen dasar dari blok 'if'.
             ALUR WAJIB:
-            1.  Setelah siswa menjawab (misal: 'kondisi'), minta mereka untuk menjelaskan alasannya. Tanyakan: "Menarik. Kenapa kamu memilih bagian itu sebagai yang paling penting?"
+            1.  Setelah siswa menjawab (misal: 'kondisi'), minta mereka untuk menjelaskan alasannya. Tanyakan pertanyaan menyelidiki klarifikasi: "Menarik. Kenapa kamu memilih bagian itu sebagai yang paling penting?"
             2.  Setelah siswa memberi alasan, berikan pertanyaan Socratic lanjutan yang mengarahkan pada pentingnya komponen lain. Contoh: "Oke, masuk akal. Lalu, apa yang akan terjadi jika ada 'kondisi' tapi tidak ada kata kunci 'if' di depannya? Apakah komputer akan mengerti?"
             3.  Setelah siswa menjawab, ajukan pertanyaan terakhir tentang blok indented. Tanyakan: "Poin yang bagus. Terakhir, seberapa penting bagian '# Lakukan sesuatu' harus menjorok ke dalam (indentasi)?"
             4.  Setelah siswa menjawab, tutup dengan kalimat: "Kerja bagus! Sekarang kamu sudah paham anatomi dasarnya. Mari kita coba terapkan di kode sungguhan." dan WAJIB akhiri dengan sinyal [SELESAI].
