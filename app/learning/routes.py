@@ -88,33 +88,9 @@ curriculum = {
             4. Setelah semua 4 tujuan tercapai, akhiri respons terakhir dengan kalimat penutup dan WAJIB diakhiri dengan sinyal [SELESAI].
             """,
         },
-        
-        # Halaman 5 atau step 4: Penjelasan Struktur Kode
+        # Halaman 5 atau step 4: Run
         {
-            'step': 4,
-            'type': 'socratic_question',
-            'is_concludable': True,
-            'ct': 'Analisis',
-            'opening_message': "Oke, sebelum kita menganalisis kode yang utuh, ayo kita bedah 'resep' paling dasar dari sebuah program. Hampir semua program sederhana mengikuti pola: **Input -> Proses -> Output**.\n\nCoba lihat kode ini:\n"
-                             "<pre><code># Tahap Input\n"
-                             "sisi = 10\n\n"
-                             "# Tahap Proses\n"
-                             "luas = sisi * sisi\n\n"
-                             "# Tahap Output\n"
-                             "print(luas)</code></pre>\n"
-                             "Bisa jelaskan dengan bahasamu sendiri, apa yang terjadi di setiap tahap (Input, Proses, dan Output) pada kode itu?",
-            'instruction': """
-            Tugas Anda adalah memandu siswa memahami struktur dasar Input-Proses-Output dan Tipe Data.
-            ALUR WAJIB:
-            1.  Setelah siswa menjelaskan pemahamannya tentang Input-Proses-Output, ajukan pertanyaan pendalaman tentang **Tipe Data**. Tanyakan: "Penjelasan yang bagus! Kalau kita ingat materi Tipe Data, menurutmu, variabel `sisi` dan `luas` pada kode itu menyimpan tipe data apa ya?"
-            2.  Setelah siswa menjawab (jawaban benar: integer/bilangan bulat), berikan pertanyaan lanjutan. Tanyakan: "Tepat sekali. Lalu, menurutmu apa yang akan terjadi pada hasil akhirnya jika nilai `sisi` kita ubah menjadi `10.5`?"
-            3.  Setelah siswa menjawab pertanyaan kedua, berikan kalimat penutup yang menyimpulkan dan mengaitkan ke step berikutnya. Contoh: "Luar biasa! Kamu sudah paham bagaimana struktur dasar dan tipe data bekerja sama. Sekarang, ayo kita gunakan pemahaman ini untuk menganalisis kode yang sedikit lebih kompleks." dan WAJIB akhiri dengan sinyal [SELESAI].
-            """
-        },
-        
-        # Halaman 6 atau step 5: Run
-        {
-            'step': 5, 
+            'step': 4, 
             'type': 'predict_run_investigate',
             'is_concludable': True, # step bisa diakhir sama socramind
             'ct': 'Analisis & Evaluasi', 
@@ -149,6 +125,30 @@ curriculum = {
                 d. Setelah itu, WAJIB akhiri dengan sinyal `[SELESAI]`.
             """
         },
+        # Halaman 6 atau step 5: Investigate
+        {
+            'step': 5,
+            'type': 'socratic_question',
+            'is_concludable': True,
+            'ct': 'Analisis',
+            'opening_message': "Oke, disini kita akan bedah pola struktur kode. Kebanyakan program sederhana akan memiliki struktur seperti ini: **Input -> Proses -> Output**.\n\nCoba lihat kode ini:\n"
+                             "<pre><code># Tahap Input\n"
+                             "sisi = 10\n\n"
+                             "# Tahap Proses\n"
+                             "luas = sisi * sisi\n\n"
+                             "# Tahap Output\n"
+                             "print(luas)</code></pre>\n"
+                             "Bisa jelaskan dengan bahasamu sendiri, apa yang terjadi di setiap tahap (Input, Proses, dan Output) pada kode itu?",
+            'instruction': """
+            Tugas Anda adalah memandu siswa memahami struktur dasar Input-Proses-Output dan Tipe Data.
+            ALUR WAJIB:
+            1.  Setelah siswa menjelaskan pemahamannya tentang Input-Proses-Output, ajukan pertanyaan pendalaman tentang **Tipe Data**. Tanyakan: "Penjelasan yang bagus! Kalau kita ingat materi Tipe Data, menurutmu, variabel `sisi` dan `luas` pada kode itu menyimpan tipe data apa ya?"
+            2.  Setelah siswa menjawab (jawaban benar: integer/bilangan bulat), berikan pertanyaan lanjutan. Tanyakan: "Tepat sekali. Lalu, menurutmu apa yang akan terjadi pada hasil akhirnya jika nilai `sisi` kita ubah menjadi `10.5`?"
+            3.  Setelah siswa menjawab pertanyaan kedua, berikan kalimat penutup yang menyimpulkan dan mengaitkan ke step berikutnya. Contoh: "Luar biasa! Kamu sudah paham bagaimana struktur dasar dan tipe data bekerja sama. Sekarang, ayo kita gunakan pemahaman ini untuk menganalisis kode yang sedikit lebih kompleks." dan WAJIB akhiri dengan sinyal [SELESAI].
+            """
+        },
+        
+        
         # Halaman 7 Modify
         {
             'step': 6,
@@ -156,7 +156,7 @@ curriculum = {
             'is_concludable': True,
             'ct': 'Analisis, Inferensi',
             'primm': 'Modify',
-            'opening_message': "Kerja bagus! Sekarang kita coba tantangan logika. Kode di bawah ini bertujuan untuk menukar isi dari 'gelasA' dan 'gelasB', tapi sepertinya ada yang salah. Coba jalankan dan lihat apa hasilnya.",
+            'opening_message': "Kerja bagus! Sekarang kita coba tantangan logika. kode di atas merupakan program yang bertujuan untuk menukar isi dari 'gelasA' dan 'gelasB'. Coba jalankan programnya. Apakah jawabannya benar atau salah?",
             
             'base_code': "gelasA = 10  # Anggap berisi Kopi\ngelasB = 20  # Anggap berisi Teh\n\n# Mencoba menukar isi kedua gelas\ngelasA = gelasB\ngelasB = gelasA\n\nprint(f\"Isi Gelas A: {gelasA}, Isi Gelas B: {gelasB}\")",
             'instruction': """
