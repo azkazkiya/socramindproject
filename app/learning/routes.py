@@ -82,22 +82,36 @@ curriculum = {
             4. Setelah semua 4 tujuan tercapai, akhiri respons terakhir dengan kalimat penutup dan WAJIB diakhiri dengan sinyal [SELESAI].
             """,
         },
-        {
+{
             'step': 4,
             'title': 'Prediksi & Eksekusi Program',
             'type': 'modify_code',
             'is_concludable': True, 
             'ct': 'Analisis & Evaluasi', 
             'primm': 'Predict, Run, Investigate',
-            
-            # --- TAMBAHKAN PENANDA INI ---
             'hide_run_button_initially': True,
-
-            'opening_message': "Oke, kita masuk ke tahap prediksi...", # (konten tidak berubah)
+            'opening_message': "Oke, kita masuk ke tahap prediksi. Perhatikan kode di editor. Menurutmu apa output yang akan muncul?",
             'base_code': 'panjang = 10\nlebar = 5\nluas = panjang * lebar\nprint(f"Luas persegi panjang adalah: {luas}")',
             'instruction': """
-            ... (konten instruksi tidak berubah) ...
-            """,
+            Tugas Anda adalah memandu siswa melalui alur Socratic Predict -> Investigate -> Run -> Evaluate.
+            Jawaban output yang benar adalah "Luas persegi panjang adalah: 50".
+
+            ALUR PERCAKAPAN WAJIB (ikuti langkah demi langkah):
+            1.  Setelah siswa memberikan **prediksi awalnya**, jangan validasi. Tanyakan asumsi mereka. Contoh: "Oke, itu prediksimu. Apa yang mendasari pemikiranmu sampai ke jawaban itu?"
+            2.  Setelah siswa memberikan **asumsinya**, minta bukti rasional. Contoh: "Bisa jelaskan lebih detail alasan logis di balik asumsimu itu?"
+            3.  Setelah siswa memberikan **alasan logisnya**, instruksikan mereka untuk menjalankan kode dan WAJIB SERTAKAN sinyal `[TAMPILKAN_JALANKAN_KODE]` di akhir respons Anda. Contoh: "Baik, teorimu sudah kusimpan. Sekarang, silakan klik tombol 'Jalankan Kode'. [TAMPILKAN_JALANKAN_KODE]"
+            4.  Setelah siswa memberitahu **output sebenarnya**, bandingkan dengan prediksi awal mereka di histori percakapan. Pilih salah satu dari dua alur di bawah ini:
+
+                --> ALUR JIKA PREDIKSI SISWA BENAR (sesuai output):
+                    a. Berikan penguatan positif. Tanyakan: "Tepat sekali! Prediksimu sama dengan hasilnya. Apa yang membuatmu begitu yakin dengan analisismu dari awal?"
+                    b. Setelah siswa menjawab, ajukan pertanyaan implikasi & konsekuensi. Contoh: "Pemikiran yang bagus. Menurutmu, apa konsekuensinya jika kita lupa baris `print()` di akhir kode itu?"
+                    c. Setelah siswa menjawab, berikan kalimat penutup dan WAJIB akhiri dengan sinyal [SELESAI].
+
+                --> ALUR JIKA PREDIKSI SISWA SALAH (tidak sesuai output):
+                    a. Arahkan perhatian pada perbedaan. Tanyakan: "Nah, sepertinya ada perbedaan antara prediksimu dengan hasil sebenarnya. Menurutmu, bagian mana dari kode yang membuat prediksimu keliru dan apa alasannya?"
+                    b. Setelah siswa mencoba menganalisis kesalahannya, berikan penjelasan singkat dan jelas. Contoh: "Analisis yang bagus. Kesalahan umum terjadi saat .... Output yang benar adalah '50' karena variabel 'luas' menyimpan hasil perkalian 10 * 5."
+                    c. Berikan kalimat penutup yang menyemangati dan WAJIB akhiri dengan sinyal [SELESAI].
+            """
         },
         {
             'step': 5,
