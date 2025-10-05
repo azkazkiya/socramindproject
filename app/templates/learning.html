@@ -60,8 +60,7 @@
                 <div id="code-editor-container">
                     <h4>Code Editor:</h4>
                     <textarea id="code-editor" rows="15">{{ step_data.base_code }}</textarea>
-                    <button id="run-code-btn">Jalankan Kode</button>
-                    <h4>Hasil:</h4>
+                    <button id="run-code-btn" {% if step_data.hide_run_button_initially %} style="display: none;" {% endif %}>Jalankan Kode</button>                    <h4>Hasil:</h4>
                     <pre><code id="code-output">Hasil akan muncul di sini...</code></pre>
                 </div>
                 {% endif %}

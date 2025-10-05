@@ -83,35 +83,21 @@ curriculum = {
             """,
         },
         {
-            'step': 4, 
-            'title': 'Prediksi Keluaran Program', # JUDUL BARU
-            'type': 'predict_run_investigate',
+            'step': 4,
+            'title': 'Prediksi & Eksekusi Program',
+            'type': 'modify_code',
             'is_concludable': True, 
             'ct': 'Analisis & Evaluasi', 
             'primm': 'Predict, Run, Investigate',
-            'opening_message': "Sekarang, mari kita coba analisis kode di atas. Perhatikan baik-baik ya. Menurutmu, apa hasil yang akan muncul jika kode ini dijalankan?",
-            'code': 'panjang = 10\nlebar = 5\nluas = panjang * lebar\nprint(f"Luas persegi panjang adalah: {luas}")',
-            'correct_output': 'Luas persegi panjang adalah: 50',
+            
+            # --- TAMBAHKAN PENANDA INI ---
+            'hide_run_button_initially': True,
+
+            'opening_message': "Oke, kita masuk ke tahap prediksi...", # (konten tidak berubah)
+            'base_code': 'panjang = 10\nlebar = 5\nluas = panjang * lebar\nprint(f"Luas persegi panjang adalah: {luas}")',
             'instruction': """
-            Tugas Anda adalah memandu siswa melalui siklus Predict, Run, dan Investigate berdasarkan 3 kondisi jawaban. Anda yang mengontrol alur.
-            Konteks: Anda sudah menampilkan potongan kode untuk menghitung luas persegi, dan siswa baru saja memberikan prediksi pertamanya.
-            ALUR KERJA WAJIB:
-            1.  Analisis prediksi pertama siswa dan pilih salah satu dari 3 alur berikut:
-            --> ALUR 1 (Jika prediksi siswa BENAR atau HAMPIR BENAR):
-                a. Jangan validasi dulu. Tanyakan alasan di balik jawabannya. Contoh: "Menarik! Apa yang membuatmu berpikir hasilnya akan seperti itu?"
-                b. Setelah dia menjawab, ajukan satu pertanyaan "what if" untuk menguji pemahamannya. Contoh: "Oke, bagaimana jika variabel 'panjang' kita ubah menjadi 15, apakah hasilnya akan sama?"
-                c. Setelah dia menjawab pertanyaan "what if", berikan respons penutup dan WAJIB akhiri dengan sinyal `[SELESAI]`.
-            --> ALUR 2 (Jika prediksi siswa SALAH):
-                a. Jangan validasi dulu. Tanyakan alasan di balik jawabannya. Contoh: "Hmm, oke. Boleh ceritakan, kenapa kamu memprediksi seperti itu?"
-                b. Setelah dia memberi alasan, tantang pemikirannya dengan lembut dan berikan petunjuk. Contoh: "Terima kasih penjelasannya. Coba kita perhatikan operator `*` dalam kode itu, operasi apa yang biasanya dilambangkan oleh tanda itu?"
-                c. Lanjutkan bimbingan dengan petunjuk sampai siswa menemukan jawaban yang benar.
-                d. Setelah siswa paham, berikan respons penutup dan WAJIB akhiri dengan sinyal `[SELESAI]`.
-            --> ALUR 3 (Jika siswa menjawab TIDAK TAHU atau sejenisnya):
-                a. Berikan respons yang memaklumi. Contoh: "Tidak apa-apa, mari kita pecah bersama. Coba lihat baris `panjang = 10` dan `lebar = 5`. Apa yang terjadi di dua baris itu?"
-                b. Gunakan pertanyaan interpretasi untuk membantunya memahami baris per baris.
-                c. Setelah dia mulai paham dan memberikan jawaban yang mendekati benar dan berikan dukungan kepada siswa untuk terus semangat, validasi jawabannya dan berikan jawaban yang sebenarnya. Contoh: "Nah, itu dia! Kamu benar, variabel 'luas' akan menyimpan hasil perkalian 10 dan 5. Jadi, hasil yang benar adalah: 50. Terus semangat yaa ayo kita lanjutkan".
-                d. Setelah itu, WAJIB akhiri dengan sinyal `[SELESAI]`.
-            """
+            ... (konten instruksi tidak berubah) ...
+            """,
         },
         {
             'step': 5,
