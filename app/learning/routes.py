@@ -43,8 +43,10 @@ curriculum = {
             'opening_message': "Oke, sekarang setelah membaca materi, coba jelaskan kembali apa itu algoritma dengan bahasamu sendiri.",
             'instruction': """
             Tugas Anda adalah memandu siswa memperdalam pemahaman tentang 'algoritma' melalui 6 tujuan Socratic secara berurutan. Anda yang mengontrol alur percakapan.
+            ATURAN SANGAT PENTING UNTUK LANGKAH INI:
+            - Ajukan HANYA SATU pertanyaan pada satu waktu. Tunggu jawaban siswa sebelum melanjutkan ke pertanyaan atau tujuan berikutnya. Jangan menggabungkan beberapa pertanyaan dalam satu pesan.
             ALUR KERJA WAJIB:
-            1. Setelah siswa memberikan jawaban awal, pandu mereka melalui 6 tujuan ini, SATU PER SATU:
+            1. Setelah siswa memberikan jawaban awal, pandu mereka melalui 6 pertanyaan socratic ini, SATU PER SATU:
                 - Tujuan 1: Klarifikasi (Pastikan definisinya jelas).
                 - Tujuan 2: Menyelidiki Asumsi (Tantang asumsi di balik definisinya).
                 - Tujuan 3: Menyelidiki Alasan dan Bukti (Tantang mereka untuk memberikan alasan ataupun bukti dibalik asumsi sebelumnya)
@@ -199,31 +201,12 @@ curriculum = {
             'title': 'Materi: Konsep Struktur Kontrol Percabangan',
             'content_file': 'materi/percabangan_pengertian.html' 
         },
-        # Halaman 3 / Step 2: Penjelasan Struktur Kode
-        {
-        'step': 2,
-        'type': 'socratic_question',
-        'is_concludable': True,
-        'ct': 'Analisis',
-        # --- PERBAIKAN DI BAGIAN OPENING_MESSAGE ---
-        'opening_message': "Nah, sebelum kita membedah kode yang rumit, mari kita pahami dulu 'resep' dasar penulisan percabangan. Lihat struktur umum ini ya:\n\n"
-                         "<pre><code>if kondisi:\n"
-                         "    # Lakukan sesuatu jika kondisi Benar</code></pre>\n"
-                         "Menurutmu, bagian mana yang paling penting dari 'resep' di atas? 'if', 'kondisi', atau 'Lakukan sesuatu'?",
-        'instruction': """
-        Tugas Anda adalah memandu siswa untuk memahami setiap komponen dasar dari blok 'if'.
-        ALUR WAJIB:
-        1.  Setelah siswa menjawab (misal: 'kondisi'), minta mereka untuk menjelaskan alasannya. Tanyakan: "Menarik. Kenapa kamu memilih bagian itu sebagai yang paling penting?"
-        2.  Setelah siswa memberi alasan, berikan pertanyaan Socratic lanjutan yang mengarahkan pada pentingnya komponen lain. Contoh: "Oke, masuk akal. Lalu, apa yang akan terjadi jika ada 'kondisi' tapi tidak ada kata kunci 'if' di depannya? Apakah komputer akan mengerti?"
-        3.  Setelah siswa menjawab, ajukan pertanyaan terakhir tentang blok indented. Tanyakan: "Poin yang bagus. Terakhir, seberapa penting bagian '# Lakukan sesuatu' harus menjorok ke dalam (indentasi)?"
-        4.  Setelah siswa menjawab, tutup dengan kalimat: "Kerja bagus! Sekarang kamu sudah paham anatomi dasarnya. Mari kita coba terapkan di kode sungguhan." dan WAJIB akhiri dengan sinyal [SELESAI].
-        """
-    },
-        # Halaman 4 / Step 3: Predict & Analisis Mendalam
+        
+        # Halaman 3 / Step 2: Predict & Analisis Mendalam
         
         {
-            'step': 3, 
-            'type': 'predict_run_investigate', # Tipe disamakan agar UI konsisten
+            'step': 2, 
+            'type': 'predict_run_investigate',
             'is_concludable': True,
             'ct': 'Analisis', 
             'primm': 'Predict',
@@ -240,10 +223,10 @@ curriculum = {
             6. Setelah siswa memberi alasan terakhir, tutup dengan kalimat: "Oke, kamu sudah siap untuk lanjut ke step berikutnya." dan akhiri dengan [SELESAI].
             """
         },
-        # Halaman 5 / Step 4: Run & Investigate
+        # Halaman 4 / Step 3: Run & Investigate
         {
-            'step': 4,
-            'type': 'modify_code', # yang ini agar code editor muncul
+            'step': 3,
+            'type': 'modify_code',
             'is_concludable': True,
             'ct': 'Evaluasi',
             'primm': 'Run, Investigate',
@@ -257,6 +240,26 @@ curriculum = {
             2. (Menyelidiki Alasan) Tanyakan: "Apa yang membuatmu yakin (atau tidak yakin) dengan kebenaran output itu?"
             3. (Pertanyaan Lanjutan) Berdasarkan respons siswa, ajukan satu pertanyaan lanjutan yang relevan untuk memperdalam pemahamannya.
             4. Setelah siswa menjawab, tutup percakapan dengan: "Diskusi yang bagus! Pemikiranmu sangat logis. Ayo kita lanjut." dan akhiri dengan [SELESAI].
+            """
+        },
+        # Halaman 5 / Step 4: Investigate
+        {
+            'step': 4,
+            'type': 'socratic_question',
+            'is_concludable': True,
+            'ct': 'Analisis',
+            
+            'opening_message': "Nah, sekarang kita akan membedah kode, mari kita pahami 'resep' dasar penulisan percabangan. Lihat struktur umum ini ya:\n\n"
+                            "<pre><code>if kondisi:\n"
+                            "    # Lakukan sesuatu jika kondisi Benar</code></pre>\n"
+                            "Menurutmu, bagian mana yang paling penting dari 'resep' di atas? 'if', 'kondisi', atau 'Lakukan sesuatu'?",
+            'instruction': """
+            Tugas Anda adalah memandu siswa untuk memahami setiap komponen dasar dari blok 'if'.
+            ALUR WAJIB:
+            1.  Setelah siswa menjawab (misal: 'kondisi'), minta mereka untuk menjelaskan alasannya. Tanyakan: "Menarik. Kenapa kamu memilih bagian itu sebagai yang paling penting?"
+            2.  Setelah siswa memberi alasan, berikan pertanyaan Socratic lanjutan yang mengarahkan pada pentingnya komponen lain. Contoh: "Oke, masuk akal. Lalu, apa yang akan terjadi jika ada 'kondisi' tapi tidak ada kata kunci 'if' di depannya? Apakah komputer akan mengerti?"
+            3.  Setelah siswa menjawab, ajukan pertanyaan terakhir tentang blok indented. Tanyakan: "Poin yang bagus. Terakhir, seberapa penting bagian '# Lakukan sesuatu' harus menjorok ke dalam (indentasi)?"
+            4.  Setelah siswa menjawab, tutup dengan kalimat: "Kerja bagus! Sekarang kamu sudah paham anatomi dasarnya. Mari kita coba terapkan di kode sungguhan." dan WAJIB akhiri dengan sinyal [SELESAI].
             """
         },
         # Halaman 6 / Step 5: Modify, Eksplanasi & Inferensi
