@@ -178,6 +178,7 @@ curriculum = {
         # Halaman 1 / Step 0: Interpretasi & Klarifikasi
          {
             'step': 0, 
+            'title': 'Pendahuluan',
             'type': 'socratic_question', 
             'is_concludable': True,
             'ct': 'Interpretasi', 
@@ -206,6 +207,7 @@ curriculum = {
         
         {
             'step': 2, 
+            'title': 'Prediksi Kode Program',
             'type': 'predict_run_investigate',
             'is_concludable': True,
             'ct': 'Analisis', 
@@ -226,6 +228,7 @@ curriculum = {
         # Halaman 4 / Step 3: Run & Investigate
         {
             'step': 3,
+            'title': 'Menjalankan Program & Investigasi',
             'type': 'modify_code',
             'is_concludable': True,
             'ct': 'Evaluasi',
@@ -245,6 +248,7 @@ curriculum = {
         # Halaman 5 / Step 4: Investigate
         {
             'step': 4,
+            'title': 'Investigasi',
             'type': 'socratic_question',
             'is_concludable': True,
             'ct': 'Analisis',
@@ -265,6 +269,7 @@ curriculum = {
         # Halaman 6 / Step 5: Modify, Eksplanasi & Inferensi
         {
             'step': 5,
+            'title': 'Modifikasi Kode Program',
             'type': 'modify_code',
             'is_concludable': True,
             'ct': 'Eksplanasi, Inferensi',
@@ -283,6 +288,7 @@ curriculum = {
         # Halaman 7 / Step 6: Make - 1 Kondisi
         {
             'step': 6,
+            'title': 'Membuat Kode Program Percabangan 1 Kondisi',
             'type': 'make_code',
             'is_concludable': True,
             'ct': 'Regulasi Diri',
@@ -298,6 +304,7 @@ curriculum = {
         # Halaman 8 / Step 7: Make - 2 Kondisi
         {
             'step': 7,
+            'title': 'Membuat Kode Program Percabangan 2 Kondisi',
             'type': 'make_code',
             'is_concludable': True,
             'ct': 'Regulasi Diri',
@@ -313,6 +320,7 @@ curriculum = {
         # Halaman 9 / Step 8: Make - Lebih dari 2 Kondisi
         {
             'step': 8,
+            'title': 'Membuat Kode Program Percabangan Lebih dari 2 Kondisi',
             'type': 'make_code',
             'is_concludable': True,
             'ct': 'Regulasi Diri',
@@ -332,6 +340,7 @@ curriculum = {
         # Halaman 1 / Step 0: Interpretasi & Klarifikasi
         {
             'step': 0,
+            'title': 'Pendahuluan',
             'type': 'socratic_question',
             'is_concludable': True,
             'ct': 'Interpretasi',
@@ -352,28 +361,11 @@ curriculum = {
             'title': 'Materi: Konsep Struktur Kontrol Perulangan',
             'content_file': 'materi/perulangan_pengertian.html'
         },
-        # Halaman 3 / Step 2: Penjelasan Struktur Kode 'for'
+        
+        # Halaman 3 / Step 2: Predict & Analisis Mendalam
         {
             'step': 2,
-            'type': 'socratic_question',
-            'is_concludable': True,
-            'ct': 'Analisis',
-            'opening_message': "Dalam perulangan, ada dua 'resep' utama. Yang pertama adalah `for`. Lihat strukturnya:\n\n"
-                            "<pre><code>daftar_buah = ['apel', 'jeruk', 'mangga']\n"
-                            "for buah in daftar_buah:\n"
-                            "    print(buah)</code></pre>\n"
-                            "Bisa jelaskan dengan bahasamu sendiri, apa fungsi dari baris `for buah in daftar_buah:`?",
-            'instruction': """
-            Tugas Anda adalah memandu siswa memahami anatomi dasar dari loop 'for'.
-            ALUR WAJIB:
-            1. Setelah siswa menjelaskan, ajukan pertanyaan tentang variabel 'buah'. Tanyakan: "Tepat sekali. Lalu, 'buah' itu variabel apa? Kenapa kita bisa langsung `print(buah)` padahal kita tidak pernah membuat `buah = 'apel'`?"
-            2. Setelah siswa menjawab, ajukan pertanyaan tentang indentasi. Tanyakan: "Bagus! Terakhir, kenapa baris `print(buah)` harus menjorok ke dalam?"
-            3. Setelah siswa menjawab, tutup dengan kalimat: "Pemahaman yang bagus! Itu adalah dasar dari perulangan `for`. Sekarang mari kita analisis kode yang lain." dan WAJIB akhiri dengan [SELESAI].
-            """
-        },
-        # Halaman 4 / Step 3: Predict & Analisis Mendalam
-        {
-            'step': 3,
+            'title': 'Prediksi',
             'type': 'predict_run_investigate',
             'is_concludable': True,
             'ct': 'Analisis',
@@ -400,9 +392,11 @@ curriculum = {
             3.  Setelah siswa menjawab pertanyaan modifikasi, tutup dengan kalimat: "Baik, prediksimu sudah disimpan. Ayo kita buktikan di tahap berikutnya." dan WAJIB akhiri dengan sinyal [SELESAI].
             """
         },
-        # Halaman 5 / Step 4: Run, Investigate & Modify
+        
+        # Halaman 4 / Step 3: Run, Investigate & Modify
         {
-            'step': 4,
+            'step':3,
+            'title':'Jalankan Kode Program',
             'type': 'modify_code',
             'is_concludable': True,
             'ct': 'Evaluasi, Inferensi',
@@ -417,9 +411,30 @@ curriculum = {
             3. Setelah siswa menjelaskan, berikan pujian dan tutup dengan: "Penjelasan yang sangat baik! Kamu sudah siap membuat program perulangan sendiri." dan akhiri dengan [SELESAI].
             """
         },
+        # Halaman 5 / Step 4: Penjelasan Struktur Kode 'for'
+        {
+            'step': 4,
+            'title': 'Investigasi Kode Program',
+            'type': 'socratic_question',
+            'is_concludable': True,
+            'ct': 'Analisis',
+            'opening_message': "Dalam perulangan, ada dua 'resep' utama. Yang pertama adalah `for`. Lihat strukturnya:\n\n"
+                            "<pre><code>daftar_buah = ['apel', 'jeruk', 'mangga']\n"
+                            "for buah in daftar_buah:\n"
+                            "    print(buah)</code></pre>\n"
+                            "Bisa jelaskan dengan bahasamu sendiri, apa fungsi dari baris `for buah in daftar_buah:`?",
+            'instruction': """
+            Tugas Anda adalah memandu siswa memahami anatomi dasar dari loop 'for'.
+            ALUR WAJIB:
+            1. Setelah siswa menjelaskan, ajukan pertanyaan tentang variabel 'buah'. Tanyakan: "Tepat sekali. Lalu, 'buah' itu variabel apa? Kenapa kita bisa langsung `print(buah)` padahal kita tidak pernah membuat `buah = 'apel'`?"
+            2. Setelah siswa menjawab, ajukan pertanyaan tentang indentasi. Tanyakan: "Bagus! Terakhir, kenapa baris `print(buah)` harus menjorok ke dalam?"
+            3. Setelah siswa menjawab, tutup dengan kalimat: "Pemahaman yang bagus! Itu adalah dasar dari perulangan `for`. Sekarang mari kita analisis kode yang lain." dan WAJIB akhiri dengan [SELESAI].
+            """
+        },
         # Halaman 6 / Step 5: Make - Perulangan 'for'
         {
             'step': 5,
+            'title':'Membuat Kode Program dengan for',
             'type': 'make_code',
             'is_concludable': True,
             'ct': 'Regulasi Diri',
@@ -435,6 +450,7 @@ curriculum = {
         # Halaman 7 / Step 6: Make - Perulangan 'while'
         {
             'step': 6,
+            'title':'Membuat Kode Program dengan while',
             'type': 'make_code',
             'is_concludable': True,
             'ct': 'Regulasi Diri',
