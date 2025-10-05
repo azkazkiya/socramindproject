@@ -826,6 +826,7 @@ h1, h2, h3, h4 {
     /* 2. Input Chatbox Tidak Tertutup Keyboard */
     .learning-container {
         height: 90vh; /* Batasi tinggi container agar keyboard tidak menutupi */
+        padding: 0 15px 15px 15px;
         display: flex;
         flex-direction: column;
     }
