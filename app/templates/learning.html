@@ -26,16 +26,16 @@
             <nav class="learning-sidebar">
                 <h4>Navigasi Materi</h4>
                 <ul>
-                    {# Loop melalui setiap step yang ada di kurikulum untuk modul ini #}
                     {% for step_item in curriculum[module_name] %}
-
-                        {# Tentukan apakah step ini sudah terbuka atau belum #}
-                        {# Logika yang Benar: Bandingkan dengan 'max_step_achieved' dari database #}
                         {% set is_unlocked = step_item.step <= max_step_achieved %}
                         
                         <li>
-                                <a href="{{ url_for('learning.goto_step', module_name=module_name, step_num=step_item.step) if is_unlocked else '#' }}"                                 class="{{ 'active' if step_item.step == step_data.step else '' }} {{ 'locked' if not is_unlocked else '' }}">
-                                Step {{ loop.index }}
+                            <a href="{{ url_for('learning.goto_step', module_name=module_name, step_num=step_item.step) if is_unlocked else '#' }}"
+                            class="{{ 'active' if step_item.step == step_data.step else '' }} {{ 'locked' if not is_unlocked else '' }}">
+                                
+                                {# --- PERUBAHAN UTAMA ADA DI BARIS INI --- #}
+                                {{ step_item.title }}
+
                             </a>
                         </li>
                     {% endfor %}
