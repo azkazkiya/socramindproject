@@ -1,7 +1,7 @@
 # app/learning/routes.py
 import os
 from flask import Blueprint, render_template, request, jsonify, session, redirect, url_for, current_app, flash
-from ..models.models import db, User, Answer, QuizAnswer, QuizAttempt, UserProgress
+from ..models.models import db, User, ConversationLog, QuizAnswer, QuizAttempt, UserProgress
 from openai import OpenAI
 from werkzeug.security import generate_password_hash
 
@@ -688,25 +688,20 @@ def chat():
     
     user_input = request.json['message']
     
-    # Logika untuk menyimpan jawaban ke database ---
-    # 1. Dapatkan objek user yang sedang login
+   # --- BLOK 1: SIMPAN PESAN SISWA ---
     current_user = User.query.filter_by(username=session['username']).first()
-    if not current_user:
-        return jsonify({'error': 'User not found in database'}), 404 # Keamanan tambahan
-
-    # 2. Buat objek jawaban baru
-    new_answer = Answer(
-        content=user_input,
-        module_name=module_name,
-        step_index=current_step,
-        stage_index=session.get('stage_index'), # Simpan juga stage_index jika ada
-        user_id=current_user.id
-    )
+    if current_user:
+        log_user = ConversationLog(
+            user_id=current_user.id,
+            module_name=module_name,
+            step_index=current_step,
+            role='user', # Tandai sebagai pesan dari 'user'
+            content=user_input
+        )
+        db.session.add(log_user)
+        db.session.commit()
+    # ------------------------------------
     
-    # 3. Simpan ke database
-    db.session.add(new_answer)
-    db.session.commit()
-    # --- Akhir dari logika penyimpanan ---
     step_data = curriculum[module_name][current_step]
     
     history = session.get('history', [])
@@ -729,7 +724,19 @@ def chat():
         response = client.chat.completions.create(model="gpt-4o", messages=messages, temperature=0.7)
         ai_response = response.choices[0].message.content
 
-        video_id_to_show = None
+        # --- BLOK 2: SIMPAN BALASAN SOCRAMIND ---
+        if current_user:
+            log_assistant = ConversationLog(
+                user_id=current_user.id,
+                module_name=module_name,
+                step_index=current_step,
+                role='assistant', # Tandai sebagai balasan dari 'assistant'
+                content=ai_response # Simpan balasan mentah dari AI
+            )
+            db.session.add(log_assistant)
+            db.session.commit()
+        # -----------------------------------------
+        
         video_id_to_show = None
         if '[SHOW_VIDEO:' in ai_response:
             # Ekstrak ID video dari sinyal

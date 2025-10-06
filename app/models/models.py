@@ -9,7 +9,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
     password_hash = db.Column(db.String(256), nullable=False)
-    answers = db.relationship('Answer', backref='user', lazy=True)
+    logs = db.relationship('ConversationLog', backref='user', lazy=True) # <-- Perbaiki di sini
 
     progress = db.relationship('UserProgress', backref='user', lazy=True)
 
@@ -27,17 +27,20 @@ class UserProgress(db.Model):
     def __repr__(self):
         return f'<Progress User {self.user_id} in {self.module_name}>'
 
-class Answer(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.Text, nullable=False)
-    timestamp = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+# app/models/models.py
+
+class ConversationLog(db.Model):
+    id = db.Column(db.Integer, primary_key=True) # <-- Pastikan ada 'primary_key=True' di sini
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     module_name = db.Column(db.String(100), nullable=False)
     step_index = db.Column(db.Integer, nullable=False)
-    stage_index = db.Column(db.Integer, nullable=True) # Untuk melacak sub-langkah
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    
+    role = db.Column(db.String(20), nullable=False) 
+    content = db.Column(db.Text, nullable=False)
+    timestamp = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     def __repr__(self):
-        return f'<Answer {self.id} by User {self.user_id}>'
+        return f'<Log {self.id} by {self.role}>'
 
 # class QuizResult(db.Model):
 #     id = db.Column(db.Integer, primary_key=True)
