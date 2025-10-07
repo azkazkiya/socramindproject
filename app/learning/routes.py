@@ -789,8 +789,20 @@ def chat():
         print(f"Error calling API: {e}")
         return jsonify({'error': 'Failed to get response from AI'}), 500
 
+@learning.route('/overview/<module_name>')
+def module_overview(module_name):
+    if 'username' not in session:
+        return redirect(url_for('auth.login'))
+    
+    # Ambil data kurikulum untuk modul yang dipilih
+    module_data = curriculum.get(module_name)
+    if not module_data:
+        # Jika modul tidak ditemukan, kembali ke halaman materi
+        flash("Materi tidak ditemukan.", "error")
+        return redirect(url_for('main.materi'))
 
-# app/learning/routes.py
+    # Kirim nama modul dan data kurikulumnya ke template baru
+    return render_template('module_overview.html', module_name=module_name, module_data=module_data)
 
 @learning.route('/quiz/<module_name>')
 def quiz(module_name):

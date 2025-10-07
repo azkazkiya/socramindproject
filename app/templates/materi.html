@@ -29,20 +29,21 @@
         
         <h2>Pilih Materi Pembelajaran</h2>
         <div class="materi-grid">
-            <a href="{{ url_for('learning.learning_module', module_name='algoritma') }}" class="materi-card">
+            <a href="{{ url_for('learning.module_overview', module_name='algoritma') }}" class="materi-card">
                 <h3>A. Algoritma Pemrograman</h3>
                 <p>Pelajari konsep dasar dan logika dalam membangun sebuah program.</p>
                 <span>Mulai Belajar →</span>
             </a>
 
             {% if 'algoritma' in completed_modules %}
-                <a href="{{ url_for('learning.learning_module', module_name='percabangan') }}" class="materi-card">
+                <a href="{{ url_for('learning.module_overview', module_name='percabangan') }}" class="materi-card">
                     <h3>B. Struktur Kontrol Percabangan</h3>
                     <p>Pahami cara program membuat keputusan dengan logika if-else.</p>
                     <span>Mulai Belajar →</span>
                 </a>
             {% else %}
                 <div class="materi-card disabled">
+        
                     <h3>B. Struktur Kontrol Percabangan</h3>
                     <p>Selesaikan modul "Algoritma Pemrograman" untuk membuka.</p>
                     <span>🔒 Terkunci</span>
@@ -50,7 +51,7 @@
             {% endif %}
 
             {% if 'percabangan' in completed_modules %}
-                <a href="{{ url_for('learning.learning_module', module_name='perulangan') }}" class="materi-card">
+                <a href="{{ url_for('learning.module_overview', module_name='perulangan') }}" class="materi-card">
                     <h3>C. Struktur Kontrol Perulangan</h3>
                     <p>Pelajari cara mengeksekusi kode berulang kali dengan loop for dan while.</p>
                     <span>Mulai Belajar →</span>

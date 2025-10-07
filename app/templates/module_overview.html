@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Overview: {{ module_name | capitalize }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body class="main-page">
+    <div class="main-container">
+        <header class="main-header">
+            <h1>Ikhtisar Materi: {{ module_name | capitalize }}</h1>
+            <nav>
+                <a href="{{ url_for('main.materi') }}" class="header-button">Kembali ke Pilihan Materi</a>
+                {% if current_user_name %}
+                    <span class="user-display">
+                        👤 {{ current_user_name | capitalize }}
+                    </span>
+                {% endif %}
+                <a href="{{ url_for('auth.logout') }}" class="header-button logout">Logout</a>
+            </nav>
+        </header>
+
+        <div class="overview-layout">
+            <div class="overview-progress">
+                <h3>Progres Belajar</h3>
+                <p>Anda akan memulai materi ini.</p>
+                <a href="{{ url_for('learning.learning_module', module_name=module_name) }}" class="button-start">Mulai Belajar</a>
+            </div>
+            <div class="overview-syllabus">
+                <h3>Topik yang Akan Dipelajari:</h3>
+                <ul>
+                    {% for step in module_data %}
+                        <li>{{ step.title }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
