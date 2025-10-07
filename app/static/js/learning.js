@@ -47,16 +47,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Fungsi global untuk tombol 'Lanjut' yang dibuat oleh server
+// static/js/learning.js
+
     window.handleNextStep = async (next_url = null) => {
+        // Ambil data dari elemen yang ada di halaman
+        const stepDataContainer = document.getElementById('step-data-container');
+        const stepData = JSON.parse(stepDataContainer.dataset.step);
+        const moduleName = window.location.pathname.split('/')[2];
+        const currentStep = stepData.step;
+
+        // Hapus history dari step yang baru saja selesai
+        await fetch('/clear_step_history', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                module_name: moduleName,
+                step_index: currentStep
+            })
+        });
+
+        // --- PERBAIKAN UTAMA DI SINI ---
+        // Jika ada next_url (menuju kuis), langsung ke sana
         if (next_url) {
             window.location.href = next_url;
         } else {
+            // Jika tidak, beri tahu backend untuk menaikkan step
             await fetch('/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ action: 'next_step' })
             });
-            window.location.reload(); // Selalu reload untuk memuat state baru
+            
+            // Alih-alih reload, kita langsung pindah ke step berikutnya
+            // dengan memanggil URL goto_step.
+            const nextStepIndex = currentStep + 1;
+            window.location.href = `/goto/${moduleName}/${nextStepIndex}`;
         }
     };
     

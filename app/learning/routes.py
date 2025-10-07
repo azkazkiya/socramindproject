@@ -531,42 +531,42 @@ QUIZZES = {
 # Membuat Blueprint 'learning'
 learning = Blueprint('learning', __name__, template_folder='templates', static_folder='static')
 
+# app/learning/routes.py
+
 @learning.route('/learning/<module_name>')
 def learning_module(module_name):
-    
-
-    # 1. Validasi login, pastikan user ada di session
     if 'username' not in session:
         return redirect(url_for('auth.login'))
 
-    # 2. Ambil data user dari database
     current_user = User.query.filter_by(username=session['username']).first()
     if not current_user:
-        # Jika user di session tidak valid, logout paksa
         return redirect(url_for('auth.logout'))
 
-    # 3. Ambil progress MAKSIMAL dari database.
-    #    Ini adalah sumber kebenaran untuk membuka/mengunci navigasi.
-    #    Bagian ini WAJIB ada dan selalu dijalankan.
-    progress = UserProgress.query.filter_by(
-        user_id=current_user.id,
-        module_name=module_name
-    ).first()
-    max_step_for_this_module = progress.max_step_achieved if progress else 0
+    # Inisialisasi 'histories' jika belum ada
+    if 'histories' not in session:
+        session['histories'] = {}
+    if module_name not in session['histories']:
+        session['histories'][module_name] = {}
 
-    # 4. Atur state pembelajaran di session (hanya untuk sesi baru atau ganti modul)
+    # --- PERBAIKAN: Pindahkan blok ini ke luar 'if' ---
+    # Selalu ambil progress MAKSIMAL dari database setiap kali halaman dimuat
+    progress = UserProgress.query.filter_by(user_id=current_user.id, module_name=module_name).first()
+    max_step_for_this_module = progress.max_step_achieved if progress else 0
+    # ----------------------------------------------------
+
+    # Jika user memulai modul baru atau sesi baru
     if session.get('module') != module_name or 'step' not in session:
         session['module'] = module_name
-        # Saat pertama kali membuka, arahkan user ke step terjauh yang pernah ia capai
         session['step'] = max_step_for_this_module
-        session['stage_index'] = 0
         
-        step_data_for_opening = curriculum[module_name][session.get('step', 0)]
-        session['history'] = [{'role': 'assistant', 'content': step_data_for_opening.get('opening_message', 'Mari kita mulai.')}]
-    
-    # 5. Siapkan data untuk ditampilkan berdasarkan step AKTIF di session
     current_step_index = session.get('step', 0)
-    chat_history = session.get('history', [])
+    step_key = str(current_step_index)
+    # Cek & buat history untuk step spesifik jika belum ada
+    if step_key not in session['histories'][module_name]:
+        step_data_for_opening = curriculum[module_name][current_step_index]
+        session['histories'][module_name][step_key] = [{'role': 'assistant', 'content': step_data_for_opening.get('opening_message', 'Mari kita mulai.')}]
+    # Ambil history yang spesifik untuk MODUL dan STEP saat ini
+    chat_history = session['histories'][module_name].get(step_key, [])
     current_step_data = curriculum[module_name][current_step_index]
     
     show_next_button_on_load = False
@@ -574,9 +574,7 @@ def learning_module(module_name):
         last_message = chat_history[-1]['content'] if chat_history else ''
         if '[SELESAI]' in last_message:
             show_next_button_on_load = True
-
-    # 6. Kirim progress MAKSIMAL dari database (max_step_for_this_module) ke template.
-    #    Ini yang akan menentukan navigasi mana yang terbuka.
+    
     return render_template('learning.html', 
                              chat_history=chat_history,
                              show_next_button=show_next_button_on_load,
@@ -587,32 +585,23 @@ def learning_module(module_name):
     
 @learning.route('/goto/<module_name>/<int:step_num>')
 def goto_step(module_name, step_num):
-    # Pastikan user sudah login
     if 'username' not in session:
         return redirect(url_for('auth.login'))
-
-    user = User.query.filter_by(username=session['username']).first()
-    if not user:
-        return redirect(url_for('auth.logout'))
-
-    # PENTING: Cek apakah step yang dituju sudah terbuka untuk user ini
-    progress = UserProgress.query.filter_by(user_id=user.id, module_name=module_name).first()
-    max_step_for_this_module = progress.max_step_achieved if progress else 0
-
-    if step_num > max_step_for_this_module:
-        # Jika user mencoba lompat ke step yang terkunci, kembalikan ke materi
+    
+    # Cek otorisasi (apakah step sudah terbuka)
+    current_user = User.query.filter_by(username=session['username']).first()
+    progress = UserProgress.query.filter_by(user_id=current_user.id, module_name=module_name).first()
+    max_step = progress.max_step_achieved if progress else 0
+    if step_num > max_step:
         flash("Anda belum bisa mengakses step tersebut.", "error")
         return redirect(url_for('learning.learning_module', module_name=module_name))
 
-    # Jika aman, ubah step di session dan reset history
+    # HANYA ubah step yang aktif
     session['step'] = step_num
-    session['stage_index'] = 0
-    target_step_data = curriculum[module_name][step_num]
-    initial_message = target_step_data.get('opening_message', f'Memulai di step {step_num}.')
-    session['history'] = [{'role': 'assistant', 'content': initial_message}]
-
-    return redirect(url_for('learning.learning_module', module_name=module_name))
     
+    # Arahkan kembali ke learning_module yang akan me-render halaman dengan benar
+    return redirect(url_for('learning.learning_module', module_name=module_name))
+
 @learning.route('/chat', methods=['POST'])
 def chat():
     if 'username' not in session:
@@ -621,8 +610,7 @@ def chat():
     action = request.json.get('action', 'chat') 
     module_name = session.get('module')
     current_step = session.get('step', 0)
-    step_data = curriculum[module_name][current_step]
-
+    
     if not module_name or module_name not in curriculum:
         return jsonify({'error': 'Module not found'}), 404
     
@@ -630,53 +618,38 @@ def chat():
         next_step_index = current_step + 1
         if next_step_index < len(curriculum[module_name]):
             session['step'] = next_step_index
-            session['stage_index'] = 0
             
-            # --- LOGIKA PENYIMPANAN PROGRESS YANG DIPERBAIKI ---
             current_user = User.query.filter_by(username=session['username']).first()
             if current_user:
-                # 1. Cari progress user di modul ini
+                # Cari progress user di modul ini
                 user_progress = UserProgress.query.filter_by(
                     user_id=current_user.id,
                     module_name=module_name
                 ).first()
 
-                # 2. Jika belum ada progress, BUAT SEKARANG
+                # --- PERBAIKAN UTAMA DI SINI ---
+                # Jika belum ada progress sama sekali, buat baru sekarang
                 if not user_progress:
                     user_progress = UserProgress(
                         user_id=current_user.id,
                         module_name=module_name,
-                        max_step_achieved=0  # Mulai dari 0
+                        max_step_achieved=0 # Mulai dari 0
                     )
                     db.session.add(user_progress)
 
-                # 3. SEKARANG baru aman untuk membandingkan dan update step
+                # SEKARANG baru aman untuk membandingkan dan update step
                 if next_step_index > user_progress.max_step_achieved:
                     user_progress.max_step_achieved = next_step_index
                 
                 db.session.commit()
-                
-            next_step_data = curriculum[module_name][next_step_index]
             
-            # Buat history baru dan tambahkan pesan pembuka jika ada
-            new_history = []
-            if next_step_data.get('opening_message'):
-                new_history.append({'role': 'assistant', 'content': next_step_data['opening_message']})
-            session['history'] = new_history
-
-            # Kirim history baru ini ke frontend
-            return jsonify({
-                'status': 'step_changed', 
-                'next_step_data': next_step_data,
-                'chat_history': new_history 
-            })
+            return jsonify({'status': 'step_changed'})
         else:
-            return jsonify({'status': 'end_of_module', 'next_step_data': {'type': 'end_of_module'}})
+            return jsonify({'status': 'end_of_module'})
 
     if action == 'run_code':
         modified_code = request.json['message']
-        sim_instruction = f"Anda adalah simulator kode C. Berdasarkan kode berikut, berikan HANYA output programnya, tanpa penjelasan apapun:\n\n{modified_code}"
-        
+        sim_instruction = f"Anda adalah simulator kode Python. Berdasarkan kode berikut, berikan HANYA output programnya, tanpa penjelasan apapun:\n\n{modified_code}"
         try:
             messages = [{"role": "system", "content": sim_instruction}]
             response = client.chat.completions.create(model="gpt-4o", messages=messages, temperature=0.0)
@@ -688,100 +661,71 @@ def chat():
     
     user_input = request.json['message']
     
-   # --- BLOK 1: SIMPAN PESAN SISWA ---
+    # Selalu gunakan string untuk kunci dictionary session
+    step_key = str(current_step)
+
     current_user = User.query.filter_by(username=session['username']).first()
     if current_user:
         log_user = ConversationLog(
             user_id=current_user.id,
             module_name=module_name,
             step_index=current_step,
-            role='user', # Tandai sebagai pesan dari 'user'
+            role='user',
             content=user_input
         )
         db.session.add(log_user)
         db.session.commit()
-    # ------------------------------------
     
     step_data = curriculum[module_name][current_step]
     
-    history = session.get('history', [])
-    from prompts import SYSTEM_PROMPT
-
-    socratic_label = ""
-    task_instruction = step_data.get('instruction', '')
+    # Ambil history dari session menggunakan kunci string
+    history = session['histories'][module_name].get(step_key, [])
     
-    step_type = step_data.get('type')
-    if step_type == 'multi_stage_socratic':
-        stage_index = session.get('stage_index', 0)
-        if stage_index < len(step_data.get('stages', [])):
-            socratic_label = step_data['stages'][stage_index].get('socratic_type', '')
+    from prompts import SYSTEM_PROMPT
+    task_instruction = step_data.get('instruction', '')
 
     formatted_system_prompt = SYSTEM_PROMPT.format(task_instruction=task_instruction)
-    history.append({"role": "user", "content": user_input})
-    messages = [{"role": "system", "content": formatted_system_prompt}] + history
+    messages_for_api = [{"role": "system", "content": formatted_system_prompt}] + history
+    messages_for_api.append({"role": "user", "content": user_input})
     
     try:
-        response = client.chat.completions.create(model="gpt-4o", messages=messages, temperature=0.7)
+        response = client.chat.completions.create(model="gpt-4o", messages=messages_for_api, temperature=0.7)
         ai_response = response.choices[0].message.content
 
-        # --- BLOK 2: SIMPAN BALASAN SOCRAMIND ---
         if current_user:
             log_assistant = ConversationLog(
                 user_id=current_user.id,
                 module_name=module_name,
                 step_index=current_step,
-                role='assistant', # Tandai sebagai balasan dari 'assistant'
-                content=ai_response # Simpan balasan mentah dari AI
+                role='assistant',
+                content=ai_response
             )
             db.session.add(log_assistant)
             db.session.commit()
-        # -----------------------------------------
-        
-        video_id_to_show = None
-        if '[SHOW_VIDEO:' in ai_response:
-            # Ekstrak ID video dari sinyal
-            start = ai_response.find('[SHOW_VIDEO:') + len('[SHOW_VIDEO:')
-            end = ai_response.find(']', start)
-            if end != -1:
-                video_id_to_show = ai_response[start:end]
-                # Hapus sinyal dari pesan yang akan ditampilkan
-                ai_response = ai_response[:ai_response.find('[SHOW_VIDEO:')].strip()
-
-        if socratic_label:
-            ai_response_with_label = f"{ai_response}\n\nDEBUG: ({socratic_label})"
-        else:
-            ai_response_with_label = ai_response
 
         show_next_button = False
-        next_action_url = None # Variabel baru
+        next_action_url = None
+        ai_reply_cleaned = ai_response # Buat variabel baru untuk balasan yang sudah bersih
 
         if step_data.get('is_concludable', False) and '[SELESAI]' in ai_response:
             show_next_button = True
-            ai_response_with_label = ai_response.replace('[SELESAI]', '').strip()
+            ai_reply_cleaned = ai_response.replace('[SELESAI]', '').strip()
             
-            # Jika ini adalah step terakhir, arahkan ke quiz
             last_step_index = len(curriculum[module_name]) - 1
             if current_step == last_step_index:
                 next_action_url = url_for('learning.quiz', module_name=module_name)
-                
-        if '[LANJUT]' in ai_response_with_label:
-            # Logika ini sekarang hanya untuk pindah stage, bukan step
-            session['stage_index'] = session.get('stage_index', 0) + 1
-            ai_response_with_label = ai_response_with_label.replace('[LANJUT]', '').strip()
-
-        if '[SELESAI]' in ai_response_with_label:
-            show_next_button = True
-            ai_response_with_label = ai_response_with_label.replace('[SELESAI]', '').strip()
         
-        history.append({"role": "assistant", "content": ai_response_with_label})
-
+        # Tambahkan percakapan baru ke history
+        history.append({"role": "user", "content": user_input})
+        history.append({"role": "assistant", "content": ai_response}) # Simpan respons mentah ke history
         
-        session['history'] = history
+        # Simpan kembali history ke session menggunakan kunci string
+        session['histories'][module_name][step_key] = history
+        session.modified = True
         
         return jsonify({
-            'reply': ai_response_with_label, 
+            'reply': ai_reply_cleaned, 
             'show_next_button': show_next_button,
-            'show_video_id': video_id_to_show, # Kirim ID video ke frontend
             'next_action_url': next_action_url
         })
     
@@ -924,3 +868,19 @@ def dev_jump(module_name, step_num):
     session['history'] = [{'role': 'assistant', 'content': initial_message}]
 
     return redirect(url_for('learning.learning_module', module_name=module_name))
+
+@learning.route('/clear_step_history', methods=['POST'])
+def clear_step_history():
+    if 'username' not in session:
+        return jsonify({'status': 'error'}), 401
+    
+    data = request.json
+    module_name = data.get('module_name')
+    # JANGAN ubah ke integer, biarkan sebagai string
+    step_index = str(data.get('step_index'))
+
+    if module_name and step_index in session.get('histories', {}).get(module_name, {}):
+        del session['histories'][module_name][step_index]
+        session.modified = True
+
+    return jsonify({'status': 'success'})
