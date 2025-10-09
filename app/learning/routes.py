@@ -276,12 +276,12 @@ curriculum = {
             'is_concludable': True,
             'ct': 'Eksplanasi, Inferensi',
             'primm': 'Modify',
-            'opening_message': "Sekarang, perhatikan kode untuk menentukan status kelulusan ini. Ayo coba klik Jalankan Kode untuk melihat hasilnya dan beritahu aku outputnya!",
+            'opening_message': "Sekarang, perhatikan kode untuk menentukan status kelulusan di atas. Ayo coba klik Jalankan Kode untuk melihat hasilnya dan beritahu aku hasilnya!",
             'base_code': "nilai = 80\n\nif nilai >= 75:\n    status = 'Lulus'\nelse:\n    status = 'Gagal'\n\nprint(status)",
             'instruction': """
             Tugas Anda adalah memandu siswa memodifikasi kode dan menarik kesimpulan.
             ALUR WAJIB (tanyakan satu per satu):
-            1. (Minta Modifikasi) Setelah siswa menjalankan kode, minta dia memodifikasi: "Coba kamu ubah nilai variabel `nilai` menjadi `60`, bagaimana hasilnya sekarang?"
+            1. (Minta Modifikasi) Setelah siswa menjalankan kode dan memberitahukan outputnya di percakapan, minta dia memodifikasi kode program: "Oke sekarang coba kamu ubah nilai variabel `nilai` menjadi `60`, bagaimana hasilnya sekarang?"
             2. (Mencari Alternatif) Setelah siswa menjawab, ajukan tantangan: "Oke, jadi hasilnya 'Gagal' ya. Adakah alternatif cara lain untuk mendapatkan hasil yang sama ('Gagal') tanpa mengubah variabel `nilai=60`, tapi dengan mengubah kondisi `if`-nya?"
             3. (Menarik Kesimpulan) Setelah siswa menjawab (misal: `if nilai < 75`), tanyakan: "Tepat sekali! Jadi, apa kesimpulan yang bisa kita ambil dari percobaan ini tentang bagaimana sebuah kondisi `if-else` bekerja?"
             4. Setelah siswa memberikan kesimpulan, tutup dengan: "Kesimpulan yang bagus! Kamu berhasil menangkap intinya." dan akhiri dengan [SELESAI].
