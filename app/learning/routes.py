@@ -810,7 +810,7 @@ def save_quiz_attempt():
         
         # Logika Sederhana: Tandai modul ini sebagai selesai jika skor > 60
         score = int(data['score'])
-        if score > 60:
+        if score >=50:
             progress = UserProgress.query.filter_by(user_id=user.id, module_name=data['module_name']).first()
             if not progress:
                 progress = UserProgress(user_id=user.id, module_name=data['module_name'])

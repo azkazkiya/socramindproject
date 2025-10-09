@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,24 +9,22 @@
 <body class="main-page">
     <div class="main-container">
         <header class="main-header">
-            <h1>Selamat datang, {{ session.username }}!</h1>
+            <h1>Selamat datang, {{ current_user_name | capitalize }}!</h1>
             <nav>
                 <a href="{{ url_for('main.index') }}" class="header-button">🏠 Halaman Utama</a>
-
-                <a href="{{ url_for('main.pencapaian') }}">Pencapaian Saya</a>
-                <div>
-                    {% if current_user_name %}
-                        <span class="user-display">
-                            👤 {{ current_user_name | capitalize }}
-                        </span>
-                    {% endif %}
-                    <a href="{{ url_for('auth.logout') }}" class="header-link logout-link">Logout</a>
-                </div>
+                <a href="{{ url_for('main.pencapaian') }}" class="header-button">Pencapaian Saya</a>
+                {% if current_user_name %}
+                    <span class="user-display">
+                        👤 {{ current_user_name | capitalize }}
+                    </span>
+                {% endif %}
+                <a href="{{ url_for('auth.logout') }}" class="header-button logout">Logout</a>
             </nav>
         </header>
         
         <h2>Pilih Materi Pembelajaran</h2>
         <div class="materi-grid">
+            
             <a href="{{ url_for('learning.module_overview', module_name='algoritma') }}" class="materi-card">
                 <h3>A. Algoritma Pemrograman</h3>
                 <p>Pelajari konsep dasar dan logika dalam membangun sebuah program.</p>
@@ -43,7 +39,6 @@
                 </a>
             {% else %}
                 <div class="materi-card disabled">
-        
                     <h3>B. Struktur Kontrol Percabangan</h3>
                     <p>Selesaikan modul "Algoritma Pemrograman" untuk membuka.</p>
                     <span>🔒 Terkunci</span>
@@ -63,6 +58,7 @@
                     <span>🔒 Terkunci</span>
                 </div>
             {% endif %}
+
         </div>
     </div>
 </body>
