@@ -367,7 +367,7 @@ curriculum = {
         # Halaman 3 / Step 2: Predict & Analisis Mendalam
         {
             'step': 2,
-            'title': 'Prediksi',
+            'title': 'Prediksi Kode Program',
             'type': 'predict_run_investigate',
             'is_concludable': True,
             'ct': 'Analisis',
@@ -397,20 +397,24 @@ curriculum = {
         
         # Halaman 4 / Step 3: Run, Investigate & Modify
         {
-            'step':3,
-            'title':'Jalankan Kode Program',
+            'step': 3,
+            'title': 'Jalankan & Modifikasi Kode Program', 
             'type': 'modify_code',
             'is_concludable': True,
-            'ct': 'Evaluasi, Inferensi',
+            'ct': 'Evaluasi, Inferensi, Eksplanasi', 
             'primm': 'Run, Investigate, Modify',
-            'opening_message': "Sekarang giliranmu. Jalankan kode di bawah ini, lalu modifikasi kodenya agar program hanya mencetak angka genap saja (0, 2, 4).",
+
+            'opening_message': "Oke, sekarang silakan tekan tombol 'Jalankan Kode' untuk melihat output dari program di atas. Setelah itu, ketik dan kirimkan apa hasilnya di sini.",
+            
             'base_code': "for i in range(5):\n    print(f\"Angka ke-{i}\")",
+            
             'instruction': """
-            Tugas Anda adalah memandu siswa menjalankan dan memodifikasi kode.
+            Tugas Anda adalah memandu siswa melalui tiga tahap: investigasi output, modifikasi kode, dan penjelasan.
             ALUR WAJIB:
-            1. Setelah siswa menjalankan kodenya, tunggu dia melakukan modifikasi.
-            2. Setelah siswa berhasil memodifikasi dan mendapatkan jawaban benar (misal dengan menambahkan `if i % 2 == 0:`), tanyakan: "Kerja bagus! Bisakah kamu jelaskan bagaimana caramu menggabungkan logika percabangan di dalam perulangan untuk menyelesaikan masalah ini?"
-            3. Setelah siswa menjelaskan, berikan pujian dan tutup dengan: "Penjelasan yang sangat baik! Kamu sudah siap membuat program perulangan sendiri." dan akhiri dengan [SELESAI].
+            1.  Siswa akan menjalankan kode dan memberitahu Anda outputnya. Setelah mereka mengirim output, TANYAKAN: "Tepat sekali. Apakah output tersebut sesuai dengan prediksimu di tahap sebelumnya?"
+            2.  Setelah siswa menjawab (apapun jawabannya), berikan respons singkat seperti "Baik, terima kasih konfirmasinya." lalu berikan tugas modifikasi: "Sekarang, coba modifikasi kode tersebut agar program hanya mencetak angka genap saja (0, 2, 4)."
+            3.  Setelah siswa berhasil memodifikasi dan mendapatkan jawaban benar (misal dengan menambahkan `if i % 2 == 0:`), tanyakan untuk MENGGALI PEMAHAMAN: "Kerja bagus! Bisakah kamu jelaskan bagaimana caramu menggabungkan logika percabangan di dalam perulangan untuk menyelesaikan masalah ini?"
+            4.  Setelah siswa menjelaskan, berikan pujian dan tutup dengan: "Penjelasan yang sangat baik! Kamu sudah siap membuat program perulangan sendiri." dan akhiri dengan [SELESAI].
             """
         },
         # Halaman 5 / Step 4: Penjelasan Struktur Kode 'for'
