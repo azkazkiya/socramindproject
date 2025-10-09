@@ -45,6 +45,7 @@ curriculum = {
             Tugas Anda adalah memandu siswa memperdalam pemahaman tentang 'algoritma' melalui 6 tujuan Socratic secara berurutan. Anda yang mengontrol alur percakapan.
             ATURAN SANGAT PENTING UNTUK LANGKAH INI:
             - Ajukan HANYA SATU pertanyaan pada satu waktu. Tunggu jawaban siswa sebelum melanjutkan ke pertanyaan atau tujuan berikutnya. Jangan menggabungkan beberapa pertanyaan dalam satu pesan.
+            - Pada kalimat penutup JANGAN SEBUTKAN 6 TUJUAN SOCRATIC secara langsung
             ALUR KERJA WAJIB:
             1. Setelah siswa memberikan jawaban awal, pandu mereka melalui 6 pertanyaan socratic ini, SATU PER SATU:
                 - Tujuan 1: Klarifikasi (Pastikan definisinya jelas).
@@ -71,6 +72,7 @@ curriculum = {
             'illustration_image': 'Tipe-Data.jpg',
             'instruction': """
             Tugas Anda adalah memandu siswa memahami konsep Tipe Data dan Operator Aritmatika dasar melalui 4 tujuan Socratic. Anda yang mengontrol alur percakapan.
+            ATURAN SANGAT PENTING UNTUK LANGKAH INI: JANGAN BERI VALIDASI seperti "Benar" atau "Tepat Sekali" dan sebagainya apabila percakapan belum mencapai akhir.
             1. Setelah siswa menjawab pertanyaan pembuka, pandu mereka secara berurutan melalui 4 tujuan ini:
                 - Tujuan 1: Dasar & Contoh (Klarifikasi definisi Tipe Data dan minta contoh).
                 - Tujuan 2: Penggunaan & Konsekuensi (Bahas penggunaan praktis dan akibat jika salah pakai).
@@ -144,7 +146,7 @@ curriculum = {
             'is_concludable': True,
             'ct': 'Analisis, Inferensi',
             'primm': 'Modify',
-            'opening_message': "Kerja bagus! Sekarang kita coba tantangan logika. kode di atas merupakan program yang bertujuan untuk menukar isi dari 'gelasA' dan 'gelasB'. Coba jalankan programnya. Apakah jawabannya benar atau salah?",
+            'opening_message': "Kerja bagus! Sekarang kita coba tantangan logika. kode di atas merupakan program yang bertujuan untuk menukar isi dari 'gelasA' dan 'gelasB'. gelasA nantinya harus bernilai 20 dan gelasB bernilai 10. Coba jalankan programnya. Apakah outputnya sudah benar atau salah?",
             'base_code': "gelasA = 10  # Anggap berisi Kopi\ngelasB = 20  # Anggap berisi Teh\n\n# Mencoba menukar isi kedua gelas\ngelasA = gelasB\ngelasB = gelasA\n\nprint(f\"Isi Gelas A: {gelasA}, Isi Gelas B: {gelasB}\")",
             'instruction': """
             Tugas Anda adalah memandu siswa untuk menemukan solusi dalam masalah menukar nilai dua variabel.
@@ -228,7 +230,7 @@ curriculum = {
         # Halaman 4 / Step 3: Run & Investigate
         {
             'step': 3,
-            'title': 'Menjalankan Program & Investigasi',
+            'title': 'Menjalankan Program',
             'type': 'modify_code',
             'is_concludable': True,
             'ct': 'Evaluasi',
@@ -263,7 +265,7 @@ curriculum = {
             1.  Setelah siswa menjawab (misal: 'kondisi'), minta mereka untuk menjelaskan alasannya. Tanyakan pertanyaan menyelidiki klarifikasi: "Menarik. Kenapa kamu memilih bagian itu sebagai yang paling penting?"
             2.  Setelah siswa memberi alasan, berikan pertanyaan Socratic lanjutan yang mengarahkan pada pentingnya komponen lain. Contoh: "Oke, masuk akal. Lalu, apa yang akan terjadi jika ada 'kondisi' tapi tidak ada kata kunci 'if' di depannya? Apakah komputer akan mengerti?"
             3.  Setelah siswa menjawab, ajukan pertanyaan terakhir tentang blok indented. Tanyakan: "Poin yang bagus. Terakhir, seberapa penting bagian '# Lakukan sesuatu' harus menjorok ke dalam (indentasi)?"
-            4.  Setelah siswa menjawab, tutup dengan kalimat: "Kerja bagus! Sekarang kamu sudah paham anatomi dasarnya. Mari kita coba terapkan di kode sungguhan." dan WAJIB akhiri dengan sinyal [SELESAI].
+            4.  Setelah siswa menjawab, tutup dengan kalimat: "Kerja bagus! Sekarang kamu sudah paham anatomi dasarnya. Ayo kita lanjutkan!" dan WAJIB akhiri dengan sinyal [SELESAI].
             """
         },
         # Halaman 6 / Step 5: Modify, Eksplanasi & Inferensi
@@ -274,7 +276,7 @@ curriculum = {
             'is_concludable': True,
             'ct': 'Eksplanasi, Inferensi',
             'primm': 'Modify',
-            'opening_message': "Sekarang, perhatikan kode untuk menentukan status kelulusan ini. Jalankan dulu untuk melihat hasilnya.",
+            'opening_message': "Sekarang, perhatikan kode untuk menentukan status kelulusan ini. Ayo coba klik Jalankan Kode untuk melihat hasilnya dan beritahu aku outputnya!",
             'base_code': "nilai = 80\n\nif nilai >= 75:\n    status = 'Lulus'\nelse:\n    status = 'Gagal'\n\nprint(status)",
             'instruction': """
             Tugas Anda adalah memandu siswa memodifikasi kode dan menarik kesimpulan.
