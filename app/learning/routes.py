@@ -800,24 +800,51 @@ def save_quiz_attempt():
     user = User.query.filter_by(username=session['username']).first()
     
     if user:
-        # Simpan riwayat attempt dan jawaban (kode ini tidak berubah)
-        new_attempt = QuizAttempt(...)
+        # --- MULAI DEBUG ---
+        print("\n--- [DEBUG] MENYIMPAN SKOR KUIS ---")
+        score = int(data['score'])
+        module_name = data['module_name']
+        print(f"User: {user.username}, Modul: {module_name}, Skor: {score}")
+
+        # 1. Buat record QuizAttempt baru
+        new_attempt = QuizAttempt(
+            user_id=user.id,
+            module_name=data['module_name'],
+            score=data['score']
+        )
         db.session.add(new_attempt)
-        db.session.flush()
+        db.session.flush() # Perlu flush untuk mendapatkan ID dari attempt baru
+
+        # 2. Loop melalui setiap jawaban dan simpan
         for answer_data in data['answers']:
-            new_answer = QuizAnswer(...)
+            new_answer = QuizAnswer(
+                attempt_id=new_attempt.id,
+                question_text=answer_data['question_text'],
+                selected_answer=answer_data['selected_answer'],
+                correct_answer=answer_data['correct_answer'],
+                is_correct=answer_data['is_correct']
+            )
             db.session.add(new_answer)
         
-        # Logika Sederhana: Tandai modul ini sebagai selesai jika skor > 60
-        score = int(data['score'])
-        if score >=50:
-            progress = UserProgress.query.filter_by(user_id=user.id, module_name=data['module_name']).first()
+        # 3. Logika Unlock Materi
+        if score >= 60:
+            print("[DEBUG] Skor memenuhi syarat (>= 60). Mencoba update UserProgress...")
+            progress = UserProgress.query.filter_by(user_id=user.id, module_name=module_name).first()
+            
             if not progress:
-                progress = UserProgress(user_id=user.id, module_name=data['module_name'])
+                print(f"[DEBUG] UserProgress untuk modul '{module_name}' tidak ditemukan. Membuat baru...")
+                progress = UserProgress(user_id=user.id, module_name=module_name)
                 db.session.add(progress)
+            
             progress.is_completed = True
+            print(f"[DEBUG] UserProgress.is_completed untuk '{module_name}' diatur menjadi True.")
+        else:
+            print(f"[DEBUG] Skor TIDAK memenuhi syarat. Tidak ada modul yang di-unlock.")
+        # --- AKHIR DEBUG ---
 
         db.session.commit()
+        print("[DEBUG] db.session.commit() telah dieksekusi.")
+        print("--- [DEBUG] SELESAI ---\n")
         return jsonify({'status': 'success'})
     
     return jsonify({'status': 'error', 'message': 'User not found'}), 404
