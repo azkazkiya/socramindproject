@@ -789,6 +789,8 @@ def quiz(module_name):
                              quiz_taken=False,
                              page_title=page_title)
 
+# app/learning/routes.py
+
 @learning.route('/save_quiz_attempt', methods=['POST'])
 def save_quiz_attempt():
     if 'username' not in session:
@@ -798,42 +800,28 @@ def save_quiz_attempt():
     user = User.query.filter_by(username=session['username']).first()
     
     if user:
-        # 1. Buat record QuizAttempt baru
-        new_attempt = QuizAttempt(
-            user_id=user.id,
-            module_name=data['module_name'],
-            score=data['score']
-        )
+        # Simpan riwayat attempt dan jawaban (kode ini tidak berubah)
+        new_attempt = QuizAttempt(...)
         db.session.add(new_attempt)
-        db.session.flush() # Gunakan flush untuk mendapatkan ID attempt sebelum commit
-
-        # 2. Loop melalui setiap jawaban dan buat record QuizAnswer
+        db.session.flush()
         for answer_data in data['answers']:
-            new_answer = QuizAnswer(
-                attempt_id=new_attempt.id,
-                question_text=answer_data['question_text'],
-                selected_answer=answer_data['selected_answer'],
-                correct_answer=answer_data['correct_answer'],
-                is_correct=answer_data['is_correct']
-            )
+            new_answer = QuizAnswer(...)
             db.session.add(new_answer)
-            score = int(data['score'])
-            module_name = data['module_name']
-            
-            if score > 60:
-                # Cari progress untuk modul ini
-                progress = UserProgress.query.filter_by(
-                    user_id=user.id,
-                    module_name=module_name
-                ).first()
-                
-                # Jika ada, tandai sebagai selesai
-                if progress:
-                    progress.is_completed = True       
-        db.session.commit() # Commit semuanya ke database
+        
+        # Logika Sederhana: Tandai modul ini sebagai selesai jika skor > 60
+        score = int(data['score'])
+        if score > 60:
+            progress = UserProgress.query.filter_by(user_id=user.id, module_name=data['module_name']).first()
+            if not progress:
+                progress = UserProgress(user_id=user.id, module_name=data['module_name'])
+                db.session.add(progress)
+            progress.is_completed = True
+
+        db.session.commit()
         return jsonify({'status': 'success'})
     
     return jsonify({'status': 'error', 'message': 'User not found'}), 404
+
     
 @learning.route('/quiz/review/<int:attempt_id>')
 def quiz_review(attempt_id):

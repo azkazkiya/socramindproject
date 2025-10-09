@@ -8,16 +8,19 @@ main = Blueprint('main', __name__)
 def index():
     return render_template('index.html')
 
+# app/main/routes.py
+
 @main.route('/materi')
 def materi():
     if 'username' not in session:
         return redirect(url_for('auth.login'))
+    
     user = User.query.filter_by(username=session['username']).first()
     
-    # Ambil semua modul yang sudah diselesaikan oleh user
+    # KEMBALIKAN KE LOGIKA INI: Ambil hanya modul yang sudah selesai
     completed_progress = UserProgress.query.filter_by(user_id=user.id, is_completed=True).all()
-    # Buat sebuah set agar mudah dicek di template
     completed_modules = {progress.module_name for progress in completed_progress}
+
     return render_template('materi.html', completed_modules=completed_modules)
 
 @main.route('/pencapaian')
