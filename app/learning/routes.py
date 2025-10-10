@@ -64,7 +64,7 @@ curriculum = {
         },
         {
             'step': 3,
-            'title': 'Tipe Data', # JUDUL BARU
+            'title': 'Tipe Data',
             'type': 'multi_stage_socratic',
             'is_concludable': True,
             'ct': 'Interpretasi, Analisis',
@@ -119,7 +119,7 @@ curriculum = {
         },
         {
             'step': 5,
-            'title': 'Investigasi Kode Program', # JUDUL BARU (dulu 'Investigate')
+            'title': 'Investigasi Kode Program', 
             'type': 'socratic_question',
             'is_concludable': True,
             'ct': 'Analisis',
@@ -141,7 +141,7 @@ curriculum = {
         },
         {
             'step': 6,
-            'title': 'Modifikasi Kode Program', # JUDUL BARU
+            'title': 'Modifikasi Kode Program',
             'type': 'modify_code',
             'is_concludable': True,
             'ct': 'Analisis, Inferensi',
@@ -152,14 +152,14 @@ curriculum = {
             Tugas Anda adalah memandu siswa untuk menemukan solusi dalam masalah menukar nilai dua variabel.
             Konteks: Siswa melihat kode yang gagal menukar nilai (hasilnya kedua variabel akan sama).
             ALUR KERJA WAJIB:
-            1.  **Tahap 1 (Analisis Awal)**: Setelah siswa memberikan hasil (yang seharusnya `Isi Gelas A: 20, Isi Gelas B: 20`), tanyakan mengapa isi Gelas A hilang dan kedua gelas menjadi sama.
-            2.  **Tahap 2 (Permintaan Modifikasi)**: Gunakan analogi. Tanyakan, "Jika kamu punya segelas Kopi dan segelas Teh dan ingin menukar isinya, apa yang kamu butuhkan?". Bimbing dia untuk menemukan ide 'gelas kosong' atau variabel sementara. Minta dia untuk menambahkan variabel `temp` dan memperbaiki logikanya, lalu menjalankan kode lagi.
-            3.  **Tahap 3 (Validasi & Penutup)**: Setelah siswa memberikan hasil yang benar (`Isi Gelas A: 20, Isi Gelas B: 10`), berikan validasi dan pujian atas kemampuannya memecahkan masalah logika ini. Akhiri dengan sinyal `[SELESAI]`.
+            1.  Tahap 1 (Analisis Awal): Setelah siswa memberikan hasil (yang seharusnya `Isi Gelas A: 20, Isi Gelas B: 20`), tanyakan mengapa isi Gelas A hilang dan kedua gelas menjadi sama.
+            2.  Tahap 2 (Permintaan Modifikasi): Gunakan analogi. Tanyakan, "Jika kamu punya segelas Kopi dan segelas Teh dan ingin menukar isinya, apa yang kamu butuhkan?". Bimbing dia untuk menemukan ide 'gelas kosong' atau variabel sementara. Minta dia untuk menambahkan variabel `temp` dan memperbaiki logikanya, lalu menjalankan kode lagi.
+            3.  Tahap 3 (Validasi & Penutup): Setelah siswa memberikan hasil yang benar (`Isi Gelas A: 20, Isi Gelas B: 10`), berikan validasi dan pujian atas kemampuannya memecahkan masalah logika ini. Akhiri dengan sinyal `[SELESAI]`.
             """
         },
         {
             'step': 7,
-            'title': 'Membuat Kode Program', # JUDUL BARU
+            'title': 'Membuat Kode Program',
             'type': 'make_code',
             'is_concludable': True,
             'ct': 'Regulasi Diri',
@@ -170,9 +170,9 @@ curriculum = {
             Tugas Anda adalah memandu siswa melalui sesi refleksi setelah mereka membuat program.
             Konteks: Siswa baru saja membuat program untuk menghitung total harga dan telah memberitahu Anda hasilnya di chat.
             ALUR KERJA WAJIB:
-            1.  **Mulai Sesi Refleksi**: JANGAN komentari benar atau salahnya hasil. Langsung ajukan pertanyaan reflektif pertama. Contoh: "Okee. Dari kode yang kamu buat, seberapa yakin kamu dengan solusimu? Apa yang membuatmu yakin atau mungkin kurang yakin?"
-            2.  **Lanjutkan Refleksi**: Berdasarkan jawaban siswa, ajukan 1 hingga 3 pertanyaan pendalaman lagi yang tetap fokus pada proses berpikir mereka, bukan pada kebenaran kode. Contoh: "Bagian mana dari kodemu yang menurutmu paling menantang?", "Apakah ada cara lain yang kamu pertimbangkan untuk menyelesaikan masalah ini?"
-            3.  **Validasi & Penutup**: Setelah sesi refleksi selesai (setelah 2-4 pertanyaan), berikan validasi dan kalimat penutup yang menyemangati. Contoh: "Diskusi yang bagus! Kemampuanmu untuk merefleksikan pekerjaanmu sendiri adalah skill penting seorang programmer. Kamu sudah menyelesaikan semua materi dasar!" dan WAJIB akhiri dengan sinyal `[SELESAI]`.
+            1.  Mulai Sesi Refleksi: JANGAN komentari benar atau salahnya hasil. Langsung ajukan pertanyaan reflektif pertama. Contoh: "Okee. Dari kode yang kamu buat, seberapa yakin kamu dengan solusimu? Apa yang membuatmu yakin atau mungkin kurang yakin?"
+            2.  Lanjutkan Refleksi: Berdasarkan jawaban siswa, ajukan 1 hingga 3 pertanyaan pendalaman lagi yang tetap fokus pada proses berpikir mereka, bukan pada kebenaran kode. Contoh: "Bagian mana dari kodemu yang menurutmu paling menantang?", "Apakah ada cara lain yang kamu pertimbangkan untuk menyelesaikan masalah ini?"
+            3.  Validasi & Penutup: Setelah sesi refleksi selesai (setelah 2-4 pertanyaan), berikan validasi dan kalimat penutup yang menyemangati. Contoh: "Diskusi yang bagus! Kemampuanmu untuk merefleksikan pekerjaanmu sendiri adalah skill penting seorang programmer. Kamu sudah menyelesaikan semua materi dasar!" dan WAJIB akhiri dengan sinyal `[SELESAI]`.
             """
         }
     ],
@@ -206,7 +206,6 @@ curriculum = {
         },
         
         # Halaman 3 / Step 2: Predict & Analisis Mendalam
-        
         {
             'step': 2, 
             'title': 'Prediksi Kode Program',
@@ -220,7 +219,7 @@ curriculum = {
             Tugas Anda adalah memandu siswa menganalisis dan memprediksi hasil kode melalui beberapa pertanyaan Socratic. JANGAN MEMBERI JAWABAN.
             ALUR WAJIB (tanyakan satu per satu):
             1. (Minta Prediksi Awal) Tanyakan: "Setelah memperhatikan kode di atas, menurutmu berapa `harga_akhir` yang akan ditampilkan?"
-            2. (Pertanyaan Menyelidiki Alasan) Setelah siswa menjawab, tanyakan: "Oke, apa alasan di balik prediksimu itu?"
+            2. (Pertanyaan Menyelidiki Alasan) Setelah siswa menjawab, tanyakan alasan dibalik prediksinya.
             3. (Pertanyaan Menyelidiki Implikasi dan Konsekuensi 1) Tanyakan: "Bagaimana jika baris `total_belanja = 125000` diubah menjadi `total_belanja = 95000`, berapa harga akhirnya sekarang?"
             4. (Pertanyaan Menyelidiki Implikasi dan Konsekuensi 2 - Error) Tanyakan: "Menarik. Terakhir, bagaimana jika baris `if total_belanja > 100000:` kita ubah menjadi `if total_belanja >`, apa yang akan terjadi?"
             5. (Minta Alasan Akhir) Setelah siswa menjawab (kemungkinan besar 'error' atau jawaban aneh), tanyakan pertanyaan asumsi: "Kenapa kamu berpikir hasilnya akan seperti itu?"
@@ -364,60 +363,51 @@ curriculum = {
             'content_file': 'materi/perulangan_pengertian.html'
         },
         
-        # Halaman 3 / Step 2: Predict & Analisis Mendalam
+         # Halaman 3 / Step 2: PREDIKSI KODE PROGRAM
         {
             'step': 2,
             'title': 'Prediksi Kode Program',
-            'type': 'predict_run_investigate',
+            'type': 'predict_run_investigate', 
             'is_concludable': True,
             'ct': 'Analisis',
             'primm': 'Predict',
-            'opening_message': "Sekarang, coba perhatikan kode ini. Kode ini menggunakan `range()` untuk melakukan perulangan. Kira-kira apa outputnya?",
-            'code': "for i in range(5):\n    print(i)", # Disesuaikan dengan gambar Anda
+            'opening_message': "Nah sekarang ayo perhatikan baik-baik kode di atas. Menurutmu apa output yang akan muncul jika kode tersebut dijalankan?",
+            'code': "for i in range(1, 6):\n    print(f\"Perulangan ke-{i}\")",
             'instruction': """
-            Tugas Anda adalah merespons prediksi siswa tentang output kode `for i in range(5): print(i)` secara ADAPTIF. Jawaban yang benar adalah `0, 1, 2, 3, 4`.
-
+            Tugas Anda adalah memandu siswa untuk FOKUS menganalisis dan memprediksi hasil dari kode `for i in range(1, 6):`. JANGAN beralih ke topik atau contoh kode lain.
             ALUR WAJIB:
-            1.  Analisis jawaban siswa terlebih dahulu.
-            
-            --> ALUR JIKA JAWABAN SISWA SALAH (misal: '1 2 3 4 5' atau '5'):
-                a. JANGAN langsung koreksi. Tanyakan dulu alasan di balik jawabannya. Contoh: "Oke, menarik. Boleh ceritakan, kenapa kamu berpikir outputnya akan seperti itu?"
-                b. Setelah siswa memberi alasan, berikan petunjuk yang mengarahkan ke konsep kunci. Contoh: "Terima kasih penjelasannya. Kalau di Python, fungsi `range(5)` itu sebenarnya dimulai dari angka berapa dan berakhir sebelum angka berapa ya?"
-                c. Lanjutkan bimbingan hingga siswa menemukan jawaban yang benar, lalu lanjut ke poin 2 di bawah.
-
-            --> ALUR JIKA JAWABAN SISWA BENAR (`0, 1, 2, 3, 4`):
-                a. Berikan respons netral yang mengarah ke pendalaman. Contoh: "Menarik! Sekarang, menurutmu kenapa angka terakhir yang muncul adalah 4, bukan 5? Apa alasannya?"
-                b. Setelah siswa menjawab, lanjut ke poin 2 di bawah.
-
-            2.  (Minta Prediksi Modifikasi) Setelah alur di atas selesai, tanyakan: "Oke, pemahaman yang bagus. Lalu bagaimana jika kodenya kita ubah menjadi `for i in range(1, 6):`, apa outputnya sekarang?"
-            
-            3.  Setelah siswa menjawab pertanyaan modifikasi, tutup dengan kalimat: "Baik, prediksimu sudah disimpan. Ayo kita buktikan di tahap berikutnya." dan WAJIB akhiri dengan sinyal [SELESAI].
+            1. Setelah siswa memberikan prediksi pertamanya (apapun itu, benar atau salah), minta alasannya (investigasi asumsi). TANYAKAN: "Oke, itu prediksi yang menarik. Apa yang membuatmu berpikir hasilnya akan seperti itu?"
+            2. Jika siswa menjawab 'tidak tahu' atau jawabannya sangat singkat, dorong mereka untuk mencoba. TANYAKAN: "Tidak apa-apa kalau belum yakin. Coba saja tebak dulu. Menurutmu, `range(1, 6)` itu akan menghasilkan angka berapa saja?"
+            3. Setelah siswa memberikan alasan, tutup dengan kalimat transisi untuk menjaga fokus. Ucapkan: "Baik, prediksimu sudah kusimpan. Sekarang, ayo kita buktikan di tahap berikutnya." dan WAJIB akhiri dengan sinyal [SELESAI].
             """
         },
-        
-        # Halaman 4 / Step 3: Run, Investigate & Modify
+        # Halaman 4 / step 3: jalankan
         {
             'step': 3,
-            'title': 'Jalankan & Modifikasi Kode Program', 
+            'title': 'Jalankan Kode Program',
             'type': 'modify_code',
             'is_concludable': True,
-            'ct': 'Evaluasi, Inferensi, Eksplanasi', 
-            'primm': 'Run, Investigate, Modify',
-
-            'opening_message': "Oke, sekarang silakan tekan tombol 'Jalankan Kode' untuk melihat output dari program di atas. Setelah itu, ketik dan kirimkan apa hasilnya di sini.",
-            
-            'base_code': "for i in range(5):\n    print(f\"Angka ke-{i}\")",
-            
+            'ct': 'Evaluasi, Regulasi Diri',
+            'primm': 'Run, Investigate',
+            'opening_message': "Sekarang, mari kita buktikan prediksimu. Silakan tekan tombol 'Jalankan Kode', lalu ketik dan kirimkan apa hasilnya di sini.",
+            'base_code': "for i in range(1, 6):\n    print(f\"Perulangan ke-{i}\")",
             'instruction': """
-            Tugas Anda adalah memandu siswa melalui tiga tahap: investigasi output, modifikasi kode, dan penjelasan.
+            Tugas Anda adalah memandu siswa membandingkan hasil eksekusi dengan prediksi mereka secara adaptif.
+
             ALUR WAJIB:
-            1.  Siswa akan menjalankan kode dan memberitahu Anda outputnya. Setelah mereka mengirim output, TANYAKAN: "Tepat sekali. Apakah output tersebut sesuai dengan prediksimu di tahap sebelumnya?"
-            2.  Setelah siswa menjawab (apapun jawabannya), berikan respons singkat seperti "Baik, terima kasih konfirmasinya." lalu berikan tugas modifikasi: "Sekarang, coba modifikasi kode tersebut agar program hanya mencetak angka genap saja (0, 2, 4)."
-            3.  Setelah siswa berhasil memodifikasi dan mendapatkan jawaban benar (misal dengan menambahkan `if i % 2 == 0:`), tanyakan untuk MENGGALI PEMAHAMAN: "Kerja bagus! Bisakah kamu jelaskan bagaimana caramu menggabungkan logika percabangan di dalam perulangan untuk menyelesaikan masalah ini?"
-            4.  Setelah siswa menjelaskan, berikan pujian dan tutup dengan: "Penjelasan yang sangat baik! Kamu sudah siap membuat program perulangan sendiri." dan akhiri dengan [SELESAI].
+            1.  Setelah siswa mengirimkan output dari hasil eksekusi, TANYAKAN: "Oke, terima kasih. Sekarang, apakah hasil itu sesuai dengan prediksimu di tahap sebelumnya?"
+            2.  Analisis jawaban siswa ("Ya" atau "Tidak") dan pilih salah satu dari dua alur di bawah ini:
+
+                --> **ALUR JIKA SISWA MENJAWAB "YA" (Prediksinya Benar):**
+                    a. Berikan penguatan positif yang berfokus pada proses berpikir. TANYAKAN: "Bagus sekali intuisimu! Apa bagian dari kodemu yang membuatmu paling yakin dengan prediksimu dari awal?"
+                    b. Setelah siswa menjawab, berikan kalimat penutup: "Pemahaman yang bagus. Ayo kita lanjut ke tantangan berikutnya." dan WAJIB akhiri dengan sinyal [SELESAI].
+
+                --> **ALUR JIKA SISWA MENJAWAB "TIDAK" (Prediksinya Salah):**
+                    a. Ajak siswa untuk merefleksikan kesalahannya. TANYAKAN: "Tidak apa-apa, justru dari sini kita belajar. Menurutmu, bagian mana dari pemikiranmu atau kode yang membuat prediksinya keliru?"
+                    b. Setelah siswa mencoba menganalisis, berikan klarifikasi singkat dan kalimat penutup: "Analisis yang bagus. Kesalahan prediksi itu wajar kok, yang penting sekarang kamu jadi paham cara kerja `range()` yang sebenarnya. Ayo kita lanjut ke tantangan berikutnya." dan WAJIB akhiri dengan sinyal [SELESAI].
             """
         },
-        # Halaman 5 / Step 4: Penjelasan Struktur Kode 'for'
+        # Halaman 5 / Step 4: investigasi
         {
             'step': 4,
             'title': 'Investigasi Kode Program',
@@ -437,9 +427,28 @@ curriculum = {
             3. Setelah siswa menjawab, tutup dengan kalimat: "Pemahaman yang bagus! Itu adalah dasar dari perulangan `for`. Sekarang mari kita analisis kode yang lain." dan WAJIB akhiri dengan [SELESAI].
             """
         },
-        # Halaman 6 / Step 5: Make - Perulangan 'for'
+        # Halaman 5 / Step 4: MODIFIKASI KODE (BARU)
         {
             'step': 5,
+            'title': 'Modifikasi Kode Program',
+            'type': 'modify_code',
+            'is_concludable': True,
+            'ct': 'Inferensi, Eksplanasi',
+            'primm': 'Modify',
+            'opening_message': "Tantangan untukmu! Coba modifikasi kode di editor agar program melakukan hitung mundur dari 5 ke 1.",
+            'base_code': "# Ubah kode di bawah ini untuk melakukan hitung mundur\nfor i in range(1, 6):\n    print(f\"Perulangan ke-{i}\")",
+            'instruction': """
+            Tugas Anda adalah memandu siswa memodifikasi kode dan menjelaskan hasilnya.
+            ALUR WAJIB:
+            1.  Tunggu hingga siswa berhasil memodifikasi kode dan mendapatkan output yang benar (5, 4, 3, 2, 1).
+            2.  Setelah siswa berhasil, TANYAKAN: "Kerja bagus! Kamu berhasil melakukannya. Coba jelaskan, bagian mana dari `range()` yang kamu ubah dan kenapa perubahan itu menghasilkan hitung mundur?"
+            3.  Setelah siswa menjelaskan, berikan pujian dan tutup dengan: "Penjelasan yang sangat baik! Kamu sudah siap untuk membuat program perulanganmu sendiri." dan akhiri dengan [SELESAI].
+            """
+        },
+        
+        # Halaman 7 / Step 6: Make - Perulangan 'for'
+        {
+            'step': 6,
             'title':'Membuat Kode Program dengan for',
             'type': 'make_code',
             'is_concludable': True,
@@ -453,9 +462,9 @@ curriculum = {
             2. Setelah siswa menjawab, akhiri dengan: "Poin yang bagus! Itulah kekuatan perulangan `for`. Lanjut ke tantangan berikutnya!" dan sinyal [SELESAI].
             """
         },
-        # Halaman 7 / Step 6: Make - Perulangan 'while'
+        # Halaman 8 / Step 7: Make - Perulangan 'while'
         {
-            'step': 6,
+            'step': 7,
             'title':'Membuat Kode Program dengan while',
             'type': 'make_code',
             'is_concludable': True,
