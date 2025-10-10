@@ -422,7 +422,7 @@ curriculum = {
             'instruction': """
             Tugas Anda adalah memandu siswa memahami anatomi dasar dari loop 'for'.
             ALUR WAJIB:
-            1. Setelah siswa menjelaskan, ajukan pertanyaan tentang variabel 'buah'. Tanyakan: "Tepat sekali. Lalu, 'buah' itu variabel apa? Kenapa kita bisa langsung `print(buah)` padahal kita tidak pernah membuat `buah = 'apel'`?"
+            1. Setelah siswa menjelaskan, ajukan pertanyaan tentang variabel 'buah'. Tanyakan: "Lalu, 'buah' itu variabel apa? Kenapa kita bisa langsung `print(buah)` padahal kita tidak pernah membuat `buah = 'apel'`?"
             2. Setelah siswa menjawab, ajukan pertanyaan tentang indentasi. Tanyakan: "Bagus! Terakhir, kenapa baris `print(buah)` harus menjorok ke dalam?"
             3. Setelah siswa menjawab, tutup dengan kalimat: "Pemahaman yang bagus! Itu adalah dasar dari perulangan `for`. Sekarang mari kita analisis kode yang lain." dan WAJIB akhiri dengan [SELESAI].
             """
@@ -435,14 +435,21 @@ curriculum = {
             'is_concludable': True,
             'ct': 'Inferensi, Eksplanasi',
             'primm': 'Modify',
-            'opening_message': "Tantangan untukmu! Coba modifikasi kode di editor agar program melakukan hitung mundur dari 5 ke 1.",
-            'base_code': "# Ubah kode di bawah ini untuk melakukan hitung mundur\nfor i in range(1, 6):\n    print(f\"Perulangan ke-{i}\")",
+            
+            # Pesan pembuka ini benar, meminta siswa melakukan hitung mundur
+            'opening_message': "Tantangan untukmu! Coba modifikasi kode di editor agar program melakukan hitung mundur dari 4 ke 1.",
+            
+            # base_code ini yang salah sebelumnya, sekarang sudah diperbaiki
+            'base_code': "# Ubah kode di bawah ini untuk melakukan hitung mundur\nfor i in range(1, 5):\n    print(f\"Perulangan ke-{i}\")",
+            
             'instruction': """
-            Tugas Anda adalah memandu siswa memodifikasi kode dan menjelaskan hasilnya.
+            Tugas Anda adalah memandu siswa dalam memodifikasi kode dan memastikan mereka paham dengan apa yang mereka lakukan.
+
             ALUR WAJIB:
-            1.  Tunggu hingga siswa berhasil memodifikasi kode dan mendapatkan output yang benar (5, 4, 3, 2, 1).
-            2.  Setelah siswa berhasil, TANYAKAN: "Kerja bagus! Kamu berhasil melakukannya. Coba jelaskan, bagian mana dari `range()` yang kamu ubah dan kenapa perubahan itu menghasilkan hitung mundur?"
-            3.  Setelah siswa menjelaskan, berikan pujian dan tutup dengan: "Penjelasan yang sangat baik! Kamu sudah siap untuk membuat program perulanganmu sendiri." dan akhiri dengan [SELESAI].
+            1.  Siswa akan memodifikasi kode dan menjalankannya. Setelah mereka mengirim pesan di chat (misalnya "sudah" atau mengirimkan outputnya), periksa histori percakapan dan output kode yang mereka hasilkan.
+            2.  **JIKA output siswa sudah benar** (menunjukkan hitung mundur 5 ke 1), berikan pujian dan langsung ajukan pertanyaan untuk menggali pemahaman. TANYAKAN: "Kerja bagus! Kamu berhasil melakukannya. Coba jelaskan, bagian mana dari `range()` yang kamu ubah dan kenapa perubahan itu menghasilkan hitung mundur?"
+            3.  **JIKA output siswa masih salah**, berikan petunjuk tanpa memberi jawaban. Contoh: "Hmm, sepertinya hasilnya belum sesuai. Ingat, untuk hitung mundur, kita perlu memberitahu `range()` tiga hal: angka mulai, angka berhenti, dan 'langkah'-nya. Coba lihat lagi, kira-kira bagian mana yang perlu disesuaikan?"
+            4.  Setelah siswa berhasil dan menjelaskan alasannya (mengikuti alur nomor 2), tutup dengan kalimat positif: "Penjelasan yang sangat baik! Kamu sudah siap untuk membuat program perulanganmu sendiri." dan WAJIB akhiri dengan sinyal [SELESAI].
             """
         },
         
