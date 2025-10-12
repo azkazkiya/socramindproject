@@ -878,38 +878,106 @@ h1, h2, h3, h4 {
     }
 }
 
-/* Styling untuk Sertifikat */
-.sertifikat-container {
-    max-width: 800px;
+/* ============================================== */
+/* ===== STYLING BARU UNTUK SERTIFIKAT ===== */
+/* ============================================== */
+
+/* Kontainer Utama Sertifikat */
+.sertifikat-container.landscape {
+    max-width: 1000px;
     margin: 40px auto;
-    padding: 40px;
-    border: 10px solid #ff8c00;
-    border-radius: 8px;
     background-color: #fff;
-    text-align: center;
-    font-family: 'Times New Roman', serif;
+    font-family: 'League Spartan', sans-serif;
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Kolom kiri 2x lebih lebar dari kolom kanan */
+    border: 1px solid #eee;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    overflow: hidden;
 }
+
+/* Kolom Kiri (Konten Teks) */
+.sertifikat-content {
+    padding: 60px;
+    text-align: left; /* Ubah menjadi rata kiri agar lebih formal */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Beri jarak antar elemen */
+}
+
+/* Kolom Kanan (Panel Desain) */
+.sertifikat-design-panel {
+    background-color: #ff8c00;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.sertifikat-design-panel img {
+    width: 120px;
+    margin-bottom: 20px;
+}
+.sertifikat-design-panel p {
+    font-weight: 700;
+    letter-spacing: 8px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 1.2em;
+}
+
+/* Perbaikan Tipografi */
 .sertifikat-header h1 {
-    font-size: 2.5em;
-    color: #333;
+    font-size: 1.8em;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 5px;
+    font-weight: 400;
 }
-.sertifikat-nama {
-    font-family: 'Brush Script MT', cursive;
-    font-size: 3em;
-    color: #ff8c00;
+.sertifikat-header p {
+    font-size: 1em;
+    color: #666;
+}
+
+.sertifikat-body .sertifikat-nama {
+    font-size: 4em;
+    color: #333;
     margin: 20px 0;
+    font-weight: 700;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 20px;
+}
+.sertifikat-body p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    max-width: 500px; /* Batasi lebar teks agar tidak terlalu panjang */
+}
+
+.sertifikat-scores {
+    margin-top: 30px;
+}
+.sertifikat-scores h3 {
+    font-weight: 700;
+    color: #555;
+    margin-bottom: 15px;
 }
 .sertifikat-scores ul {
     list-style-type: none;
     padding: 0;
-    display: inline-block;
     text-align: left;
 }
-.sertifikat-footer {
-    margin-top: 50px;
-    border-top: 1px solid #ddd;
-    padding-top: 20px;
+.sertifikat-scores li {
+    margin-bottom: 8px;
+    font-size: 1.1em;
 }
+
+.sertifikat-footer {
+    margin-top: 40px;
+    text-align: center;
+}
+
 .print-button {
     display: block;
     margin: 20px auto;
@@ -920,21 +988,28 @@ h1, h2, h3, h4 {
     border-radius: 5px;
     cursor: pointer;
 }
-.sertifikat-link-container {
-    text-align: center;
-    background-color: #e8f5e9;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 30px;
-}
+
 
 /* Sembunyikan tombol saat mencetak */
 @media print {
+    body {
+        background-color: #fff;
+    }
     .print-button, .main-header {
         display: none;
     }
-    .sertifikat-container {
+    .sertifikat-container.landscape {
+        width: 100%;
+        max-width: none;
         margin: 0;
-        border: 5px solid #ff8c00;
+        box-shadow: none;
+        border: 10px solid #ff8c00;
+        /* Atur layout cetak menjadi landscape */
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    @page {
+        size: landscape;
+        margin: 0;
     }
 }
