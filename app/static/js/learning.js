@@ -18,11 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let editor;
     if (codeEditor) {
         editor = CodeMirror.fromTextArea(codeEditor, {
-            lineNumbers: true,         // <-- INI UNTUK MENAMPILKAN NOMOR BARIS
-            mode: "python",            // Mengaktifkan syntax highlighting untuk Python
-            theme: "material-darker",  // Tema warna (bisa diganti)
-            indentUnit: 4,             // Atur indentasi 4 spasi
-            lineWrapping: true         // Agar baris yang panjang otomatis ke bawah
+            lineNumbers: true,         
+            mode: "python",            
+            theme: "material-darker",  
+            indentUnit: 4,             
+            lineWrapping: true         
         });
     }
     if (toggleNavBtn && learningSidebar) {
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
             learningSidebar.classList.toggle('open');
         });
     }
-    // Auto-scroll chatbox ke bawah jika ada
+    // Auto-scroll chatbox
     if (chatBox) {
         chatBox.scrollTop = chatBox.scrollHeight;
     }
@@ -46,17 +46,13 @@ document.addEventListener('DOMContentLoaded', () => {
         chatBox.scrollTop = chatBox.scrollHeight;
     }
 
-    // Fungsi global untuk tombol 'Lanjut' yang dibuat oleh server
-// static/js/learning.js
 
     window.handleNextStep = async (next_url = null) => {
-        // Ambil data dari elemen yang ada di halaman
         const stepDataContainer = document.getElementById('step-data-container');
         const stepData = JSON.parse(stepDataContainer.dataset.step);
         const moduleName = window.location.pathname.split('/')[2];
         const currentStep = stepData.step;
 
-        // Hapus history dari step yang baru saja selesai
         await fetch('/clear_step_history', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -66,20 +62,15 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         });
 
-        // --- PERBAIKAN UTAMA DI SINI ---
-        // Jika ada next_url (menuju kuis), langsung ke sana
         if (next_url) {
             window.location.href = next_url;
         } else {
-            // Jika tidak, beri tahu backend untuk menaikkan step
             await fetch('/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ action: 'next_step' })
             });
             
-            // Alih-alih reload, kita langsung pindah ke step berikutnya
-            // dengan memanggil URL goto_step.
             const nextStepIndex = currentStep + 1;
             window.location.href = `/goto/${moduleName}/${nextStepIndex}`;
         }
@@ -89,7 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const oldButton = document.getElementById('next-step-btn');
         if (oldButton) oldButton.remove();
         
-        // Temukan kontainer utama, bukan lagi 'contentArea'
         const mainContent = document.querySelector('.learning-main-content');
         if (!mainContent) return; // Keluar jika kontainer tidak ditemukan
 
@@ -98,16 +88,13 @@ document.addEventListener('DOMContentLoaded', () => {
         nextButton.className = 'button-lanjut'; // Tambahkan class untuk styling
         nextButton.textContent = next_url ? 'Mulai Quiz' : 'Lanjut ke Tahap Berikutnya';
         
-        // Panggil fungsi global saat diklik
         nextButton.onclick = () => window.handleNextStep(next_url);
         
-        // Tambahkan tombol ke kontainer utama
         mainContent.appendChild(nextButton);
     }
 
     if (runCodeBtn) {
     runCodeBtn.addEventListener('click', async () => {
-        // Ambil kode dari instance CodeMirror, bukan dari textarea
         const modifiedCode = editor.getValue(); 
         
         codeOutput.textContent = 'Menjalankan...';
@@ -136,16 +123,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const chatMessage = userInput.value.trim();
             const codeContent = (typeof editor !== 'undefined' && editor) ? editor.getValue() : '';
 
-            // PERBAIKAN #1: Hentikan jika KEDUANYA (chat & kode) kosong
             if (!chatMessage && !codeContent) return;
 
             let finalMessage = chatMessage;
             if (codeContent) {
-                // Gabungkan pesan chat dengan kode dari editor
                 finalMessage = `Pesan saya: "${chatMessage}"\n\nBerikut adalah kode yang saya buat:\n\`\`\`python\n${codeContent}\n\`\`\``;
             }
             
-            // Tampilkan pesan singkat di UI
             addMessage('Anda', chatMessage || "(mengirimkan kode)");
             userInput.value = '';
 
@@ -156,7 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await fetch('/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    // PERBAIKAN #2: Kirim variabel 'finalMessage' yang benar
                     body: JSON.stringify({ message: finalMessage, action: 'chat' })
                 });
 
@@ -187,7 +170,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Cek apakah tombol lanjut perlu dibuat saat refresh
     const showNextButtonOnLoad = document.documentElement.getAttribute('data-show-next-button') === 'True';
     if (showNextButtonOnLoad) {
         showNextStepButton();
