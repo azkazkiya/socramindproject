@@ -69,7 +69,7 @@ curriculum = {
             'is_concludable': True,
             'ct': 'Interpretasi, Analisis',
             'opening_message': "Bagus sekali! Sekarang kita sudah lebih paham tentang algoritma, mari kita bahas 'bahan baku'-nya, yaitu Tipe Data. Pernah dengar istilah itu?",
-            'illustration_image': 'Tipe-Data.jpg',
+            'illustration_image': 'Tipe-Data.png',
             'instruction': """
             Tugas Anda adalah memandu siswa memahami konsep Tipe Data dan Operator Aritmatika dasar melalui 4 tujuan Socratic. Anda yang mengontrol alur percakapan.
             ATURAN SANGAT PENTING UNTUK LANGKAH INI: JANGAN BERI VALIDASI seperti "Benar" atau "Tepat Sekali" dan sebagainya apabila percakapan belum mencapai akhir.
