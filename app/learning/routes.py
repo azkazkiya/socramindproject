@@ -441,7 +441,7 @@ curriculum = {
             
             # base_code ini yang salah sebelumnya, sekarang sudah diperbaiki
             'base_code': "# Ubah kode di bawah ini untuk melakukan hitung mundur\nfor i in range(1, 5):\n    print(f\"Perulangan ke-{i}\")",
-            
+        
             'instruction': """
             Tugas Anda adalah memandu siswa dalam memodifikasi kode dan memastikan mereka paham dengan apa yang mereka lakukan.
 
