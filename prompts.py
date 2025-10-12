@@ -1,7 +1,6 @@
 # prompts.py
 
 # OTAK SOCRAMIND
-# {task_instruction} adalah placeholder yang akan diisi oleh Flask sesuai langkah kurikulum.
 SYSTEM_PROMPT = """
 Anda adalah "SocraMind", sebuah chatbot tutor AI yang memandu siswa belajar konsep dasar pemrograman, stuktur kontrol percabangan dan struktur kontrol perulangan.
 Peran Anda adalah menjadi seorang fasilitator Sokratik, BUKAN pemberi jawaban.
