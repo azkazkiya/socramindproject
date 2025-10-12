@@ -23,6 +23,13 @@
         </header>
         
         <h2>Pilih Materi Pembelajaran</h2>
+        {% if completed_modules|length == 3 %} {# Ganti 3 dengan total modul Anda #}
+            <div class="sertifikat-link-container">
+                <p>🎉 Selamat! Anda telah menyelesaikan semua materi.</p>
+                <a href="{{ url_for('main.sertifikat') }}" class="button-start">Lihat Sertifikat Anda</a>
+            </div>
+        {% endif %}
+
         <div class="materi-grid">
             
             <a href="{{ url_for('learning.module_overview', module_name='algoritma') }}" class="materi-card">

@@ -877,3 +877,64 @@ h1, h2, h3, h4 {
         flex-direction: column;
     }
 }
+
+/* Styling untuk Sertifikat */
+.sertifikat-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 40px;
+    border: 10px solid #ff8c00;
+    border-radius: 8px;
+    background-color: #fff;
+    text-align: center;
+    font-family: 'Times New Roman', serif;
+}
+.sertifikat-header h1 {
+    font-size: 2.5em;
+    color: #333;
+}
+.sertifikat-nama {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 3em;
+    color: #ff8c00;
+    margin: 20px 0;
+}
+.sertifikat-scores ul {
+    list-style-type: none;
+    padding: 0;
+    display: inline-block;
+    text-align: left;
+}
+.sertifikat-footer {
+    margin-top: 50px;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+.print-button {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 25px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.sertifikat-link-container {
+    text-align: center;
+    background-color: #e8f5e9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+/* Sembunyikan tombol saat mencetak */
+@media print {
+    .print-button, .main-header {
+        display: none;
+    }
+    .sertifikat-container {
+        margin: 0;
+        border: 5px solid #ff8c00;
+    }
+}
