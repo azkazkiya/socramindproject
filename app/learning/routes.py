@@ -900,13 +900,22 @@ def quiz(module_name):
     if not user:
         return redirect(url_for('auth.logout'))
 
+    
+    progress = UserProgress.query.filter_by(user_id=user.id, module_name=module_name).first()
+    
+    last_step_index = len(curriculum[module_name]) - 1
+
+    if not progress or progress.max_step_achieved < last_step_index:
+        flash("Anda harus menyelesaikan semua materi pembelajaran terlebih dahulu untuk mengakses kuis.", "error")
+        return redirect(url_for('learning.learning_module', module_name=module_name))
+
+
     existing_attempt = QuizAttempt.query.filter_by(
         user_id=user.id,
         module_name=module_name
     ).first()
 
     if existing_attempt:
-        # Jika kuis sudah dikerjakan, buat judul halaman riwayat
         page_title = f"Skor Kuis: {module_name.capitalize()}"
         return render_template('quiz.html', 
                                  module_name=module_name, 
@@ -919,7 +928,6 @@ def quiz(module_name):
         flash(f'Quiz untuk materi "{module_name}" belum tersedia.', 'error')
         return redirect(url_for('main.materi'))
 
-    # Jika kuis belum dikerjakan, gunakan judul dari data kuis
     page_title = quiz_data['title']
     correct_answers = [q['correct'] for q in quiz_data['questions']]
     
