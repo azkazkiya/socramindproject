@@ -613,29 +613,59 @@ QUIZZES = {
         'title': 'Quiz: Struktur Kontrol Perulangan',
         'questions': [
             {
-                'text': 'Perulangan `for` paling cocok digunakan untuk...',
+                'text': 'Apa perbedaan mendasar antara perulangan `for` dan `while`?',
                 'options': [
-                    'Mengulang kode jika sebuah kondisi bernilai True', 
-                    'Mengiterasi setiap item dalam sebuah sekuens (seperti list)', 
-                    'Membuat keputusan dalam program', 
-                    'Menghentikan program saat terjadi error'
+                    '`for` digunakan ketika jumlah perulangan diketahui secara pasti, sedangkan `while` digunakan ketika perulangan bergantung pada sebuah kondisi yang dinamis.',
+                    '`for` hanya untuk angka, `while` hanya untuk teks.',
+                    '`for` lebih cepat dari `while`.',
+                    '`for` selalu menghitung maju, `while` selalu menghitung mundur.',
+                    '`for` tidak bisa menjadi infinite loop, sedangkan `while` bisa.'
                 ],
-                'correct': 'Mengiterasi setiap item dalam sebuah sekuens (seperti list)'
+                'correct': '`for` digunakan ketika jumlah perulangan diketahui secara pasti, sedangkan `while` digunakan ketika perulangan bergantung pada sebuah kondisi yang dinamis.'
             },
             {
-                'text': 'Apa ciri utama dari perulangan `while`?',
+                'text': 'Kode `while True: print("Loading...")` akan menyebabkan infinite loop. Mengapa hal tersebut terjadi?',
                 'options': [
-                    'Jumlah perulangannya sudah pasti', 
-                    'Akan terus berjalan selama kondisi yang diberikan terpenuhi', 
-                    'Hanya berjalan satu kali', 
-                    'Selalu digunakan untuk memproses list'
+                    'Karena kondisi `True` secara definisi akan selalu benar dan tidak pernah berubah menjadi `False`.',
+                    'Karena teks "Loading..." terlalu panjang.',
+                    'Karena komputer tidak bisa mencetak teks berulang kali.',
+                    'Karena tidak ada variabel `i`.',
+                    'Karena perintah print() tidak bisa menghentikan perulangan.'
                 ],
-                'correct': 'Akan terus berjalan selama kondisi yang diberikan terpenuhi'
+                'correct': 'Karena kondisi `True` secara definisi akan selalu benar dan tidak pernah berubah menjadi `False`.'
             },
             {
-                'text': 'Kode `for i in range(3):` akan membuat variabel `i` berisi angka apa saja secara berurutan?',
-                'options': ['1, 2, 3', '0, 1, 2', '0, 1, 2, 3', 'Hanya angka 3'],
-                'correct': '0, 1, 2'
+                'text': 'Apa fungsi dari `i = i + 1` (atau `i += 1`) di dalam perulangan `while`?',
+                'options': [
+                    'Untuk mencetak nilai `i` ke layar.',
+                    "Sebagai 'increment', yaitu proses menaikkan nilai variabel kontrol agar kondisi perulangan suatu saat bisa menjadi `False` dan berhenti.",
+                    'Untuk mengatur ulang nilai `i` kembali ke 1.',
+                    'Untuk memeriksa apakah `i` adalah bilangan ganjil.',
+                    'Untuk menyimpan nilai i ke dalam memori permanen.'
+                ],
+                'correct': "Sebagai 'increment', yaitu proses menaikkan nilai variabel kontrol agar kondisi perulangan suatu saat bisa menjadi `False` dan berhenti."
+            },
+            {
+                'text': 'Dalam perulangan `for i in range(A, B):`, iterasi akan dimulai dari nilai... dan berhenti sebelum mencapai nilai...',
+                'options': [
+                    'A+1, B+1',
+                    'A, B',
+                    'A+1, B',
+                    'A, B+1',
+                    'A, B-1'
+                ],
+                'correct': 'A, B'
+            },
+            {
+                'text': 'Manakah di antara kode berikut yang akan mencetak semua bilangan ganjil antara 1 dan 10?',
+                'options': [
+                    'for i in range(1, 10, 2): print(i)',
+                    'for i in range(1, 10): print(i)',
+                    'for i in range(1, 10): if i % 2 == 0: print(i)',
+                    'i = 1, while i < 10: print(1)',
+                    'for i in range(10): if i % 2 != 0: print(i)'
+                ],
+                'correct': 'for i in range(1, 10, 2): print(i)'
             }
         ]
     }
