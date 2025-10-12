@@ -505,11 +505,48 @@ QUIZZES = {
         'title': 'Quiz: Algoritma Pemrograman',
         'questions': [
             {
-                'text': 'Apa definisi paling tepat dari algoritma?',
-                'options': ['Sebuah bahasa pemrograman', 'Urutan langkah-langkah logis untuk menyelesaikan masalah', 'Sebuah bug dalam kode', 'Nama sebuah software'],
-                'correct': 'Urutan langkah-langkah logis untuk menyelesaikan masalah'
+                'text': 'Seorang koki mengikuti resep untuk membuat kue. Dalam konteks pemrograman, resep tersebut paling tepat dijelaskan sebagai...',
+                'options': [
+                    'Output, karena hasil akhirnya adalah sebuah kue yang jadi.',
+                    'Input, karena membutuhkan bahan-bahan sebagai masukan.',
+                    'Algoritma, karena berisi urutan langkah-langkah logis dan terbatas untuk menyelesaikan masalah.',
+                    'Program itu sendiri, karena bisa langsung dijalankan.',
+                    'Variabel, karena kue termasuk ke dalam variabel.'
+                ],
+                'correct': 'Algoritma, karena berisi urutan langkah-langkah logis dan terbatas untuk menyelesaikan masalah.'
             },
-            # Tambahkan soal algoritma lainnya di sini...
+            {
+                'text': 'Operator `%` (modulus) digunakan untuk...',
+                'options': [
+                    'Membulatkan angka ke bawah.',
+                    'Mencari sisa dari suatu operasi pembagian.',
+                    'Melakukan pembagian dengan hasil desimal.',
+                    'Menghitung persentase.',
+                    'Melakukan pembagian dengan hasil bilangan bulat (tanpa sisa).'
+                ],
+                'correct': 'Mencari sisa dari suatu operasi pembagian.'
+            },
+            {
+                'text': 'Dari data-data siswa berikut, manakah yang paling ideal untuk disimpan menggunakan tipe data integer?',
+                'options': [
+                    'Nomor Induk Siswa (NIS) yang diawali dengan angka nol, contoh: "0012345"',
+                    'Jumlah saudara kandung, contoh: 2',
+                    'Rata-rata nilai rapor, contoh: 85.75',
+                    'Biaya SPP per bulan, contoh: "Rp 600.000"',
+                    'Nomor Telepon, contoh: "0812345678"'
+                ],
+                'correct': 'Jumlah saudara kandung, contoh: 2'
+            },
+            {
+                'text': 'Diberikan `x = 3 + 5 * 2`. Berapakah nilai `x`?',
+                'options': ['25', '10', '30', '13', '17'],
+                'correct': '13'
+            },
+            {
+                'text': 'Diberikan `sisa_baterai = 15`. Kode kemudian dieksekusi: `sisa_baterai = sisa_baterai - 5`. Berapa nilai `sisa_baterai` sekarang?',
+                'options': ['5', '20', '10', '15', '25'],
+                'correct': '10'
+            }
         ]
     },
     'percabangan': {
@@ -517,15 +554,59 @@ QUIZZES = {
         'questions': [
             {
                 'text': 'Struktur `if-else` digunakan untuk...',
-                'options': ['Mengulang kode berkali-kali', 'Menjalankan kode berdasarkan sebuah kondisi', 'Menyimpan data', 'Menampilkan error'],
-                'correct': 'Menjalankan kode berdasarkan sebuah kondisi'
+                'options': [
+                    'Mengulangi sebuah blok kode beberapa kali.',
+                    'Menyimpan beberapa nilai dalam satu variabel.',
+                    'Menjalankan sebuah blok kode jika kondisi benar, dan menjalankan blok kode alternatif jika kondisi salah.',
+                    'Menjalankan kode secara berurutan tanpa ada pilihan.',
+                    'Mendefinisikan sebuah fungsi yang bisa dipanggil berulang kali'
+                ],
+                'correct': 'Menjalankan sebuah blok kode jika kondisi benar, dan menjalankan blok kode alternatif jika kondisi salah.'
             },
             {
-                'text': 'Keyword apa yang digunakan untuk "kondisi lain jika kondisi pertama salah"?',
-                'options': ['elif', 'then', 'else', 'when'],
-                'correct': 'elif'
+                'text': 'Anda membuat sistem login. Kode Anda adalah `if username == "admin" or password == "1234"`. Menurutmu apa yang harus diperhatikan untuk keamanan dari logika ini?',
+                'options': [
+                    'Seharusnya ada blok `else`.',
+                    'Seharusnya menggunakan operator `and`.',
+                    'Password "1234" terlalu mudah ditebak.',
+                    'Tidak ada kelemahan, ini adalah logika yang aman.',
+                    'nama variabel username dan password kurang aman'
+                ],
+                'correct': 'Seharusnya menggunakan operator `and`.'
             },
-            # Tambahkan soal percabangan lainnya di sini...
+            {
+                'text': "Logika Anda `if nilai >= 75:` sudah benar, tapi siswa dengan nilai `75.0` tetap gagal. Pertanyaan reflektif apa yang harus Anda ajukan di luar kode?",
+                'options': [
+                    "\"Apakah aku salah memahami aturannya? Mungkin syaratnya 'di atas 75', bukan 'minimal 75'.\"",
+                    "\"Apakah komputernya salah melakukan perbandingan?\"",
+                    "\"Kenapa standar kelulusannya begitu tinggi?\"",
+                    "\"Siapa yang memasukkan nilai ini?\"",
+                    "\"Apakah saya harus menurunkan standar kelulusannya?\""
+                ],
+                'correct': "\"Apakah aku salah memahami aturannya? Mungkin syaratnya 'di atas 75', bukan 'minimal 75'.\""
+            },
+            {
+                'text': 'Untuk memberikan diskon hanya kepada `Member` yang berbelanja di atas 500.000, manakah kode yang paling tepat?',
+                'options': [
+                    'if total_belanja > 500000:',
+                    'if status == "Member":',
+                    'if status == "Member" or total_belanja > 500000:',
+                    'if status == "Member" and total_belanja > 500000:',
+                    'if status == "Member": if total_belanja > 500000:'
+                ],
+                'correct': 'if status == "Member" and total_belanja > 500000:'
+            },
+            {
+                'text': "Anda ingin membuat program yang hanya berjalan jika pengguna adalah 'Admin' DAN usianya di atas 18. Manakah kondisi `if` yang paling tepat?",
+                'options': [
+                    'if status == "Admin" or usia > 18:',
+                    'if status == "Admin":',
+                    'if not (status == "Admin")',
+                    'if status == "Admin" and usia > 18:',
+                    'if usia > 18:'
+                ],
+                'correct': 'if status == "Admin" and usia > 18:'
+            }
         ]
     },
     'perulangan': {
@@ -558,7 +639,6 @@ QUIZZES = {
             }
         ]
     }
-    # Anda bisa menambahkan materi lain seperti 'perulangan' di sini nanti
 }
 
 # Membuat Blueprint 'learning'
