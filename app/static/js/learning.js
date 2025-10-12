@@ -120,9 +120,11 @@ document.addEventListener('DOMContentLoaded', () => {
         codeOutput.textContent = data.reply;
     });
 }
+// static/js/learning.js
+
     if (chatForm) {
         userInput.addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
+            if (event.key === 'Enter' && !event.shiftKey) { // Ditambah !event.shiftKey agar Shift+Enter bisa untuk baris baru
                 event.preventDefault();
                 chatForm.dispatchEvent(new Event('submit', { cancelable: true }));
             }
@@ -130,37 +132,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
         chatForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const message = userInput.value.trim();
-            if (!message) return;
             
-            addMessage('Anda', message);
+            const chatMessage = userInput.value.trim();
+            const codeContent = (typeof editor !== 'undefined' && editor) ? editor.getValue() : '';
+
+            // PERBAIKAN #1: Hentikan jika KEDUANYA (chat & kode) kosong
+            if (!chatMessage && !codeContent) return;
+
+            let finalMessage = chatMessage;
+            if (codeContent) {
+                // Gabungkan pesan chat dengan kode dari editor
+                finalMessage = `Pesan saya: "${chatMessage}"\n\nBerikut adalah kode yang saya buat:\n\`\`\`python\n${codeContent}\n\`\`\``;
+            }
+            
+            // Tampilkan pesan singkat di UI
+            addMessage('Anda', chatMessage || "(mengirimkan kode)");
             userInput.value = '';
 
             typingIndicator.style.display = 'flex';
-            chatBox.scrollTop = chatBox.scrollHeight; 
+            chatBox.scrollTop = chatBox.scrollHeight;
 
             try {
                 const response = await fetch('/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: message, action: 'chat' })
+                    // PERBAIKAN #2: Kirim variabel 'finalMessage' yang benar
+                    body: JSON.stringify({ message: finalMessage, action: 'chat' })
                 });
 
                 typingIndicator.style.display = 'none';
                 
                 const data = await response.json();
-                let aiReply = data.reply; // Simpan balasan AI ke variabel
+                let aiReply = data.reply;
 
                 if (aiReply.includes('[TAMPILKAN_JALANKAN_KODE]')) {
-                // Hapus sinyal dari teks yang akan ditampilkan
-                aiReply = aiReply.replace('[TAMPILKAN_JALANKAN_KODE]', '').trim();
-                
-                // Tampilkan tombol "Jalankan Kode"
-                const runBtn = document.getElementById('run-code-btn');
-                if (runBtn) {
-                    runBtn.style.display = 'block'; // atau 'inline-block' sesuai style Anda
+                    aiReply = aiReply.replace('[TAMPILKAN_JALANKAN_KODE]', '').trim();
+                    const runBtn = document.getElementById('run-code-btn');
+                    if (runBtn) {
+                        runBtn.style.display = 'block';
+                    }
                 }
-            }
 
                 addMessage('SocraMind', aiReply);
                 

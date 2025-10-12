@@ -216,14 +216,20 @@ curriculum = {
             'opening_message': "Sekarang kita analisis kode ini bersama. Kode ini bertujuan untuk memberikan diskon berdasarkan total belanja. Kira kira apa keluaran dari kode di atas ya?",
             'code': 'total_belanja = 125000\ndiskon = 0\n\nif total_belanja > 100000:\n    diskon = 0.1 # Diskon 10%\n\nharga_akhir = total_belanja - (total_belanja * diskon)\nprint(f"Harga setelah diskon: {harga_akhir}")',
             'instruction': """
-            Tugas Anda adalah memandu siswa menganalisis dan memprediksi hasil kode melalui beberapa pertanyaan Socratic. JANGAN MEMBERI JAWABAN.
-            ALUR WAJIB (tanyakan satu per satu):
-            1. (Minta Prediksi Awal) Tanyakan: "Setelah memperhatikan kode di atas, menurutmu berapa `harga_akhir` yang akan ditampilkan?"
-            2. (Pertanyaan Menyelidiki Alasan) Setelah siswa menjawab, tanyakan alasan dibalik prediksinya.
-            3. (Pertanyaan Menyelidiki Implikasi dan Konsekuensi 1) Tanyakan: "Bagaimana jika baris `total_belanja = 125000` diubah menjadi `total_belanja = 95000`, berapa harga akhirnya sekarang?"
-            4. (Pertanyaan Menyelidiki Implikasi dan Konsekuensi 2 - Error) Tanyakan: "Menarik. Terakhir, bagaimana jika baris `if total_belanja > 100000:` kita ubah menjadi `if total_belanja >`, apa yang akan terjadi?"
-            5. (Minta Alasan Akhir) Setelah siswa menjawab (kemungkinan besar 'error' atau jawaban aneh), tanyakan pertanyaan asumsi: "Kenapa kamu berpikir hasilnya akan seperti itu?"
-            6. Setelah siswa memberi alasan terakhir, tutup dengan kalimat: "Oke, kamu sudah siap untuk lanjut ke step berikutnya." dan akhiri dengan [SELESAI].
+            Tugas Anda adalah memandu siswa menganalisis dan memprediksi hasil kode dengan sabar. JANGAN MEMBERI JAWABAN.
+            Pastikan Anda mengajukan setidaknya tiga jenis pertanyaan Socratic (klarifikasi, asumsi, alasan).
+
+            ALUR WAJIB:
+            1.  (Pertanyaan Klarifikasi Awal) Tanyakan: "Setelah memperhatikan kode di atas, menurutmu berapa `harga_akhir` yang akan ditampilkan?"
+            2.  Analisis jawaban siswa:
+                --> JIKA SISWA MENJAWAB DENGAN BENAR ATAU MENDEKATI: Lanjutkan ke Langkah 3.
+                --> JIKA SISWA MENJAWAB "TIDAK TAHU" ATAU SALAH JAUH:
+                    a. Berikan respons yang memaklumi dan berikan petunjuk pertama (maksimal 2 petunjuk). Contoh Petunjuk 1: "Tidak apa-apa, mari kita pecah pelan-pelan. Coba lihat baris `if total_belanja > 100000:`. Menurutmu, kondisi di dalam `if` itu akan bernilai Benar atau Salah?"
+                    b. Jika masih bingung, berikan Petunjuk 2: "Betul. Karena kondisinya Benar, blok kode di dalamnya akan dijalankan. Jadi, berapa nilai baru dari variabel `diskon` setelah itu?"
+                    c. Setelah siswa mulai paham, kembali ajukan pertanyaan prediksi awal untuk mengkonfirmasi pemahaman mereka sebelum lanjut.
+            3.  (Pertanyaan Menyelidiki Asumsi) Setelah siswa memberikan prediksinya (baik di awal atau setelah petunjuk), tanyakan: "Oke, itu prediksimu. Apa asumsi utamamu saat melihat kode itu? Bagian mana yang jadi petunjuk kuncimu?"
+            4.  (Pertanyaan Menyelidiki Alasan & Bukti) Setelah siswa menjawab, gali lebih dalam. Tanyakan: "Bisa jelaskan lebih rinci alasanmu? Bagaimana kamu menggunakan petunjuk itu untuk sampai pada jawaban akhirmu?"
+            5.  Setelah siswa memberikan alasannya, tutup percakapan. Ucapkan: "Baik, semua prediksimu sudah kusimpan. Ayo kita buktikan di tahap berikutnya." dan WAJIB akhiri dengan sinyal [SELESAI].
             """
         },
         # Halaman 4 / Step 3: Run & Investigate
@@ -286,54 +292,54 @@ curriculum = {
             4. Setelah siswa memberikan kesimpulan, tutup dengan: "Kesimpulan yang bagus! Kamu berhasil menangkap intinya." dan akhiri dengan [SELESAI].
             """
         },
-        # Halaman 7 / Step 6: Make - 1 Kondisi
+        # Step 6: Make - 1 Kondisi
         {
             'step': 6,
-            'title': 'Membuat Kode Program Percabangan 1 Kondisi',
+            'title': 'Membuat Kode: 1 Kondisi',
             'type': 'make_code',
             'is_concludable': True,
-            'ct': 'Regulasi Diri',
-            'primm': 'Make',
-            'opening_message': "Kalau begitu aku punya tantangan buatmu: Buatlah kode program dari nol. Studi kasusnya: Sebuah toko buku memberikan diskon 5% jika total pembelian di atas Rp 200.000. Buatlah program untuk menghitung harga akhir jika diketahui `total_pembelian = 250000`. Beritahu aku jika sudah membuat programnya di atas",
+            'ct': 'Regulasi Diri', 'primm': 'Make',
+            'opening_message': "Tantangan pertama: Buat program untuk memberikan diskon 5% jika total pembelian di atas Rp 200.000 (gunakan `total_pembelian = 250000`). Setelah selesai, kirim pesan di chat untuk memeriksanya yaa!",
             'base_code': "# Tulis kodemu di sini...\n",
             'instruction': """
-            Tugas Anda adalah memandu refleksi siswa setelah membuat kode.
-            1. Setelah siswa selesai dan menjalankan kodenya, ajukan pertanyaan reflektif: "Oke, dari kodemu, seberapa yakin kamu program itu akan berfungsi dengan benar jika `total_pembelian`-nya di bawah 200.000? Apa alasanmu?"
-            2. Setelah siswa menjawab, akhiri dengan: "Bagus, kemampuan untuk memikirkan berbagai kemungkinan itu penting. Lanjut ke tantangan berikutnya!" dan sinyal [SELESAI].
+            Tugas Anda adalah mengevaluasi kode siswa untuk kasus percabangan 1 kondisi (`if`).
+            1.  **Analisis Kode Siswa**: Periksa apakah kode menggunakan `if` dengan benar untuk mengecek `total_pembelian > 200000`.
+            2.  **JIKA KODE BENAR**: Berikan pujian, lalu ajukan pertanyaan reflektif: "Kerja bagus, kodemu sudah benar! Sekarang, seberapa yakin kamu program itu akan berfungsi dengan benar jika `total_pembelian`-nya di bawah 200.000? Apa alasanmu?" Setelah siswa menjawab, akhiri dengan [SELESAI].
+            3.  **JIKA KODE SALAH**: Jangan beri jawaban. Berikan petunjuk Socratic. Contoh: "Hmm, sepertinya ada yang kurang pas. Coba perhatikan lagi, bagaimana cara kita menulis sebuah 'kondisi' untuk memeriksa apakah suatu nilai 'lebih besar dari' nilai lainnya di dalam sebuah `if`?"
             """
         },
         # Halaman 8 / Step 7: Make - 2 Kondisi
         {
             'step': 7,
-            'title': 'Membuat Kode Program Percabangan 2 Kondisi',
+            'title': 'Membuat Kode: 2 Kondisi',
             'type': 'make_code',
             'is_concludable': True,
-            'ct': 'Regulasi Diri',
+            'ct': 'Regulasi Diri', 
             'primm': 'Make',
-            'opening_message': "Tantangan kedua: Buatlah program percabangan dua kondisi. Program dari nol untuk menentukan apakah sebuah angka adalah bilangan 'Positif' atau 'Negatif'. Anggap saja angka 0 kita masukkan ke kategori 'Positif'. Beritahu aku jika sudah membuat programnya di atas",
+            'opening_message': "Tantangan kedua: Buat program untuk menentukan apakah sebuah angka 'Positif' atau 'Negatif' (anggap 0 'Positif'). Gunakan `if-else`. Setelah selesai, beritahu aku ya!",
             'base_code': "# Tulis kodemu di sini...\n",
             'instruction': """
-            Tugas Anda adalah memandu refleksi siswa setelah membuat kode.
-            1. Setelah siswa selesai, ajukan pertanyaan: "Menurutmu, bagian mana dari kodemu yang paling krusial untuk memastikan semua angka ter-handle dengan benar (termasuk angka 0)?"
-            2. Setelah siswa menjawab, akhiri dengan: "Tepat, pemilihan kondisi adalah kuncinya. Kerja bagus! Tinggal satu tantangan lagi." dan sinyal [SELESAI].
+            Tugas Anda adalah mengevaluasi kode siswa untuk kasus percabangan 2 kondisi (`if-else`).
+            1.  **Analisis Kode Siswa**: Periksa apakah kode menggunakan `if-else` dengan benar untuk mengecek `angka >= 0`.
+            2.  **JIKA KODE BENAR**: Berikan pujian, lalu ajukan pertanyaan reflektif: "Tepat sekali, penggunaan `if-else` di sini sangat pas! Menurutmu, bagian mana dari kodemu yang paling krusial untuk memastikan semua angka ter-handle dengan benar?" Setelah siswa menjawab, akhiri dengan [SELESAI].
+            3.  **JIKA KODE SALAH**: Jangan beri jawaban. Berikan petunjuk Socratic. Contoh: "Hampir benar! Kamu sudah menggunakan `if`. Tapi bagaimana cara kita menangani kondisi 'jika tidak' atau sebaliknya? Keyword apa yang kita gunakan setelah blok `if` selesai?"
             """
         },
         # Halaman 9 / Step 8: Make - Lebih dari 2 Kondisi
         {
             'step': 8,
-            'title': 'Membuat Kode Program Percabangan Lebih dari 2 Kondisi',
+            'title': 'Membuat Kode: Lebih dari 2 Kondisi',
             'type': 'make_code',
             'is_concludable': True,
-            'ct': 'Regulasi Diri',
+            'ct': 'Regulasi Diri', 
             'primm': 'Make',
-            'opening_message': "Tantangan terakhir: Buatlah program dari nol untuk menentukan kategori berat badan berdasarkan Indeks Massa Tubuh (IMT).\nAturan:\n- Jika IMT < 18.5, cetak 'Kurus'\n- Jika IMT antara 18.5 dan 24.9, cetak 'Normal'\n- Jika IMT >= 25, cetak 'Berlebih'. Beritahu aku jika sudah membuat programnya di atas",
+            'opening_message': "Tantangan terakhir: Buat program untuk menentukan grade IMT ('Kurus', 'Normal', 'Berlebih'). Gunakan `if-elif-else`. Setelah selesai, kirim pesan di chat ya!",
             'base_code': "# Tulis kodemu di sini...\n",
             'instruction': """
-            Tugas Anda adalah memandu refleksi siswa setelah membuat kode.
-            1. Setelah siswa selesai, ajukan pertanyaan: "Bagian mana yang menurutmu paling sulit dan paling mudah?"
-            2. Setelah siswa selesai menjawab, ajukan pertanyaan: "Jadi berdasarkan kode program yang telah dibuat, bagaimana kesimpulanmu?"
-            3. Setelah siswa selesai menjawab, beri respon dari jawaban siswa dengan mengajukan pertanyaan socratic tipe Meta Pertanyaan (Regulasi Diri)
-            2. Setelah siswa menjawab, berikan validasi dan pujian, lalu akhiri dengan: "Selamat, kamu telah menyelesaikan semua materi percabangan!" dan sinyal [SELESAI].
+            Tugas Anda adalah mengevaluasi kode siswa untuk kasus percabangan >2 kondisi (`if-elif-else`).
+            1.  **Analisis Kode Siswa**: Periksa apakah urutan dan logika `if-elif-else` sudah benar.
+            2.  **JIKA KODE BENAR**: Berikan pujian, lalu ajukan pertanyaan reflektif: "Sempurna! Urutan logikamu sudah tepat. Kenapa kamu akhirnya memilih struktur `if-elif-else` dan bukan beberapa `if` terpisah?" Setelah siswa menjawab, akhiri dengan [SELESAI].
+            3.  **JIKA KODE SALAH**: Jangan beri jawaban. Berikan petunjuk Socratic. Contoh: "Strukturnya sudah hampir benar, tapi coba perhatikan urutannya. Apa yang akan terjadi jika kita memeriksa kondisi 'Berlebih' terlebih dahulu sebelum 'Normal'? Coba pikirkan dampaknya."
             """
         }
     ],
@@ -363,7 +369,7 @@ curriculum = {
             'content_file': 'materi/perulangan_pengertian.html'
         },
         
-         # Halaman 3 / Step 2: PREDIKSI KODE PROGRAM
+         # Halaman 3 / Step 2: Prediksi
         {
             'step': 2,
             'title': 'Prediksi Kode Program',
@@ -374,11 +380,20 @@ curriculum = {
             'opening_message': "Nah sekarang ayo perhatikan baik-baik kode di atas. Menurutmu apa output yang akan muncul jika kode tersebut dijalankan?",
             'code': "for i in range(1, 6):\n    print(f\"Perulangan ke-{i}\")",
             'instruction': """
-            Tugas Anda adalah memandu siswa untuk FOKUS menganalisis dan memprediksi hasil dari kode `for i in range(1, 6):`. JANGAN beralih ke topik atau contoh kode lain.
+            Tugas Anda adalah memandu siswa menganalisis dan memprediksi hasil dari kode perulangan `for i in range(1, 6):` dengan sabar. JANGAN MEMBERI JAWABAN.
+            Pastikan Anda mengajukan setidaknya tiga jenis pertanyaan Socratic (klarifikasi, asumsi, alasan).
+
             ALUR WAJIB:
-            1. Setelah siswa memberikan prediksi pertamanya (apapun itu, benar atau salah), minta alasannya (investigasi asumsi). TANYAKAN: "Oke, itu prediksi yang menarik. Apa yang membuatmu berpikir hasilnya akan seperti itu?"
-            2. Jika siswa menjawab 'tidak tahu' atau jawabannya sangat singkat, dorong mereka untuk mencoba. TANYAKAN: "Tidak apa-apa kalau belum yakin. Coba saja tebak dulu. Menurutmu, `range(1, 6)` itu akan menghasilkan angka berapa saja?"
-            3. Setelah siswa memberikan alasan, tutup dengan kalimat transisi untuk menjaga fokus. Ucapkan: "Baik, prediksimu sudah kusimpan. Sekarang, ayo kita buktikan di tahap berikutnya." dan WAJIB akhiri dengan sinyal [SELESAI].
+            1.  (Pertanyaan Klarifikasi Awal) Tanyakan: "Setelah memperhatikan kode di atas, menurutmu apa saja output yang akan muncul di layar?"
+            2.  Analisis jawaban siswa:
+                --> JIKA SISWA MENJAWAB DENGAN BENAR ATAU MENDEKATI: Lanjutkan ke Langkah 3.
+                --> JIKA SISWA MENJAWAB "TIDAK TAHU" ATAU SALAH JAUH:
+                    a. Berikan respons yang memaklumi dan berikan petunjuk pertama (maksimal 2 petunjuk). Contoh Petunjuk 1: "Tidak apa-apa, mari kita pecah pelan-pelan. Fungsi `range(1, 6)` itu gunanya untuk membuat urutan angka. Menurutmu, urutan angkanya dimulai dari berapa?"
+                    b. Jika masih bingung, berikan Petunjuk 2: "Betul, dimulai dari 1. Nah, `range` itu akan berhenti TEPAT SEBELUM angka kedua. Jadi, kalau `range(1, 6)`, angka terakhir yang akan dicetak itu berapa ya?"
+                    c. Setelah siswa mulai paham, kembali ajukan pertanyaan prediksi awal untuk mengkonfirmasi pemahaman mereka sebelum lanjut.
+            3.  (Pertanyaan Menyelidiki Asumsi) Setelah siswa memberikan prediksinya (baik di awal atau setelah petunjuk), tanyakan: "Oke, itu prediksimu. Apa asumsi utamamu tentang cara kerja `range()` yang membuatmu menjawab seperti itu?"
+            4.  (Pertanyaan Menyelidiki Alasan & Bukti) Setelah siswa menjawab, gali lebih dalam. Tanyakan: "Bisa jelaskan lebih rinci proses berpikirmu? Bagaimana perulangan `for` menggunakan urutan angka dari `range()` itu untuk mencetak hasilnya satu per satu?"
+            5.  Setelah siswa memberikan alasannya, tutup percakapan. Ucapkan: "Baik, semua prediksimu sudah kusimpan. Ayo kita buktikan di tahap berikutnya." dan WAJIB akhiri dengan sinyal [SELESAI].
             """
         },
         # Halaman 4 / step 3: jalankan
@@ -435,16 +450,10 @@ curriculum = {
             'is_concludable': True,
             'ct': 'Inferensi, Eksplanasi',
             'primm': 'Modify',
-            
-            # Pesan pembuka ini benar, meminta siswa melakukan hitung mundur
             'opening_message': "Tantangan untukmu! Coba modifikasi kode di editor agar program melakukan hitung mundur dari 4 ke 1.",
-            
-            # base_code ini yang salah sebelumnya, sekarang sudah diperbaiki
             'base_code': "# Ubah kode di bawah ini untuk melakukan hitung mundur\nfor i in range(1, 5):\n    print(f\"Perulangan ke-{i}\")",
-        
             'instruction': """
             Tugas Anda adalah memandu siswa dalam memodifikasi kode dan memastikan mereka paham dengan apa yang mereka lakukan.
-
             ALUR WAJIB:
             1.  Siswa akan memodifikasi kode dan menjalankannya. Setelah mereka mengirim pesan di chat (misalnya "sudah" atau mengirimkan outputnya), periksa histori percakapan dan output kode yang mereka hasilkan.
             2.  **JIKA output siswa sudah benar** (menunjukkan hitung mundur 5 ke 1), berikan pujian dan langsung ajukan pertanyaan untuk menggali pemahaman. TANYAKAN: "Kerja bagus! Kamu berhasil melakukannya. Coba jelaskan, bagian mana dari `range()` yang kamu ubah dan kenapa perubahan itu menghasilkan hitung mundur?"
@@ -456,33 +465,35 @@ curriculum = {
         # Halaman 7 / Step 6: Make - Perulangan 'for'
         {
             'step': 6,
-            'title':'Membuat Kode Program dengan for',
+            'title': 'Membuat Kode: For Loop',
             'type': 'make_code',
             'is_concludable': True,
-            'ct': 'Regulasi Diri',
+            'ct': 'Regulasi Diri', 
             'primm': 'Make',
-            'opening_message': "Tantangan pertama: Buatlah program dari nol menggunakan perulangan `for`. Studi kasusnya: Kamu punya daftar belanjaan `['roti', 'susu', 'keju']`. Buatlah program yang mencetak setiap barang di daftar tersebut dengan format 'Jangan lupa beli: [nama barang]'.",
+            'opening_message': "Tantangan pertama: Buat program `for` loop untuk mencetak setiap item dari daftar belanjaan `['roti', 'susu', 'keju']` dengan format 'Jangan lupa beli: [nama barang]'. Kirim pesan di chat jika sudah ya!",
             'base_code': "# Tulis kodemu di sini...\n",
             'instruction': """
-            Tugas Anda adalah memandu refleksi siswa setelah membuat kode.
-            1. Setelah siswa selesai, ajukan pertanyaan reflektif: "Oke. Seberapa yakin kamu kode ini akan tetap berfungsi jika isi daftar belanjaannya kita tambah atau kurangi? Kenapa?"
-            2. Setelah siswa menjawab, akhiri dengan: "Poin yang bagus! Itulah kekuatan perulangan `for`. Lanjut ke tantangan berikutnya!" dan sinyal [SELESAI].
+            Tugas Anda adalah mengevaluasi kode `for` loop siswa.
+            1.  **Analisis Kode Siswa**: Periksa apakah kode menggunakan `for` loop untuk mengiterasi list dan mencetak format yang benar.
+            2.  **JIKA KODE BENAR**: Berikan pujian, lalu ajukan pertanyaan reflektif: "Bagus sekali, kodemu berfungsi dengan sempurna! Seberapa yakin kamu kode ini akan tetap berfungsi jika isi daftar belanjaannya kita tambah atau kurangi? Kenapa?" Setelah siswa menjawab, akhiri dengan [SELESAI].
+            3.  **JIKA KODE SALAH**: Jangan beri jawaban. Berikan petunjuk Socratic. Contoh: "Hampir sampai! Kamu sudah punya list-nya. Ingat, bagaimana 'resep' dasar `for` loop untuk mengambil setiap 'barang' dari 'daftar_belanjaan'?"
             """
         },
         # Halaman 8 / Step 7: Make - Perulangan 'while'
         {
             'step': 7,
-            'title':'Membuat Kode Program dengan while',
+            'title': 'Membuat Kode: While Loop',
             'type': 'make_code',
             'is_concludable': True,
-            'ct': 'Regulasi Diri',
+            'ct': 'Regulasi Diri', 
             'primm': 'Make',
-            'opening_message': "Tantangan terakhir: Sekarang gunakan perulangan `while`. Studi kasusnya: Buatlah program hitung mundur dari 5 ke 1, lalu setelah selesai, cetak 'Mulai!'.",
+            'opening_message': "Tantangan terakhir: Gunakan `while` loop untuk membuat program hitung mundur dari 5 ke 1, lalu cetak 'Mulai!'. Kirim pesan di chat jika sudah ya!",
             'base_code': "# Tulis kodemu di sini...\n",
             'instruction': """
-            Tugas Anda adalah memandu refleksi siswa setelah membuat kode.
-            1. Setelah siswa selesai, ajukan pertanyaan: "Menurutmu, apa yang akan terjadi jika kamu lupa menulis baris kode yang mengurangi nilai variabel hitungan (misal: `hitungan = hitungan - 1`)? Apa nama dari kondisi itu?"
-            2. Setelah siswa menjawab (jawaban benar: infinite loop/perulangan tak terbatas), berikan validasi dan pujian, lalu akhiri dengan: "Tepat sekali! Kamu sudah memahami risiko dan cara kerja `while`. Selamat, kamu telah menyelesaikan semua materi perulangan!" dan sinyal [SELESAI].
+            Tugas Anda adalah mengevaluasi kode `while` loop siswa.
+            1.  **Analisis Kode Siswa**: Periksa apakah ada inisialisasi variabel, kondisi `while`, dan perubahan variabel di dalam loop.
+            2.  **JIKA KODE BENAR**: Berikan pujian, lalu ajukan pertanyaan reflektif: "Kerja bagus, logikanya tepat! Menurutmu, apa yang akan terjadi jika kamu lupa menulis baris yang mengurangi nilai variabel hitungan? Apa nama dari kondisi itu?" Setelah siswa menjawab, akhiri dengan [SELESAI].
+            3.  **JIKA KODE SALAH**: Jangan beri jawaban. Berikan petunjuk Socratic. Contoh: "Strukturnya sudah benar! Tapi sepertinya ada yang kurang. Di dalam `while`, bagaimana cara kita memastikan perulangannya akan berhenti dan tidak berjalan selamanya?"
             """
         }
     ]
