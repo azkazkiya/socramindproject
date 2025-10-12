@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <title>Sertifikat Penyelesaian</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap" rel="stylesheet">
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="main-page">
+    <nav>
+        <a href="{{ url_for('main.materi') }}" class="header-button">Kembali ke Pilihan Materi</a>
+    </nav>
     <div class="sertifikat-container landscape">
         
         <div class="sertifikat-content">
@@ -46,7 +47,9 @@
         </div>
 
     </div>
-    
-    <button onclick="window.print()" class="print-button">Cetak atau Simpan sebagai PDF</button>
+
+     <div class="sertifikat-actions">
+        <button onclick="window.print()" class="print-button">Cetak atau Simpan sebagai PDF</button>
+    </div>
 </body>
 </html>
