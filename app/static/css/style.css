@@ -1,24 +1,29 @@
-/* Import font dari Google Fonts */
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-/* Gaya Dasar */
 body {
-    display: flex;
     font-family: 'Poppins', sans-serif;
     background-color: #f4f7f6;
-    /* background-color: #f9f9f9; */
     margin: 0;
-    padding: 20px;
+    padding: 0; /* --- PERUBAIKAN: Hapus padding 20px dari body --- */
     color: #333;
-        flex-direction: column;
+}
+/* --- TAMBAHAN: Body class khusus untuk landing page --- */
+.landing-page-body {
+    padding-top: 70px; /* Beri ruang untuk header fixed */
+    background-color: #fff;
+}
 
+/* --- TAMBAHAN: Body class khusus untuk halaman lain --- */
+.main-page, .auth-page {
+    display: flex;
+    flex-direction: column;
 }
 
 h1, h2, h3, h4 {
     color: #2c3e50;
 }
 
-/* Container utama untuk layout */
 .learning-container {
     max-width: 1200px;
     margin: auto;
@@ -26,6 +31,9 @@ h1, h2, h3, h4 {
     padding: 20px 40px;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Layout utama (konten dan chat) */
@@ -52,20 +60,13 @@ h1, h2, h3, h4 {
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-/* #chat-box {
-    height: 400px;
-    padding: 15px;
-    overflow-y: scroll;
-    background-color: #fdfdfd;
-    border-bottom: 1px solid #ddd;
-} */
 #chat-box {
     height: 350px;
     padding: 15px;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Memberi jarak antar bubble */
+    gap: 15px; 
 }
 #chat-box p {
     margin: 0 0 12px 0;
@@ -168,7 +169,6 @@ h1, h2, h3, h4 {
     font-family: 'Courier New', Courier, monospace;
 }
 
-/* Gaya untuk tombol "Lanjut" dan "Mulai Quiz" */
 #next-step-btn {
     background-color: #e67e22; /* Warna oranye */
     color: white;
@@ -187,27 +187,25 @@ h1, h2, h3, h4 {
     background-color: #d35400; /* Warna oranye lebih gelap saat disentuh */
 }
 
-/* --- Gaya untuk Halaman Landing (index.html) --- */
 
-/* Container utama untuk memusatkan konten */
 .landing-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Memenuhi tinggi layar */
-    text-align: center;
-    padding: 20px;
+    min-height: 90vh; 
+    padding: 40px 20px; 
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .landing-content {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Ganti dari 'center' ke 'space-between' */
+    justify-content: space-between;
     flex-wrap: wrap;
     gap: 40px;
-    width: 100%; /* Pastikan lebarnya penuh */
-    max-width: 1000px; /* Batasi lebar maksimum */
+    width: 100%; 
+    max-width: 1000px; 
     
 }
 
@@ -248,13 +246,26 @@ h1, h2, h3, h4 {
     background-color: #d35400; /* Warna oranye lebih gelap saat disentuh */
 }
 
-/* --- Perbaikan Gaya Halaman Landing --- */
-
 /* Header untuk tombol Login */
 .landing-header {
-    position: absolute;
-    top: 20px;
-    right: 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 15px 25px;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.landing-header .header-right-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .button-login {
@@ -270,11 +281,8 @@ h1, h2, h3, h4 {
     background-color: #e67e22;
 }
 
-/* Layout responsif untuk konten utama */
-
-
 .text-content {
-    flex-basis: 60%; /* Tentukan lebar dasar untuk teks */
+    flex-basis: 60%; 
     min-width: 300px;
     text-align: left;
 }
@@ -282,26 +290,21 @@ h1, h2, h3, h4 {
 .mascot-container {
     flex: 1;
     min-width: 300px;
+    text-align: center;
 }
 
 .mascot-image {
-    width: 350px; /* Ukuran maskot diperbesar */
+    width: 300px; 
 }
 
 /* Hiasan gelombang di bawah */
 .wave-decoration {
-    position: absolute;
-    bottom: 0;
-    left: 0;
     width: 100%;
-    height: 150px; /* Tinggi gelombang */
-    background: linear-gradient(to right top, #f39c12, #f1c40f);
-    clip-path: polygon(0 80%, 100% 20%, 100% 100%, 0 100%);
-    z-index: -1;
+    height: 120px; 
+    background: #ff8c00; 
+    clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 100%);
 }
 
-
-/* --- Gaya untuk Halaman Login & Sign Up --- */
 .auth-page {
     display: flex;
     justify-content: center;
@@ -354,7 +357,6 @@ h1, h2, h3, h4 {
     margin-bottom: 15px;
 }
 
-/* --- Gaya untuk Halaman Materi & Pencapaian --- */
 .main-page {
     background-color: #fff;
 }
@@ -403,7 +405,7 @@ h1, h2, h3, h4 {
     opacity: 0.6;
     pointer-events: none;
 }
-/* layput step 0 */
+
 .step-0 .main-content-layout {
     display: block; /* Ubah dari flex menjadi block */
 }
@@ -411,20 +413,22 @@ h1, h2, h3, h4 {
     margin-top: 20px;
 }
 
-/* --- Gaya untuk Halaman Pembelajaran dengan Sidebar --- */
-
 .learning-layout {
     display: flex;
     gap: 30px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .learning-sidebar {
-    flex: 0 0 220px; /* Lebar sidebar 220px, tidak bisa membesar/mengecil */
+    width: 100%; 
     background-color: #fdfdfd;
     padding: 20px;
     border-radius: 12px;
     border: 1px solid #eee;
     height: fit-content;
+    box-sizing: border-box;
 }
 
 .learning-sidebar h4 {
@@ -466,7 +470,10 @@ h1, h2, h3, h4 {
 }
 
 .learning-main-content {
-    flex: 1; /* Mengambil sisa ruang */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
 }
 .learning-header {
     display: flex;
@@ -478,8 +485,6 @@ h1, h2, h3, h4 {
 .learning-main-content h1 {
     margin-top: 0;
 }
-
-/* --- Gaya untuk Header Halaman Belajar --- */
 
 .page-header, .main-header {
     display: flex; /* Mengaktifkan Flexbox */
@@ -679,11 +684,6 @@ h1, h2, h3, h4 {
     line-height: 1.6;
 }
 
-/* Membuat Header di Landing Page menjadi Fixed */
-
-.landing-header {
-    position: fixed; /* 1. Membuat header 'mengambang' dan tetap di posisinya */
-}
 
 /* Styling untuk Konten Materi */
 .materi-content {
@@ -727,10 +727,8 @@ h1, h2, h3, h4 {
     background-color: #e07b00; /* Warna oranye lebih gelap saat disentuh */
 }
 
-
-/* Perbaikan #1: Navigasi Dropdown di Halaman Belajar */
 .nav-toggle-btn {
-    display: none; /* Sembunyikan tombol di desktop */
+    display: none; 
     margin-bottom: 20px;
     padding: 10px 15px;
     background-color: #f1f1f1;
@@ -739,12 +737,12 @@ h1, h2, h3, h4 {
     width: 100%;
     text-align: left;
     font-size: 1em;
+    font-weight: bold;
     cursor: pointer;
 }
 
-/* Perbaikan #3: Tulisan Bertumpuk di Halaman Utama */
 .landing-content .text-content h1 {
-    line-height: 1.2; /* Beri jarak antar baris judul */
+    line-height: 1.2; 
 }
 
 .overview-layout {
@@ -775,9 +773,11 @@ h1, h2, h3, h4 {
     border-left: 4px solid #ff8c00;
 }
 
-/* Aturan ini berlaku untuk layar dengan lebar maksimal 768px (ukuran tablet & HP) */
 @media (max-width: 768px) {
 
+    body {
+        padding: 0; /* Pastikan tidak ada padding di body mobile */
+    }
     /* --- Perbaikan Layout Umum & Font --- */
     .main-container, .auth-container, .about-section {
         padding: 20px;
@@ -786,52 +786,55 @@ h1, h2, h3, h4 {
     h2 { font-size: 1.8em; }
 
     /* --- Perbaikan Halaman Utama (index.html) --- */
+    .landing-page-body {
+        padding-top: 65px; /* Sesuaikan padding untuk header mobile */
+    }
+    .landing-header {
+        padding: 10px 15px;
+    }
+    .landing-container {
+        padding: 20px;
+        min-height: 70vh; /* Kurangi tinggi di mobile */
+    }
     .landing-content {
-        flex-direction: column-reverse;
+        flex-direction: column-reverse; /* Pindahkan maskot ke atas */
         text-align: center;
+        gap: 20px;
     }
-    .landing-content .text-content h1 {
-        line-height: 1.2; /* Mencegah teks judul bertumpuk */
+    .text-content {
+        text-align: center; /* Pastikan teks di tengah */
     }
-    .mascot-container {
-        margin-bottom: 30px;
+    .mascot-image {
+        width: 150px; /* Perkecil maskot di mobile */
+    }
+    .features-grid {
+        display: flex; /* Ganti grid jadi flex column */
+        flex-direction: column;
     }
     
+
     /* --- Perbaikan Header & Navbar (Semua Halaman) --- */
     .main-header, .page-header {
         flex-direction: column;
         gap: 15px;
         padding: 15px;
-        align-items: center; /* Pusatkan item di mobile */
+        align-items: center; 
     }
     .main-header h1 {
         margin-bottom: 15px;
         text-align: center;
     }
     .main-header nav {
-        flex-wrap: wrap; /* Izinkan item turun ke bawah jika tidak cukup */
+        flex-wrap: wrap; 
         justify-content: center;
     }
 
     /* --- Perbaikan Halaman Pembelajaran (learning.html) --- */
     .learning-layout {
-         flex-grow: 1;
-        display: flex; 
+        flex-direction: column;
     }
-
-    /* 1. Navigasi Menjadi Dropdown */
     .nav-toggle-btn {
         display: block; /* Tampilkan tombol di mobile */
-        margin-bottom: 20px;
-        padding: 10px 15px;
-        background-color: #f1f1f1;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        width: 100%;
-        text-align: left;
-        font-size: 1em;
-        font-weight: bold;
-        cursor: pointer;
     }
     .learning-sidebar {
         display: none; /* Sembunyikan navigasi secara default */
@@ -846,23 +849,14 @@ h1, h2, h3, h4 {
         width: 100%;
     }
 
-    /* 2. Input Chatbox Tidak Tertutup Keyboard */
     .learning-container {
-        flex-grow: 1; /* Ambil semua sisa tinggi yang tersedia */
-        height: 90vh; /* Batasi tinggi container agar keyboard tidak menutupi */
-        padding: 0 12px 12px 12px;
-        display: flex;
-        flex-direction: column;
-    }
-    .learning-main-content {
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-        min-height: 0;
+       height: 85vh; /* Sesuaikan tinggi agar pas di layar HP */
+        padding: 15px;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
     }
     #chat-container {
-        display: flex;
-        flex-direction: column;
         flex-grow: 1;
         min-height: 0;
     }
@@ -879,8 +873,29 @@ h1, h2, h3, h4 {
 }
 
 /* ============================================== */
-/* ===== STYLING BARU UNTUK SERTIFIKAT ===== */
+/* ===== PERBAIKAN TATA LETAK DESKTOP ===== */
 /* ============================================== */
+
+/* Aturan ini berlaku untuk layar dengan lebar MINIMAL 769px (tablet landscape & desktop) */
+@media (min-width: 769px) {
+
+    /* Kembalikan layout sidebar menjadi menyamping (horizontal) */
+    .learning-layout {
+        flex-direction: row;
+    }
+
+    /* Tentukan lebar tetap untuk sidebar di desktop */
+    .learning-sidebar {
+        display: block !important; /* Pastikan sidebar selalu terlihat (mengabaikan .open) */
+        width: 250px; /* Lebar sidebar di desktop */
+        flex: 0 0 250px; /* Lebar tetap, jangan membesar/mengecil */
+    }
+
+    /* Sembunyikan tombol 'Menu Materi' (hamburger) di desktop */
+    .nav-toggle-btn {
+        display: none;
+    }
+}
 
 /* Kontainer Utama Sertifikat */
 .sertifikat-container.landscape {

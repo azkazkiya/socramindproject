@@ -6,8 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
-    <header class="landing-header">
+<body class="landing-page-body"> <header class="landing-header">
         {% if current_user_name %}
             <div class="header-right-group">
                 <span class="user-display">
@@ -22,9 +21,12 @@
 
     <div class="landing-container">
         <div class="landing-content">
+            <div class="mascot-container">
+                <img src="{{ url_for('static', filename='images/mascot.png') }}" alt="Maskot SocraMind" class="mascot-image">
+            </div>
             <div class="text-content">
                 <h1>Selamat Datang di SocraMind</h1>
-                <p>Platform pembelajaran pemrograman interaktif yang dirancang untuk mengasah kemampuan berpikir kritis Anda melalui metode Socratic. Selamat belajar!</p>
+                <p>Platform pembelajaran pemrograman interaktif yang dirancang untuk mengasah kemampuan berpikir kritis Anda melalui metode Socratic.</p>
                 
                 {% if current_user_name %}
                     <a href="{{ url_for('main.materi') }}" class="button-start">Lanjutkan Belajar</a>
@@ -32,12 +34,12 @@
                     <a href="{{ url_for('auth.login') }}" class="button-start">Mulai Belajar</a>
                 {% endif %}
             </div>
-            <div class="mascot-container">
-                <img src="{{ url_for('static', filename='images/mascot.png') }}" alt="Maskot SocraMind" class="mascot-image">
-            </div>
         </div>
-        <div class="wave-decoration"></div>
-    </div> <section class="about-section">
+    </div>
+
+    <div class="wave-decoration"></div>
+
+    <section class="about-section">
         <div class="about-content">
             <h2>Tentang SocraMind</h2>
             <div class="features-grid">
