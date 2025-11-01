@@ -1,4 +1,4 @@
-# app/learning/routes.py
+
 import os
 from flask import Blueprint, render_template, request, jsonify, session, redirect, url_for, current_app, flash
 from ..models.models import db, User, ConversationLog, QuizAnswer, QuizAttempt, UserProgress
@@ -14,7 +14,7 @@ curriculum = {
     'algoritma': [
         {
             'step': 0, 
-            'title': 'Pendahuluan', # JUDUL BARU
+            'title': 'Pendahuluan', 
             'type': 'socratic_question', 
             'is_concludable': True,
             'ct': 'Interpretasi', 
@@ -671,10 +671,7 @@ QUIZZES = {
     }
 }
 
-# Membuat Blueprint 'learning'
 learning = Blueprint('learning', __name__, template_folder='templates', static_folder='static')
-
-# app/learning/routes.py
 
 @learning.route('/learning/<module_name>')
 def learning_module(module_name):
@@ -685,30 +682,52 @@ def learning_module(module_name):
     if not current_user:
         return redirect(url_for('auth.logout'))
 
+    # --- [VERIFIKASI AKSES BARU DITAMBAHKAN DI SINI] ---
+    module_order = list(curriculum.keys()) 
+
+    if module_name not in module_order:
+        flash("Materi tidak ditemukan.", "error")
+        return redirect(url_for('main.materi'))
+
+    if module_name != module_order[0]: # Jika bukan modul pertama
+        try:
+            current_module_index = module_order.index(module_name)
+            previous_module_name = module_order[current_module_index - 1]
+            
+            previous_progress = UserProgress.query.filter_by(
+                user_id=current_user.id,
+                module_name=previous_module_name,
+                is_completed=True
+            ).first()
+            
+            if not previous_progress:
+                flash(f"Anda harus menyelesaikan modul '{previous_module_name.capitalize()}' terlebih dahulu.", "error")
+                return redirect(url_for('main.materi'))
+        except (ValueError, IndexError):
+            flash("Terjadi kesalahan saat memuat materi.", "error")
+            return redirect(url_for('main.materi'))
+    # --- [AKHIR VERIFIKASI] ---
+
     # Inisialisasi 'histories' jika belum ada
     if 'histories' not in session:
         session['histories'] = {}
     if module_name not in session['histories']:
         session['histories'][module_name] = {}
 
-    # --- PERBAIKAN: Pindahkan blok ini ke luar 'if' ---
-    # Selalu ambil progress MAKSIMAL dari database setiap kali halaman dimuat
     progress = UserProgress.query.filter_by(user_id=current_user.id, module_name=module_name).first()
     max_step_for_this_module = progress.max_step_achieved if progress else 0
-    # ----------------------------------------------------
 
-    # Jika user memulai modul baru atau sesi baru
     if session.get('module') != module_name or 'step' not in session:
         session['module'] = module_name
         session['step'] = max_step_for_this_module
         
     current_step_index = session.get('step', 0)
     step_key = str(current_step_index)
-    # Cek & buat history untuk step spesifik jika belum ada
+
     if step_key not in session['histories'][module_name]:
         step_data_for_opening = curriculum[module_name][current_step_index]
         session['histories'][module_name][step_key] = [{'role': 'assistant', 'content': step_data_for_opening.get('opening_message', 'Mari kita mulai.')}]
-    # Ambil history yang spesifik untuk MODUL dan STEP saat ini
+
     chat_history = session['histories'][module_name].get(step_key, [])
     current_step_data = curriculum[module_name][current_step_index]
     
@@ -725,7 +744,6 @@ def learning_module(module_name):
                              curriculum=curriculum,
                              module_name=module_name,
                              max_step_achieved=max_step_for_this_module)
-    
 @learning.route('/goto/<module_name>/<int:step_num>')
 def goto_step(module_name, step_num):
     if 'username' not in session:
@@ -881,14 +899,48 @@ def module_overview(module_name):
     if 'username' not in session:
         return redirect(url_for('auth.login'))
     
-    # Ambil data kurikulum untuk modul yang dipilih
-    module_data = curriculum.get(module_name)
-    if not module_data:
-        # Jika modul tidak ditemukan, kembali ke halaman materi
+    user = User.query.filter_by(username=session['username']).first()
+    if not user:
+        return redirect(url_for('auth.logout'))
+
+    # --- VERIFIKASI AKSES MATERI DIMULAI DI SINI ---
+    
+    # 1. Tentukan urutan modul
+    module_order = list(curriculum.keys()) # Hasil: ['algoritma', 'percabangan', 'perulangan']
+
+    # 2. Cek apakah modul yang diminta ada
+    if module_name not in module_order:
         flash("Materi tidak ditemukan.", "error")
         return redirect(url_for('main.materi'))
 
-    # Kirim nama modul dan data kurikulumnya ke template baru
+    # 3. Jika modul BUKAN yang pertama (bukan algoritma), lakukan pengecekan
+    if module_name != module_order[0]:
+        try:
+            # Cari tahu apa nama modul sebelumnya
+            current_module_index = module_order.index(module_name)
+            previous_module_name = module_order[current_module_index - 1]
+
+            # 4. Cek ke database apakah modul SEBELUMNYA sudah selesai
+            previous_progress = UserProgress.query.filter_by(
+                user_id=user.id,
+                module_name=previous_module_name,
+                is_completed=True
+            ).first()
+
+            # 5. Jika modul sebelumnya TIDAK ditemukan / TIDAK selesai, blokir akses
+            if not previous_progress:
+                flash(f"Anda harus menyelesaikan modul '{previous_module_name.capitalize()}' terlebih dahulu.", "error")
+                return redirect(url_for('main.materi'))
+
+        except (ValueError, IndexError):
+            # Jika ada error (misal: nama modul salah), kembalikan ke materi
+            flash("Terjadi kesalahan saat memuat materi.", "error")
+            return redirect(url_for('main.materi'))
+            
+    # --- AKHIR VERIFIKASI ---
+    
+    # 6. Jika semua pengecekan lolos, tampilkan halaman overview
+    module_data = curriculum.get(module_name)
     return render_template('module_overview.html', module_name=module_name, module_data=module_data)
 
 @learning.route('/quiz/<module_name>')
@@ -937,8 +989,6 @@ def quiz(module_name):
                              correct_answers=correct_answers,
                              quiz_taken=False,
                              page_title=page_title)
-
-# app/learning/routes.py
 
 @learning.route('/save_quiz_attempt', methods=['POST'])
 def save_quiz_attempt():
