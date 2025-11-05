@@ -30,13 +30,13 @@ curriculum = {
         },
         {
             'step': 1, 
-            'title': 'Materi Algoritma dan Pemrograman', # JUDUL BARU
+            'title': 'Materi Algoritma dan Pemrograman', 
             'type': 'static_content', 
             'content_file': 'materi/algoritma_pengertian.html' 
         },
         {
             'step': 2, 
-            'title': 'Klarifikasi Pemahaman', # JUDUL BARU
+            'title': 'Klarifikasi Pemahaman', 
             'type': 'multi_stage_socratic', 
             'is_concludable': True,
             'ct': 'Interpretasi, Analisis, Evaluasi, Inferensi, Eksplanasi, Regulasi Diri', 
@@ -146,7 +146,7 @@ curriculum = {
             'is_concludable': True,
             'ct': 'Analisis, Inferensi',
             'primm': 'Modify',
-            'opening_message': "Kerja bagus! Sekarang kita coba tantangan logika. kode di atas merupakan program yang bertujuan untuk menukar isi dari 'gelasA' dan 'gelasB'. gelasA nantinya harus bernilai 20 dan gelasB bernilai 10. Coba jalankan programnya. Apakah outputnya sudah benar atau salah?",
+            'opening_message': "Sekarang kita coba tantangan logika. kode di atas merupakan program yang bertujuan untuk menukar isi dari 'gelasA' dan 'gelasB'. gelasA nantinya harus bernilai 20 dan gelasB bernilai 10. Coba jalankan programnya. Apakah outputnya sudah benar atau salah?",
             'base_code': "gelasA = 10  # Anggap berisi Kopi\ngelasB = 20  # Anggap berisi Teh\n\n# Mencoba menukar isi kedua gelas\ngelasA = gelasB\ngelasB = gelasA\n\nprint(f\"Isi Gelas A: {gelasA}, Isi Gelas B: {gelasB}\")",
             'instruction': """
             Tugas Anda adalah memandu siswa untuk menemukan solusi dalam masalah menukar nilai dua variabel.
@@ -171,7 +171,9 @@ curriculum = {
             Konteks: Siswa baru saja membuat program untuk menghitung total harga dan telah memberitahu Anda hasilnya di chat.
             ALUR KERJA WAJIB:
             1.  Mulai Sesi Refleksi: JANGAN komentari benar atau salahnya hasil. Langsung ajukan pertanyaan reflektif pertama. Contoh: "Okee. Dari kode yang kamu buat, seberapa yakin kamu dengan solusimu? Apa yang membuatmu yakin atau mungkin kurang yakin?"
-            2.  Lanjutkan Refleksi: Berdasarkan jawaban siswa, ajukan 1 hingga 3 pertanyaan pendalaman lagi yang tetap fokus pada proses berpikir mereka, bukan pada kebenaran kode. Contoh: "Bagian mana dari kodemu yang menurutmu paling menantang?", "Apakah ada cara lain yang kamu pertimbangkan untuk menyelesaikan masalah ini?"
+            2.  Lanjutkan Refleksi: 
+                a. Berdasarkan jawaban siswa, ajukan 1 hingga 3 pertanyaan pendalaman lagi yang tetap fokus pada proses berpikir mereka, bukan pada kebenaran kode. Contoh: "Bagian mana dari kodemu yang menurutmu paling menantang?", "Apakah ada cara lain yang kamu pertimbangkan untuk menyelesaikan masalah ini?"
+                b. Berikan satu pertanyaan reflektif seperti "Jika seorang merancang fitur ....... namun gagal karene ......., apa yang perlu dipertanyakan?"
             3.  Validasi & Penutup: Setelah sesi refleksi selesai (setelah 2-4 pertanyaan), berikan validasi dan kalimat penutup yang menyemangati. Contoh: "Diskusi yang bagus! Kemampuanmu untuk merefleksikan pekerjaanmu sendiri adalah skill penting seorang programmer. Kamu sudah menyelesaikan semua materi dasar!" dan WAJIB akhiri dengan sinyal `[SELESAI]`.
             """
         }
@@ -340,6 +342,7 @@ curriculum = {
             1.  **Analisis Kode Siswa**: Periksa apakah urutan dan logika `if-elif-else` sudah benar.
             2.  **JIKA KODE BENAR**: Berikan pujian, lalu ajukan pertanyaan reflektif: "Sempurna! Urutan logikamu sudah tepat. Kenapa kamu akhirnya memilih struktur `if-elif-else` dan bukan beberapa `if` terpisah?" Setelah siswa menjawab, akhiri dengan [SELESAI].
             3.  **JIKA KODE SALAH**: Jangan beri jawaban. Berikan petunjuk Socratic. Contoh: "Strukturnya sudah hampir benar, tapi coba perhatikan urutannya. Apa yang akan terjadi jika kita memeriksa kondisi 'Berlebih' terlebih dahulu sebelum 'Normal'? Coba pikirkan dampaknya."
+            4. Berikan satu pertanyaan reflektif sebelum ditutup seperti "Jika seorang merancang fitur ....... namun gagal karene ......., apa yang perlu dipertanyakan?"
             """
         }
     ],
@@ -494,6 +497,8 @@ curriculum = {
             1.  **Analisis Kode Siswa**: Periksa apakah ada inisialisasi variabel, kondisi `while`, dan perubahan variabel di dalam loop.
             2.  **JIKA KODE BENAR**: Berikan pujian, lalu ajukan pertanyaan reflektif: "Kerja bagus, logikanya tepat! Menurutmu, apa yang akan terjadi jika kamu lupa menulis baris yang mengurangi nilai variabel hitungan? Apa nama dari kondisi itu?" Setelah siswa menjawab, akhiri dengan [SELESAI].
             3.  **JIKA KODE SALAH**: Jangan beri jawaban. Berikan petunjuk Socratic. Contoh: "Strukturnya sudah benar! Tapi sepertinya ada yang kurang. Di dalam `while`, bagaimana cara kita memastikan perulangannya akan berhenti dan tidak berjalan selamanya?"
+            4. Berikan satu pertanyaan reflektif seperti "Jika seorang merancang fitur ....... namun gagal karene ......., apa yang perlu dipertanyakan?"
+
             """
         }
     ]
