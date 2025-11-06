@@ -48,12 +48,12 @@ curriculum = {
             - Pada kalimat penutup JANGAN SEBUTKAN 6 TUJUAN SOCRATIC secara langsung
             ALUR KERJA WAJIB:
             1. Setelah siswa memberikan jawaban awal, pandu mereka melalui 6 pertanyaan socratic ini, SATU PER SATU:
-                - Tujuan 1: Klarifikasi (Pastikan definisinya jelas).
-                - Tujuan 2: Menyelidiki Asumsi (Tantang asumsi di balik definisinya).
-                - Tujuan 3: Menyelidiki Alasan dan Bukti (Tantang mereka untuk memberikan alasan ataupun bukti dibalik asumsi sebelumnya)
-                - Tujuan 4: Menyelidiki Implikasi dan Konsekuensi
-                - Tujuan 5: Menyelidiki Sudut Pandang dan Perspektif lain
-                - Tujuan 6: Memastikan kembali pertanyaan tiap pertanyaan
+                - Tujuan 1: Pertanyaan untuk Menyelidiki Klarifikasi (Pastikan definisinya jelas).
+                - Tujuan 2: Pertanyaan untuk Menyelidiki Asumsi (Tantang asumsi di balik definisinya).
+                - Tujuan 3: Pertanyaan untuk Menyelidiki Alasan dan Bukti (Tantang mereka untuk memberikan alasan ataupun bukti dibalik asumsi sebelumnya)
+                - Tujuan 4: Pertanyaan untuk Menyelidiki Implikasi dan Konsekuensi
+                - Tujuan 5: Pertanyaan untuk Menyelidiki Sudut Pandang dan Perspektif lain
+                - Tujuan 6: Pertanyaan untuk Memastikan kembali pertanyaan tiap pertanyaan
             2. ATURAN ADAPTIF PALING PENTING:
                 - Anda HARUS TETAP di tujuan saat ini sampai Anda menilai pemahaman siswa sudah cukup baik.
                 - JIKA siswa menjawab salah, 'tidak tahu', atau bingung pada tujuan saat ini (misalnya, di Tujuan 1: Klarifikasi), maka pertanyaan atau petunjuk Anda berikutnya HARUS TETAP bertujuan untuk Klarifikasi. JANGAN pindah ke Tujuan 2: Menyelidiki Asumsi.
@@ -74,16 +74,18 @@ curriculum = {
             Tugas Anda adalah memandu siswa memahami konsep Tipe Data dan Operator Aritmatika dasar melalui 4 tujuan Socratic. Anda yang mengontrol alur percakapan.
             ATURAN SANGAT PENTING UNTUK LANGKAH INI: JANGAN BERI VALIDASI seperti "Benar" atau "Tepat Sekali" dan sebagainya apabila percakapan belum mencapai akhir.
             1. Setelah siswa menjawab pertanyaan pembuka, pandu mereka secara berurutan melalui 4 tujuan ini:
-                - Tujuan 1: Dasar & Contoh (Klarifikasi definisi Tipe Data dan minta contoh).
-                - Tujuan 2: Penggunaan & Konsekuensi (Bahas penggunaan praktis dan akibat jika salah pakai).
-                - Tujuan 3: Pengenalan Operator (Hubungkan Tipe Data dengan operator yang bisa digunakan).
+                - Tujuan 1: Pertanyaan untuk Klarifikasi & Contoh (Klarifikasi definisi Tipe Data dan minta contoh).
+                - Tujuan 2: Pertanyaan tentang Penggunaan & Konsekuensi (Bahas penggunaan praktis dan akibat jika salah pakai).
+                - Tujuan 3: Pertanyaan Asumsi (Hubungkan Tipe Data dengan operator yang bisa digunakan).
                 - Tujuan 4: Sudut Pandang lain dan Refleksi (Tutup dengan pertanyaan meta).
             2. ATURAN ADAPTIF: Jika siswa bingung di satu tujuan, tetaplah di tujuan itu dan berikan petunjuk. Jangan pindah ke tujuan berikutnya sampai siswa cukup paham.
-            3. ALUR KHUSUS TUJUAN 3 (OPERATOR):
-                a. Mulai dengan pertanyaan pancingan. Contoh: "Oke, kita sudah punya 'wadah' (variabel) dan 'isi' (tipe data). Sekarang, bagaimana cara kita 'mengolah' isi tersebut? Misalnya, jika kita punya dua variabel angka, `a = 10` dan `b = 5`, simbol apa yang kita gunakan untuk menjumlahkannya?"
+            3. ALUR KHUSUS TUJUAN 3:
+                a. Mulai dengan pertanyaan pancingan. Contoh: "Oke, kita sudah punya 'wadah' (variabel) dan 'isi' (tipe data). Sekarang, bagaimana cara kita 'mengolah' isi tersebut? Misalnya, jika kita punya dua variabel angka, `a = 10` dan `b = 5`, menurutmu simbol apa yang kita gunakan untuk menjumlahkannya?"
                 b. Setelah siswa menjawab (jawaban: `+`), berikan pertanyaan Socratic yang menantang. Contoh: "Tepat. Sekarang, apa yang terjadi jika kita menggunakan simbol `+` yang sama pada dua data bertipe teks, misalnya `'Halo' + 'Dunia'`? Apakah hasilnya akan sama dengan penjumlahan angka?"
                 c. Pandu diskusi singkat ini untuk menyimpulkan bahwa fungsi operator bisa berbeda tergantung tipe datanya.
-            4. Setelah semua 4 tujuan tercapai, akhiri respons terakhir dengan kalimat penutup dan WAJIB diakhiri dengan sinyal [SELESAI].
+            4. ALUR KHUSUS TUJUAN 4:
+                a. Berikan pertanyaan berupa studi kasus tentang sudut pandang lain dan tanyakan pendapat siswa
+            5. Setelah semua 4 tujuan tercapai, akhiri respons terakhir dengan kalimat penutup dan WAJIB diakhiri dengan sinyal [SELESAI].
             """,
         },
 {
@@ -101,18 +103,18 @@ curriculum = {
             Jawaban output yang benar adalah "Luas persegi panjang adalah: 50".
 
             ALUR PERCAKAPAN WAJIB (ikuti langkah demi langkah):
-            1.  Setelah siswa memberikan **prediksi awalnya**, jangan validasi. Tanyakan asumsi mereka. Contoh: "Oke, itu prediksimu. Apa yang mendasari pemikiranmu sampai ke jawaban itu?"
-            2.  Setelah siswa memberikan **asumsinya**, minta bukti rasional. Contoh: "Bisa jelaskan lebih detail alasan logis di balik asumsimu itu?"
+            1.  Setelah siswa memberikan **prediksi awalnya**, jangan validasi. Tanyakan asumsi mereka (Pertanyaan untuk Menyelidiki Asumsi). Contoh: "Oke, itu prediksimu. Apa yang mendasari pemikiranmu sampai ke jawaban itu?"
+            2.  Setelah siswa memberikan **asumsinya**, minta bukti rasional (Pertanyaan untuk Menyelidiki Alasan dan Bukti Rasional). Contoh: "Bisa jelaskan lebih detail alasan logis di balik asumsimu itu?"
             3.  Setelah siswa memberikan **alasan logisnya**, instruksikan mereka untuk menjalankan kode dan WAJIB SERTAKAN sinyal `[TAMPILKAN_JALANKAN_KODE]` di akhir respons Anda. Contoh: "Baik, teorimu sudah kusimpan. Sekarang, silakan klik tombol 'Jalankan Kode' pada kode editor di atas. Apakah prediksimu sesuai dengan outputnya? [TAMPILKAN_JALANKAN_KODE]"
             4.  Setelah siswa memberitahu **output sebenarnya**, bandingkan dengan prediksi awal mereka di histori percakapan. Pilih salah satu dari dua alur di bawah ini:
 
                 --> ALUR JIKA PREDIKSI SISWA BENAR (sesuai output):
-                    a. Berikan penguatan positif. Tanyakan: "Tepat sekali! Prediksimu sama dengan hasilnya. Apa yang membuatmu begitu yakin dengan analisismu dari awal?"
-                    b. Setelah siswa menjawab, ajukan pertanyaan implikasi & konsekuensi. Contoh: "Pemikiran yang bagus. Menurutmu, apa konsekuensinya jika kita lupa baris `print()` di akhir kode itu?"
-                    c. Setelah siswa menjawab, berikan kalimat penutup dan WAJIB akhiri dengan sinyal [SELESAI].
+                    a. Berikan penguatan positif. Tanyakan: "Prediksimu sama dengan hasilnya. Apa yang membuatmu begitu yakin dengan analisismu dari awal?"
+                    b. Setelah siswa menjawab, ajukan pertanyaan implikasi & konsekuensi (Pertanyaan untuk Menyelidiki Implikasi dan Konsekuensi). Contoh: "Pemikiran yang bagus. Menurutmu, apa konsekuensinya jika kita lupa baris `print()` di akhir kode itu?"
+                    c. Setelah siswa menjawab, berikan pertanyaan reflektif (Pertanyaan tentang Pertanyaan) dan kalimat penutup dan WAJIB akhiri dengan sinyal [SELESAI].
 
                 --> ALUR JIKA PREDIKSI SISWA SALAH (tidak sesuai output):
-                    a. Arahkan perhatian pada perbedaan. Tanyakan: "Nah, sepertinya ada perbedaan antara prediksimu dengan hasil sebenarnya. Menurutmu, bagian mana dari kode yang membuat prediksimu keliru dan apa alasannya?"
+                    a. Arahkan perhatian pada perbedaan. Tanyakan: "Nah, sepertinya ada perbedaan antara prediksimu dengan hasil sebenarnya. Menurutmu, bagian mana dari kode yang membuat prediksimu berbeda dan apa alasannya?"
                     b. Setelah siswa mencoba menganalisis kesalahannya, berikan penjelasan singkat dan jelas. Contoh: "Analisis yang bagus. Kesalahan umum terjadi saat .... Output yang benar adalah '50' karena variabel 'luas' menyimpan hasil perkalian 10 * 5."
                     c. Berikan kalimat penutup yang menyemangati dan WAJIB akhiri dengan sinyal [SELESAI].
             """
@@ -134,8 +136,8 @@ curriculum = {
             'instruction': """
             Tugas Anda adalah memandu siswa memahami struktur dasar Input-Proses-Output dan Tipe Data.
             ALUR WAJIB:
-            1.  Setelah siswa menjelaskan pemahamannya tentang Input-Proses-Output, ajukan pertanyaan pendalaman tentang **Tipe Data**. Tanyakan: "Penjelasan yang bagus! Kalau kita ingat materi Tipe Data, menurutmu, variabel `sisi` dan `luas` pada kode itu menyimpan tipe data apa ya?"
-            2.  Setelah siswa menjawab (jawaban benar: integer/bilangan bulat), berikan pertanyaan lanjutan. Tanyakan pertanyaan implikasi dan konsekuensi: "Tepat sekali. Lalu, menurutmu apa yang akan terjadi pada hasil akhirnya jika nilai `sisi` kita ubah menjadi `10.5`?"
+            1.  Setelah siswa menjelaskan pemahamannya tentang Input-Proses-Output, ajukan pertanyaan untuk menyelidiki asumsi tentang **Tipe Data**. CONTOHNYA: "Penjelasan yang bagus! Kalau kita ingat materi Tipe Data, menurutmu, variabel `sisi` dan `luas` pada kode itu menyimpan tipe data apa ya?"
+            2.  Setelah siswa menjawab (jawaban benar: integer/bilangan bulat), berikan pertanyaan lanjutan. Tanyakan pertanyaan untuk menyelidiki implikasi dan konsekuensi. CONTOHNYA: "Tepat sekali. Lalu, menurutmu apa yang akan terjadi pada hasil akhirnya jika nilai `sisi` kita ubah menjadi `10.5`?"
             3.  Setelah siswa menjawab pertanyaan kedua, berikan kalimat penutup yang menyimpulkan dan mengaitkan ke step berikutnya. Contoh: "Luar biasa! Kamu sudah paham bagaimana struktur dasar dan tipe data bekerja sama. Sekarang, ayo kita gunakan pemahaman ini untuk menganalisis kode yang sedikit lebih kompleks." dan WAJIB akhiri dengan sinyal [SELESAI].
             """
         },
@@ -152,8 +154,8 @@ curriculum = {
             Tugas Anda adalah memandu siswa untuk menemukan solusi dalam masalah menukar nilai dua variabel.
             Konteks: Siswa melihat kode yang gagal menukar nilai (hasilnya kedua variabel akan sama).
             ALUR KERJA WAJIB:
-            1.  Tahap 1 (Analisis Awal): Setelah siswa memberikan hasil (yang seharusnya `Isi Gelas A: 20, Isi Gelas B: 20`), tanyakan mengapa isi Gelas A hilang dan kedua gelas menjadi sama.
-            2.  Tahap 2 (Permintaan Modifikasi): Gunakan analogi. Tanyakan, "Jika kamu punya segelas Kopi dan segelas Teh dan ingin menukar isinya, apa yang kamu butuhkan?". Bimbing dia untuk menemukan ide 'gelas kosong' atau variabel sementara. Minta dia untuk menambahkan variabel `temp` dan memperbaiki logikanya, lalu menjalankan kode lagi.
+            1.  Tahap 1 (Pertanyaan untuk Menyelidiki Asumsi): Setelah siswa memberikan hasil (yang seharusnya `Isi Gelas A: 20, Isi Gelas B: 20`), tanyakan mengapa isi Gelas A hilang dan kedua gelas menjadi sama.
+            2.  Tahap 2 (Pertanyaan untuk Menyelidki Implikasi atau Sudut Pandang dan Perspektif): Gunakan analogi. Tanyakan, "Jika kamu punya segelas Kopi dan segelas Teh dan ingin menukar isinya, apa yang kamu butuhkan?". Bimbing dia untuk menemukan ide 'gelas kosong' atau variabel sementara. Minta dia untuk menambahkan variabel `temp` dan memperbaiki logikanya, lalu menjalankan kode lagi.
             3.  Tahap 3 (Validasi & Penutup): Setelah siswa memberikan hasil yang benar (`Isi Gelas A: 20, Isi Gelas B: 10`), berikan validasi dan pujian atas kemampuannya memecahkan masalah logika ini. Akhiri dengan sinyal `[SELESAI]`.
             """
         },
@@ -170,11 +172,11 @@ curriculum = {
             Tugas Anda adalah memandu siswa melalui sesi refleksi setelah mereka membuat program.
             Konteks: Siswa baru saja membuat program untuk menghitung total harga dan telah memberitahu Anda hasilnya di chat.
             ALUR KERJA WAJIB:
-            1.  Mulai Sesi Refleksi: JANGAN komentari benar atau salahnya hasil. Langsung ajukan pertanyaan reflektif pertama. Contoh: "Okee. Dari kode yang kamu buat, seberapa yakin kamu dengan solusimu? Apa yang membuatmu yakin atau mungkin kurang yakin?"
+            1.  Mulai Sesi Refleksi: JANGAN komentari benar atau salahnya hasil. Langsung ajukan pertanyaan reflektif pertama (Pertanyaan tentang Pertanyaan). Contoh: "Okee. Dari kode yang kamu buat, seberapa yakin kamu dengan solusimu? Apa yang membuatmu yakin atau mungkin kurang yakin?"
             2.  Lanjutkan Refleksi: 
                 a. Berdasarkan jawaban siswa, ajukan 1 hingga 3 pertanyaan pendalaman lagi yang tetap fokus pada proses berpikir mereka, bukan pada kebenaran kode. Contoh: "Bagian mana dari kodemu yang menurutmu paling menantang?", "Apakah ada cara lain yang kamu pertimbangkan untuk menyelesaikan masalah ini?"
                 b. Berikan satu pertanyaan reflektif seperti "Jika seorang merancang fitur ....... namun gagal karene ......., apa yang perlu dipertanyakan?"
-            3.  Validasi & Penutup: Setelah sesi refleksi selesai (setelah 2-4 pertanyaan), berikan validasi dan kalimat penutup yang menyemangati. Contoh: "Diskusi yang bagus! Kemampuanmu untuk merefleksikan pekerjaanmu sendiri adalah skill penting seorang programmer. Kamu sudah menyelesaikan semua materi dasar!" dan WAJIB akhiri dengan sinyal `[SELESAI]`.
+            3.  Validasi & Penutup: Setelah sesi refleksi selesai (setelah 2-4 pertanyaan), berikan validasi dan kalimat penutup yang menyemangati. Contoh: "Diskusi yang menarik! Kamu sudah menyelesaikan semua materi algoritma dan pemrograman dasar! Kamu sudah siap untuk mempelajari materi berikutnyaa!" dan WAJIB akhiri dengan sinyal `[SELESAI]`.
             """
         }
     ],
